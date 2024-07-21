@@ -1,0 +1,26 @@
+{% extends 'main/base.html' %}
+
+{% block title %} all plants{% endblock %}
+
+{% block content %}
+
+
+<div class="row">
+    <div class="col-md-6">
+        <img src="{{plant.image.url}}" class="w-100" style="height: 300px; object-fit: cover;" >    </div>
+
+    <div class="col-md-6">
+        <div class="d-flex flex-column justify-content-between gap-2">
+            <h1>{{plant.name}}</h1>
+
+            <h5>{{plant.category}}</h5>
+            <p>{{plant.about}}</p>
+            <h6>Is Edible: {% if plant.is_edible %}Yes{% else %}No{% endif %}</h6>
+            <h6>Used for: {{plant.used_for}}</h6>
+        </div>
+    </div>
+</div>
+   
+   
+   </div>
+{% endblock %}
