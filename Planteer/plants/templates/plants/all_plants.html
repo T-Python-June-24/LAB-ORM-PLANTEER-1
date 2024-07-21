@@ -1,0 +1,21 @@
+{% extends 'main/base.html' %}
+
+{% block title %} all plants{% endblock %}
+
+{% block content %}
+<h2>All plants</h2>
+<div class="row mt-5 row-cols-1 row-cols-md-3 g-4">
+    <!-- name ,about,used_for,image,category,is_edible,created_at -->
+
+  {% for plant in Plants %}
+    <div class="col">
+        <div class="d-flex flex-column justify-content-start align-items-start h-100 p-4 shadow">
+            <h3>{{plant.name}}</h3></a>
+
+            <h5> {{plant.category}}</h5>
+        </div>
+    </div>
+  {% endfor %}
+</div>
+
+{% endblock %}
