@@ -4,27 +4,33 @@
 
 {% block content %}
 
+<!-- Display all messages -->
+<div class="content-home-padding">
+    <h1 class="bold-font-prop tilt-in-fwd-bl">Messages From Users</h1>
+    {% if Messages %}
+        <div class="flex flex-wrap">
+            {% for message in Messages %}
+            <div class="w-full sm:w-1/2 p-2">
+                <div class="pl-6 pr-6 p-4">
+                    <div class="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
+                        <img src="{% static 'images/profile.png' %}" alt="image" class="h-8 w-8 rounded-full mr-2" />
 
-
-    <!-- Display all messages -->
-    <div class="mt-8">
-        <h2 class="text-xl font-semibold mb-4">Previous Messages</h2>
-        {% if Messages %}
-            <ul class="space-y-4">
-                {% for message in Messages %}
-                    <li class="p-4 border border-gray-200 rounded-md">
-                        <p class="font-semibold">{{ message.first_name }} {{ message.last_name }}</p>
-                        <p class="text-gray-600">{{ message.email }}</p>
-                        <p class="mt-2">{{ message.message }}</p>
+                        <div class="flex items-center mb-2">
+                            <div>
+                                <p class="text-gray-600">{{ message.first_name }} {{ message.last_name }}</p>
+                                <p class="text-blue-600">{{ message.email }}</p>
+                            </div>
+                        </div>
+                        <p class="mt-2 text-gray-400">{{ message.message }}</p>
                         <p class="text-sm text-gray-500 mt-2">Sent on: {{ message.created_at }}</p>
-                    </li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p>No messages found.</p>
-        {% endif %}
-    </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="bold-font-prop tilt-in-fwd-bl">No messages found.</p>
+    {% endif %}
 </div>
-
 
 {% endblock content %}

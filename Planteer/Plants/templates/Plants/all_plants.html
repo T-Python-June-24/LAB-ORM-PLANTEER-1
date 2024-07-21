@@ -4,11 +4,13 @@
 {% block title %} All Plants {% endblock title %}
 
 {% block content %}
-
+<script>
+    AOS.init();
+  </script>
 <div class="content-home-padding">
     <h1 class="bold-font-prop tilt-in-fwd-bl"> All Plants </h1>
 
-    <div class="card-grid tilt-in-fwd-bl">
+    <div class="card-grid"  data-aos="fade-up">
         {% for plant in plants %}
         <div class="relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-96 overflow-hidden">
             <img src="{{ plant.plant_image.url }}" alt="image" class="w-full h-56 object-cover rounded-t-xl" />

@@ -31,4 +31,10 @@ def send_contact_message(request:HttpResponse):
             messages.error(request, f'Missing field: {str(e)}')
         except Exception as e:
             messages.error(request, f'An error occurred: {str(e)}')
+        return redirect('Contact:thanks')
     return render(request, 'Contact/contact.html')
+
+
+
+def thanks(request:HttpResponse):
+    return render(request,'Contact/thanks.html')

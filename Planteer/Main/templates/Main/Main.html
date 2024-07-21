@@ -3,6 +3,9 @@
 {% load static %}
 
 {% block content %}
+<script>
+    AOS.init();
+  </script>
 <div class="pl-32 pr-32">
 <div class="flex flex-col items-center justify-center h-screen space-y-12">
     <div class="relative max-w-7xl transition-all cursor-pointer flex justify-center items-center">
@@ -24,7 +27,6 @@
                 </div>
             </div>
         </figcaption>
-        
     </div>  
 </div>
 
@@ -37,72 +39,79 @@
         </a>
     </p>
 </div>
-    <p class="tilt-in-fwd-bl text-gray-500">Learn more about plants</p>
+<p class="tilt-in-fwd-bl text-gray-500 mb-6">Learn more about plants</p>
 
-    <div class="card-grid tilt-in-fwd-bl">
-        <div class="relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-96 overflow-hidden">
-            <img src="{% static 'images/background.jpg' %}" alt="image" class="w-full h-56 object-cover rounded-t-xl" />
-            <div class="p-4">
-                <p class="block font-sans text-base antialiased font-bold leading-relaxed text-inherit ">
-                   Plant 1
-                </p>
-            </div>
-            <div class="pl-6 pr-6 p-4">
-                <p class="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
-                    Brief About the Plant
-                </p>
-            </div>
-            <div class="pl-6 pr-6 p-2">
-                <p class="block font-sans text-base antialiased font-bold leading-relaxed text-inherit">
-                    Tree
-                </p>
-            </div>
-        </div>
-
-        <div class="relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-96 overflow-hidden">
-            <img src="{% static 'images/background.jpg' %}" alt="image" class="w-full h-56 object-cover rounded-t-xl" />
-            <div class="p-4">
-                <p class="block font-sans text-base antialiased font-bold leading-relaxed text-inherit ">
-                   Plant 2
-                </p>
-            </div>
-            <div class="pl-6 pr-6 p-4">
-                <p class="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
-                    Brief About the Plant
-                </p>
-            </div>
-            <div class="pl-6 pr-6 p-2">
-                <p class="block font-sans text-base antialiased font-bold leading-relaxed text-inherit">
-                    Tree
-                </p>
-            </div>
-        </div>
+<div data-aos="fade-left"
+data-aos-anchor="#example-anchor"
+data-aos-offset="500"
+data-aos-duration="500"
+class="flex flex-col items-center">
 
 
-        <div class="relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-96 overflow-hidden">
-            <img src="{% static 'images/background.jpg' %}" alt="image" class="w-full h-56 object-cover rounded-t-xl" />
-            <div class="p-4">
-                <p class="block font-sans text-base antialiased font-bold leading-relaxed text-inherit ">
-                   Plant 3
-                </p>
-            </div>
-            <div class="pl-6 pr-6 p-4">
-                <p class="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
-                    Brief About the Plant
-                </p>
-            </div>
-            <div class="pl-6 pr-6 p-2">
-                <p class="block font-sans text-base antialiased font-bold leading-relaxed text-inherit">
-                    Tree
-                </p>
-            </div>
-        </div>
+<div class="card-grid flex flex-wrap justify-center" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">
+   <div class="relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-96 overflow-hidden" data-aos="fade-up" data-aos-duration="1000">
+       <img src="{% static 'images/plant1.webp' %}" alt="image" class="w-full h-56 object-cover rounded-t-xl" />
+       <div class="p-4">
+           <p class="block font-sans text-base antialiased font-bold leading-relaxed text-inherit">
+              Plant 1
+           </p>
+       </div>
+       <div class="pl-6 pr-6 p-4">
+           <p class="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
+               Brief About the Plant
+           </p>
+       </div>
+       <div class="pl-6 pr-6 p-2">
+           <p class="block font-sans text-base antialiased font-bold leading-relaxed text-inherit">
+               Tree
+           </p>
+       </div>
+   </div>
 
+   <div class="relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border orounded-xl w-96 overflow-hidden" data-aos="fade-up" data-aos-duration="1000">
+       <img src="{% static 'images/plant2.webp' %}" alt="image" class="w-full h-56 object-cover rounded-t-xl" />
+       <div class="p-4">
+           <p class="block font-sans text-base antialiased font-bold leading-relaxed text-inherit">
+              Plant 2
+           </p>
+       </div>
+       <div class="pl-6 pr-6 p-4">
+           <p class="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
+               Brief About the Plant
+           </p>
+       </div>
+       <div class="pl-6 pr-6 p-2">
+           <p class="block font-sans text-base antialiased font-bold leading-relaxed text-inherit">
+               Tree
+           </p>
+       </div>
+   </div>
 
-    </div>
-
+   <div class="relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-96 overflow-hidden" data-aos="fade-up" data-aos-duration="1000">
+       <img src="{% static 'images/background.jpg' %}" alt="image" class="w-full h-56 object-cover rounded-t-xl" />
+       <div class="p-4">
+           <p class="block font-sans text-base antialiased font-bold leading-relaxed text-inherit">
+              Plant 3
+           </p>
+       </div>
+       <div class="pl-6 pr-6 p-4">
+           <p class="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
+               Brief About the Plant
+           </p>
+       </div>
+       <div class="pl-6 pr-6 p-2">
+           <p class="block font-sans text-base antialiased font-bold leading-relaxed text-inherit">
+               Tree
+           </p>
+       </div>
+   </div>
+</div>
+</div>
 <br><br>
 
+
+
+</div>
 
 
 {% endblock content %}
