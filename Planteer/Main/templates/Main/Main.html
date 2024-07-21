@@ -1,0 +1,108 @@
+{% extends "Main/base.html" %}
+
+{% load static %}
+
+{% block content %}
+<div class="pl-32 pr-32">
+<div class="flex flex-col items-center justify-center h-screen space-y-12">
+    <div class="relative max-w-7xl transition-all cursor-pointer flex justify-center items-center">
+        <a href="#">
+            <img class="rounded-3xl w-[1300px] h-[600px] max-w-full" src="{% static 'images/background.jpg' %}" alt="image description">
+        </a>
+        <figcaption class="absolute inset-0 flex flex-col items-center justify-center px-4 text-lg text-white rounded-3xl">
+            <p class="text-black text-center mb-16 text-9xl font-bold img-animation">Planteer</p>
+            
+            <p class="text-black text-center mb-16 text-6xl font-bold img-animation word-spacing">
+                Plant Database For Plants Lovers</p>
+
+            <div class="w-full max-w-md">
+                <div class="relative">
+                    <input type="text" placeholder="Search For Plant..." class="w-full py-2 px-4 pr-12 border rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-teal-500">
+                    <button class="absolute inset-y-0 right-0 px-4 py-2 bg-black text-white rounded-r-lg hover:bg-black focus:outline-none focus:ring-2 focus:ring-teal-500">
+                        Search
+                    </button>
+                </div>
+            </div>
+        </figcaption>
+        
+    </div>  
+</div>
+
+<div class="flex justify-between items-center mb-4">
+    <p class="font-bold text-lg"><a href="">Plants</a></p>
+    <p class="flex items-center space-x-2">
+        <a href="{% url 'Plants:plants' %}" class="flex items-center">
+            More
+            <img src="{% static 'images/arrow.png' %}" alt="" class="ml-2 h-6">
+        </a>
+    </p>
+</div>
+    <p class="tilt-in-fwd-bl text-gray-500">Learn more about plants</p>
+
+    <div class="card-grid tilt-in-fwd-bl">
+        <div class="relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-96 overflow-hidden">
+            <img src="{% static 'images/background.jpg' %}" alt="image" class="w-full h-56 object-cover rounded-t-xl" />
+            <div class="p-4">
+                <p class="block font-sans text-base antialiased font-bold leading-relaxed text-inherit ">
+                   Plant 1
+                </p>
+            </div>
+            <div class="pl-6 pr-6 p-4">
+                <p class="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
+                    Brief About the Plant
+                </p>
+            </div>
+            <div class="pl-6 pr-6 p-2">
+                <p class="block font-sans text-base antialiased font-bold leading-relaxed text-inherit">
+                    Tree
+                </p>
+            </div>
+        </div>
+
+        <div class="relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-96 overflow-hidden">
+            <img src="{% static 'images/background.jpg' %}" alt="image" class="w-full h-56 object-cover rounded-t-xl" />
+            <div class="p-4">
+                <p class="block font-sans text-base antialiased font-bold leading-relaxed text-inherit ">
+                   Plant 2
+                </p>
+            </div>
+            <div class="pl-6 pr-6 p-4">
+                <p class="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
+                    Brief About the Plant
+                </p>
+            </div>
+            <div class="pl-6 pr-6 p-2">
+                <p class="block font-sans text-base antialiased font-bold leading-relaxed text-inherit">
+                    Tree
+                </p>
+            </div>
+        </div>
+
+
+        <div class="relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-96 overflow-hidden">
+            <img src="{% static 'images/background.jpg' %}" alt="image" class="w-full h-56 object-cover rounded-t-xl" />
+            <div class="p-4">
+                <p class="block font-sans text-base antialiased font-bold leading-relaxed text-inherit ">
+                   Plant 3
+                </p>
+            </div>
+            <div class="pl-6 pr-6 p-4">
+                <p class="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
+                    Brief About the Plant
+                </p>
+            </div>
+            <div class="pl-6 pr-6 p-2">
+                <p class="block font-sans text-base antialiased font-bold leading-relaxed text-inherit">
+                    Tree
+                </p>
+            </div>
+        </div>
+
+
+    </div>
+
+<br><br>
+
+
+
+{% endblock content %}

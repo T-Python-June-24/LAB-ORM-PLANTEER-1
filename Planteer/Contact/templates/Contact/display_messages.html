@@ -1,0 +1,30 @@
+{% extends "Main/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+
+
+    <!-- Display all messages -->
+    <div class="mt-8">
+        <h2 class="text-xl font-semibold mb-4">Previous Messages</h2>
+        {% if Messages %}
+            <ul class="space-y-4">
+                {% for message in Messages %}
+                    <li class="p-4 border border-gray-200 rounded-md">
+                        <p class="font-semibold">{{ message.first_name }} {{ message.last_name }}</p>
+                        <p class="text-gray-600">{{ message.email }}</p>
+                        <p class="mt-2">{{ message.message }}</p>
+                        <p class="text-sm text-gray-500 mt-2">Sent on: {{ message.created_at }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No messages found.</p>
+        {% endif %}
+    </div>
+</div>
+
+
+{% endblock content %}

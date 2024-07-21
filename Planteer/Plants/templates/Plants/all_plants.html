@@ -1,0 +1,35 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %} All Plants {% endblock title %}
+
+{% block content %}
+
+<div class="content-home-padding">
+    <h1 class="bold-font-prop tilt-in-fwd-bl"> All Plants </h1>
+
+    <div class="card-grid tilt-in-fwd-bl">
+        {% for plant in plants %}
+        <div class="relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-96 overflow-hidden">
+            <img src="{{ plant.plant_image.url }}" alt="image" class="w-full h-56 object-cover rounded-t-xl" />
+            <div class="p-4">
+                <p class="block font-sans text-base antialiased font-bold leading-relaxed text-inherit ">
+                   Plant {{ plant.id }}
+                </p>
+            </div>
+            <div class="pl-6 pr-6 p-4">
+                <p class="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
+                    Brief About the Plant
+                </p>
+            </div>
+            <div class="pl-6 pr-6 p-2">
+                <p class="block font-sans text-base antialiased font-bold leading-relaxed text-inherit">
+                    {{ plant.name }}
+                </p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<br><br>
+{% endblock content %}
