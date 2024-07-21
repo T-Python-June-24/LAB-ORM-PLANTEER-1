@@ -1,0 +1,74 @@
+{% extends 'main/base.html' %} {% load static %} {% block content %}
+<div class="container mt-5">
+  <h1 class="mb-4">Messages from Users</h1>
+  {% if contacts %}
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    {% for contact in contacts %}
+    <div class="col">
+      <div class="card h-100 border-0">
+        <div class="card-body">
+          <i class="bi bi-person-circle fs-5 mb-2"></i>
+          <h5 class="card-title">
+            {{ contact.first_name }} {{ contact.last_name }}
+          </h5>
+          <h6 class="card-subtitle mb-2 text-muted">
+            <a href="mailto:{{ contact.email }}" class="text-decoration-none"
+              >{{ contact.email }}</a
+            >
+          </h6>
+          {% if contact.message|length > 100 %}
+          <p
+            class="card-text text-muted truncate"
+            id="message-{{ forloop.counter }}"
+          >
+            {{ contact.message|truncatechars:100 }}
+          </p>
+          <button
+            class="btn btn-link p-0 expand-btn"
+            data-target="message-{{ forloop.counter }}"
+          >
+            Show more
+          </button>
+          <p
+            class="card-text text-muted full-message d-none"
+            id="full-message-{{ forloop.counter }}"
+          >
+            {{ contact.message }}
+          </p>
+          {% else %}
+          <p class="card-text text-muted">{{ contact.message }}</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p class="alert alert-info">No messages available.</p>
+  {% endif %}
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const expandButtons = document.querySelectorAll(".expand-btn");
+
+    expandButtons.forEach((button) => {
+      button.addEventListener("click", function () {
+        const targetId = this.getAttribute("data-target");
+        const truncatedMessage = document.getElementById(targetId);
+        const fullMessage = document.getElementById("full-" + targetId);
+
+        if (truncatedMessage.classList.contains("d-none")) {
+          truncatedMessage.classList.remove("d-none");
+          fullMessage.classList.add("d-none");
+          this.textContent = "Show more";
+        } else {
+          truncatedMessage.classList.add("d-none");
+          fullMessage.classList.remove("d-none");
+          this.textContent = "Show less";
+        }
+      });
+    });
+  });
+</script>
+{% endblock %}

@@ -1,0 +1,105 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<style>
+    .card {
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .card-title {
+        color: #333;
+        font-weight: 600;
+    }
+    .form-control, .form-select {
+        border-radius: 8px;
+        border: 1px solid #ced4da;
+        padding: 10px 15px;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+    .form-control:focus, .form-select:focus {
+        border-color: #000;
+        box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.25);
+    }
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+        border-radius: 8px;
+        padding: 10px 20px;
+        font-weight: 500;
+        transition: background-color 0.15s ease-in-out;
+    }
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+    .form-check-input:checked {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+    .form-label {
+        font-weight: 500;
+        color: #495057;
+    }
+</style>
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body p-4">
+                    <h2 class="card-title text-center mb-4">Update Plant</h2>
+                    <form action="{% url 'plants:update_plant' plant.id %}" method="post" enctype="multipart/form-data" id="plantForm">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" value="{{ plant.name }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="about" class="form-label">About</label>
+                            <textarea class="form-control" id="about" name="about" rows="3" required>{{ plant.about }}</textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="used_for" class="form-label">Used For</label>
+                            <textarea class="form-control" id="used_for" name="used_for" rows="3" required>{{ plant.used_for }}</textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="image" class="form-label">Image</label>
+                            <input type="file" class="form-control" id="image" name="image">
+                        </div>
+                        <div class="mb-3">
+                            <label for="category" class="form-label">Category</label>
+                            <select class="form-select" id="category" name="category" required>
+                                <option value="" selected disabled>Choose a category</option>
+                                <option value="fruit" {% if plant.category == 'fruit' %}selected{% endif %}>Fruit</option>
+                                <option value="tree" {% if plant.category == 'tree' %}selected{% endif %}>Tree</option>
+                                <option value="vegetables" {% if plant.category == 'vegetables' %}selected{% endif %}>Vegetables</option>
+                            </select>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="is_edible" name="is_edible" value="True" {% if plant.is_edible %}checked{% endif %}>
+                            <label class="form-check-label" for="is_edible">Is Edible</label>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-dark">Update Plant</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('plantForm');
+    
+    form.addEventListener('submit', function(event) {
+        if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+    });
+});
+</script>
+{% endblock %}
