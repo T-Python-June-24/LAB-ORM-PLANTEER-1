@@ -35,5 +35,7 @@ def add_plant(request:HttpResponse):
             messages.error(request, f'Missing field: {str(e)}')
         except Exception as e:
             messages.error(request, f'An error occurred: {str(e)}')
-        return redirect('Plants:add_plant')
+        return redirect('Contact:thanks_add_plant')
     return render(request, 'Plants/add_plant.html')
+
+

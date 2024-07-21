@@ -38,3 +38,6 @@ def send_contact_message(request:HttpResponse):
 
 def thanks(request:HttpResponse):
     return render(request,'Contact/thanks.html')
+
+def thanks_add_plant(request:HttpResponse):
+    return render(request,'Contact/thanks_add_plant.html')
