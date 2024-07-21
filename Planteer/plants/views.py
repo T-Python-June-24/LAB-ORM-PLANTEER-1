@@ -28,7 +28,12 @@ def add_plant(request: HttpRequest):
 def plant_detail(request:HttpRequest,plant_id:int):
     plant=Plant.objects.get(pk=plant_id)
     return render(request,"plants/plant_detail.html",{"plant":plant})
+
+def delete_plant(request:HttpRequest,plant_id:int):
+    plant=Plant.objects.get(pk=plant_id)
+    plant.delete()
+    return redirect('main:home_view')
 # def update_plant
-# def delete_plant  
+  
 
 
