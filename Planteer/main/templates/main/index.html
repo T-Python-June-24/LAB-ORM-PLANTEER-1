@@ -18,14 +18,20 @@
         color: darkgrey;
         font-weight: 400;
     }
+    .form-control, .search-button {
+        margin-top: 2rem;
+        height: 38px; 
+    }
 </style>
 <section class="hero-section">
     <div class="overlay-background d-flex align-items-center justify-content-center flex-column">
         <h1 class="text-white display-1">Planteer</h1>
         <h2 class="text-white display-4">Plant Database For Plants Lovers</h2>
         <div class="w-100 d-flex justify-content-center">
-            <form class="col-12 col-sm-10 col-md-8 col-lg-6" role="search">
-                <input type="search" class="form-control" placeholder="Search for plant..." aria-label="Search">
+            <form class="col-12 col-sm-10 col-md-8 col-lg-6 d-flex gap-2" role="search" method="POST" action="{%url 'plants:plants_search'%}">
+                {%csrf_token%}
+                <input type="search" class="form-control" placeholder="Search for plant..." aria-label="Search" name="searched">
+                <button class="btn btn-secondary search-button" type="submit">Search</button>
             </form>
         </div>
     </div>
@@ -38,13 +44,12 @@
     <div>
         <a href="{%url 'plants:all_plants'%}"><h2>More</h2></a>
     </div>
-
-    
 </section>
 <div class="row mt-5 row-cols-1 row-cols-md-3 g-4">    
     {% for plant in plants %}
       <div class="col">
-          <div class="d-flex flex-column justify-content-start align-items-start h-100 p-4 shadow">
+          <div class="d-flex flex-column justify-content-start align-items-start h-100 p-4 shadow" >
+
               <img src="{{plant.image.url}}" class="w-100 " > 
   
               <a href="{%url 'plants:plant_detail' plant.id%}"><h3>{{plant.name}}</h3></a>

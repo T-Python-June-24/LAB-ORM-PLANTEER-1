@@ -1,0 +1,35 @@
+{% extends 'main/base.html' %}
+
+{% block title %} Search plants{% endblock %}
+
+{% block content %}
+{%if not searched%}
+<!-- when the user tap empty search , or when accses the url dirctly -->
+<h1>You forgot to search for a plant</h1>
+{%else%}
+{%if plant%}
+<h1>results for {{searched}}</h1>
+<h6>found results : {{ count }} plants</h6>
+<br/>
+<div class="row mt-5 row-cols-1 row-cols-md-3 g-4">
+   
+{% for plant in plant %}
+    <div class="col">
+        <div class="d-flex flex-column justify-content-start align-items-start h-100 p-4 shadow">
+            <img src="{{plant.image.url}}" class="w-100" > 
+            
+            <a href="{%url 'plants:plant_detail' plant.id%}"><h3>{{plant.name}}</h3></a>
+
+            <h5> {{plant.category}}</h5>
+        </div>
+    </div>
+{% endfor %}
+</div>
+{%else%}
+<!-- when the user tap empty search , or when accses the url dirctly -->
+
+<h1>no result were found for {{searched}}</h1>
+{%endif%}
+{%endif%}
+
+{% endblock %}

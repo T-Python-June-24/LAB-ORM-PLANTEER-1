@@ -47,4 +47,11 @@ def update_plant (request:HttpRequest,plant_id:int):
             return redirect('plants:plant_detail',plant_id=plant.id)
 
         return render(request,"plants/update_plant.html",{"plant":plant})  
-
+def plants_search(request:HttpRequest):
+     if request.method=="POST":
+          searched=request.POST['searched']
+          plant = Plant.objects.filter(name__contains=searched)
+          count=len(plant)
+          return render(request, 'plants/plants_search.html',{'searched':searched, 'plant':plant , 'count':count})
+     else:
+          return render(request, 'plants/plants_search.html')
