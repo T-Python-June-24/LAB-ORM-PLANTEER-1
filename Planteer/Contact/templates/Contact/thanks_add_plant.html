@@ -8,7 +8,8 @@
         <img src="{% static 'images/thanks.jpg' %}" alt="Thank You" class="w-1/4 mb-6 puff-in-hor">
         <h1 class="text-8xl font-bold puff-in-hor">Thanks for adding plant</h1>
         <p class="text-teal-500 p-8 puff-in-hor">You are a great friend for the environment</p>
-
-    </div>
+        <button class="bg-black text-white py-2 px-16 rounded-lg">
+            <a href="{% url 'Plants:plants' %}">Dispaly Plants</a>
+        </button>    </div>
 </div>
 {% endblock content %}

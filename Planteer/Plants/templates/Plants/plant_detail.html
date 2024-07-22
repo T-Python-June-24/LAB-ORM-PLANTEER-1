@@ -1,0 +1,103 @@
+{% extends "Main/base.html" %}
+{% load static %}
+{% block content %}
+<script>
+    AOS.init();
+</script>
+<div class="container mx-auto p-4">
+    <div class="flex">
+        <!-- Image Section -->
+        <div class="w-1/2">
+            <img src="{{ plant.plant_image.url }}" alt="Plant Image"
+                class="w-[500px] h-[600px] object-cover rounded-xl">
+        </div>
+        <!-- Text Section -->
+        <div class="w-1/2 pl-0">
+            <h1 class="text-3xl font-bold">{{ plant.name }}</h1>
+            <p class="pt-4 pb-2 text-gray-400 text-lg">{{ plant.get_category_display }}</p>
+            <p class="pt-4 pb-2 text-black"><strong>About:</strong> {{ plant.about }}</p>
+            <p class="pt-4 pb-2 text-black"><strong>Edible:</strong> {{ plant.is_edible|yesno:"Yes,No" }}</p>
+            <p class="pt-4 pb-2 text-black"><strong>Used For:</strong> {{ plant.used_for }}</p>
+            <p class="pt-4 pb-8 text-gray-400 text-s">Created At: {{ plant.created_at }}</p>
+            <a href="{% url 'Plants:update_plant' plant.id %}"
+                class="bg-teal-400 text-white py-2 px-12 rounded-lg mt-4">Edit</a>
+            <a href="{% url 'Plants:delete_plant' plant.id %}"
+                class="bg-red-500 text-white py-2 px-12 rounded-lg mt-8">Delete</a>
+        </div>
+    </div>
+</div>
+<div class="content-home-padding">
+    <h1 class="text-black font-normal text-xl pt-16 tilt-in-fwd-bl"> Related Plants </h1>
+    <div data-aos="fade-left" data-aos-anchor="#example-anchor" data-aos-offset="500" data-aos-duration="500"
+        class="flex flex-col items-center">
+        <div class="card-grid flex flex-wrap justify-center" data-aos="fade-up"
+            data-aos-anchor-placement="bottom-bottom">
+            <div class="relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-96 overflow-hidden"
+                data-aos="fade-up" data-aos-duration="1000">
+                <img src="{% static 'images/background.jpg' %}" alt="image"
+                    class="w-full h-56 object-cover rounded-t-xl" />
+                <div class="p-4">
+                    <p class="block font-sans text-base antialiased font-bold leading-relaxed text-inherit">
+                        Plant 1
+                    </p>
+                </div>
+                <div class="pl-6 pr-6 p-4">
+                    <p class="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
+                        Brief About the Plant
+                    </p>
+                </div>
+                <div class="pl-6 pr-6 p-2">
+                    <p class="block font-sans text-base antialiased font-bold leading-relaxed text-inherit">
+                        Tree
+                    </p>
+                </div>
+            </div>
+
+            <div class="relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border orounded-xl w-96 overflow-hidden"
+                data-aos="fade-up" data-aos-duration="1000">
+                <img src="{% static 'images/background.jpg' %}" alt="image"
+                    class="w-full h-56 object-cover rounded-t-xl" />
+                <div class="p-4">
+                    <p class="block font-sans text-base antialiased font-bold leading-relaxed text-inherit">
+                        Plant 2
+                    </p>
+                </div>
+                <div class="pl-6 pr-6 p-4">
+                    <p class="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
+                        Brief About the Plant
+                    </p>
+                </div>
+                <div class="pl-6 pr-6 p-2">
+                    <p class="block font-sans text-base antialiased font-bold leading-relaxed text-inherit">
+                        Tree
+                    </p>
+                </div>
+            </div>
+
+            <div class="relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-96 overflow-hidden"
+                data-aos="fade-up" data-aos-duration="1000">
+                <img src="{% static 'images/background.jpg' %}" alt="image"
+                    class="w-full h-56 object-cover rounded-t-xl" />
+                <div class="p-4">
+                    <p class="block font-sans text-base antialiased font-bold leading-relaxed text-inherit">
+                        Plant 3
+                    </p>
+                </div>
+                <div class="pl-6 pr-6 p-4">
+                    <p class="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
+                        Brief About the Plant
+                    </p>
+                </div>
+                <div class="pl-6 pr-6 p-2">
+                    <p class="block font-sans text-base antialiased font-bold leading-relaxed text-inherit">
+                        Tree
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+</div>
+</div>
+
+{% endblock content %}

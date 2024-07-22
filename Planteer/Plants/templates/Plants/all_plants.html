@@ -12,20 +12,20 @@
 
     <div class="card-grid"  data-aos="fade-up">
         {% for plant in plants %}
-        <div class="relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-96 overflow-hidden">
+        <div class="relative flex flex-col mt-6  bg-white shadow-md bg-clip-border rounded-xl w-96 overflow-hidden">
             <img src="{{ plant.plant_image.url }}" alt="image" class="w-full h-56 object-cover rounded-t-xl" />
-            <div class="p-4">
-                <p class="block font-sans text-base antialiased font-bold leading-relaxed text-inherit ">
-                   Plant {{ plant.id }}
+            <div class="pl-6 pr-6 p-2">
+                <p class="block font-sans text-base antialiased font-extrabold leading-relaxed text-inherit hover:text-teal-500 ">
+                    <a href="{% url 'Plants:plant_detail' plant.id %}">Plant {{ plant.id }}</a>
                 </p>
             </div>
-            <div class="pl-6 pr-6 p-4">
-                <p class="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
+            <div class="pl-6 pr-6 p-1">
+                <p class="block text-gray-500 font-medium font-sans text-base antialiased leading-relaxed">
                     Brief About the Plant
                 </p>
             </div>
-            <div class="pl-6 pr-6 p-2">
-                <p class="block font-sans text-base antialiased font-bold leading-relaxed text-inherit">
+            <div class="pl-6 pr-6 p-1 pb-5">
+                <p class="block font-sans text-base antialiased font-medium leading-relaxed text-inherit">
                     {{ plant.name }}
                 </p>
             </div>
