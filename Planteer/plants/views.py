@@ -3,12 +3,18 @@ from django.http import HttpRequest, HttpResponse
 from plants.models import Plant
 
 # Create your views here.
-
-def all_plants(request:HttpRequest):
-
+def all_plants(request):
     Plants = Plant.objects.all()
 
-    return render(request, 'plants/all_plants.html', {"Plants" : Plants} )
+    category = request.GET.get('category')
+    if category:
+        Plants = Plants.filter(category=category)
+
+    is_edible = request.GET.get('is_edible')
+    if is_edible:
+        Plants = Plants.filter(is_edible=(is_edible == 'True'))
+
+    return render(request, 'plants/all_plants.html', {'Plants': Plants})
 
 
 def add_plant(request: HttpRequest):

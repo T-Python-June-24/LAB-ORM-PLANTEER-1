@@ -1,23 +1,41 @@
 {% extends 'main/base.html' %}
 
-{% block title %} all plants{% endblock %}
+{% block title %}All Plants{% endblock %}
 
 {% block content %}
-<h1>All plants</h1>
-<div class="row mt-5 row-cols-1 row-cols-md-3 g-4">
-    <!-- name ,about,used_for,image,category,is_edible,created_at -->
+<h1>All Plants</h1>
 
-  {% for plant in Plants %}
-    <div class="col">
-        <div class="d-flex flex-column justify-content-start align-items-start h-100 p-4 shadow">
-            <img src="{{plant.image.url}}" class="w-100" > 
-            
-            <a href="{%url 'plants:plant_detail' plant.id%}"><h3>{{plant.name}}</h3></a>
-
-            <h5> {{plant.category}}</h5>
+<form method="get" action="{%url 'plants:all_plants'%}" class="mb-4">
+    <div class="mb-3">
+        <label for="category" class="form-label">Category</label>
+        <select class="form-select" name="category" id="category">
+            <option value="">Choose...</option>
+            <option value="vegetables">Vegetables</option>
+            <option value="fruits">Fruits</option>
+            <option value="herbs">Herbs</option>
+            <option value="flowers">Flowers</option>
+            <option value="trees">Trees</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="isEdible" name="is_edible" value="True">
+            <label class="form-check-label" for="isEdible">Edible</label>
         </div>
     </div>
-  {% endfor %}
+    <button type="submit" class="btn btn-primary">Filter</button>
+</form>
+
+<div class="row mt-5 row-cols-1 row-cols-md-3 g-4">
+    {% for plant in Plants %}
+    <div class="col">
+        <div class="d-flex flex-column justify-content-start align-items-start h-100 p-4 shadow">
+            <img src="{{ plant.image.url }}" class="w-100">
+            <a href="{% url 'plants:plant_detail' plant.id %}"><h3>{{ plant.name }}</h3></a>
+            <h5>{{ plant.category }}</h5>
+        </div>
+    </div>
+    {% endfor %}
 </div>
 
 {% endblock %}
