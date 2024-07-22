@@ -1,0 +1,49 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %}Contact Us{% endblock %}
+
+{% block content %}
+<style>
+    .contact-img img {
+        max-width: 100%;  
+        height: auto;     
+        object-fit: cover;
+    }
+</style>
+
+<div class="container my-5">
+    <div class="row g-4">
+        <div class="col-md-6">
+            <h1>Contact us</h1>
+            <p class="mb-4">Subheading for description or instructions</p>
+            
+            <form action="{% url 'contact:contact_view' %}" method="POST">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-sm-6 mb-3">
+                        <label for="first_name" class="form-label">First name</label>
+                        <input type="text" class="form-control" name="first_name" placeholder="Jane" required>
+                    </div>
+                    <div class="col-sm-6 mb-3">
+                        <label for="last_name" class="form-label">Last name</label>
+                        <input type="text" class="form-control" name="last_name" placeholder="Smitherton" required>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="email@janesfakedomain.net" required>
+                </div>
+                <div class="mb-3">
+                    <label for="message" class="form-label">Your message</label>
+                    <textarea class="form-control" id="message" name="message" rows="3" placeholder="Enter your question or message" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+        <div class="col-md-6 ps-md-4 contact-img">
+            <img src="{% static 'images/contactBG.jpg' %}" alt="Contact Background">
+        </div>
+    </div>
+</div>
+
+{% endblock %}

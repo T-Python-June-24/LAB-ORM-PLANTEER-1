@@ -7,7 +7,9 @@
 }
 
 h1 {
+    padding-top: 6rem;
     font-size: 4rem;
+    margin-bottom: 4rem;
     
 }
 h1, h2 {
@@ -20,6 +22,7 @@ h1, h2 {
 
 body {
     min-height: 100vh;
+    margin-bottom: 5rem;
 }
 
 body.dark  {
@@ -106,14 +109,3 @@ input[type="search"]{
     padding: 0px !important;
 }
 
-label {
-    color: blue; /* Set label color to blue */
-    font-size: 1rem; /* Adjust font size as needed */
-    font-weight: bold; /* Make label text bold */
-    margin-bottom: 0.5rem; /* Add some space below the label */
-}
-
-/* Enhance label visibility in dark mode */
-body.dark label {
-    color: lightblue; /* Lighter color for better visibility in dark mode */
-}
