@@ -1,0 +1,26 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="text-center mb-4">Search Results <span class="text-muted" style="font-size: 1.2rem;">({{ num_results }} result{{ num_results|pluralize }})</span></h1>
+        <div class="row">
+            {% for plant in plants %}
+                <div class="col-md-4 mb-4">
+                    <a href="{% url 'plants:plant_details' plant.id %}" style="text-decoration: none; color: inherit;">
+                        <div class="card border-0">
+                            <img src="{{ plant.image.url }}" class="card-img-top" alt="{{ plant.name }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ plant.name }}</h5>
+                                <p class="card-text">{{ plant.about|truncatewords:20 }}</p>
+                                <p class="card-text"><small class="text-dark fw-bold">{{ plant.category|capfirst }}</small></p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+            {% if not plants %}
+                <p class="text-center">No results found.</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

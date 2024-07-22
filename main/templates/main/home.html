@@ -6,12 +6,12 @@
     <div class="position-absolute top-50 start-50 translate-middle text-center">
         <h1 class="display-1 mb-2 fw-bold animate__animated animate__fadeInDown" style="font-size: 5em;">Planteer</h1>
         <h2 class="mb-4 animate__animated animate__fadeInUp" style="font-weight:bold; font-size: 4.2em; white-space: nowrap;">Plant Database For Plants Lovers</h2>
-        <form class="animate__animated animate__fadeIn animate__delay-1s">
-            <div style="max-width: 600px; margin: 0 auto; display: flex; justify-content: space-between;">
-                <input type="text" class="form-control" placeholder="Search For Plant..." style="flex-grow: 1; margin-right: 10px;">
+        <div class="animate__animated animate__fadeIn animate__delay-1s">
+            <form action="{% url 'plants:search_plants' %}" method="get" style="max-width: 600px; margin: 0 auto; display: flex; justify-content: space-between;">
+                <input type="text" class="form-control" placeholder="Search For Plant..." style="flex-grow: 1; margin-right: 10px;" name="query">
                 <button class="btn btn-dark" type="submit">Search</button>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </div>
 
