@@ -8,18 +8,18 @@
             <textarea name="about" placeholder="About the plant" class="form-control" required>{{plant.about}}</textarea>
             <textarea name="used_for" placeholder="used for .." class="form-control" required>{{plant.used_for}}</textarea>
             <select name="category" class="form-select" required>
-                <option selected value="">Choose</option>
-                <option value="Angiosperms">Angiosperms</option>
-                <option value="Pteridophytes">Pteridophytes</option>
-                <option value="Gymnosperms">Gymnosperms</option>
+                <option  value="">Choose</option>
+                <option value="Angiosperms" {% if plant.category == 'Angiosperms' %} selected{% endif %}>Angiosperms</option>
+                <option value="Pteridophytes" {% if plant.category == 'Pteridophytes' %} selected{% endif %}>Pteridophytes</option>
+                <option value="Gymnosperms" {% if plant.category == 'Gymnosperms' %} selected{% endif %}>Gymnosperms</option>
             </select>
             <select name="is_edible" class="form-select" required>
-                <option selected value="">Edible</option>
-                <option value="True">Yes</option>
-                <option value="False">No</option>
+                <option  value="">Edible</option>
+                <option value="True" {% if plant.is_edible == True %} selected{% endif %}>Yes</option>
+                <option value="False" {% if plant.is_edible == False %} selected {% endif %}>No</option>
             </select>
             <input type="date" name="created_at" value='{{plant.created_at.isoformat}}' class="form-control" required/>
-            <input type="file" accept="image/*" name="image" class="form-control" value="{{plant.image.url}}" required/>
+            <input type="file" accept="image/*" name="image" class="form-control" value="{{plant.image.url}}" />
             <img src="{{plant.image.url}}" alt="">
             <input type="submit" value="ubdate" class="btn btn-primary">
         </form>

@@ -10,4 +10,6 @@ urlpatterns = [
     path('plants/new/' , views.new , name='new'),
     path('plants/<plants_id>/update/' , views.update , name='update'),
     path('plants/<plants_id>/delete/' , views.delete , name='delete'),
+    path('plants/search/' , views.search , name='search'),
+    path('plants/filtering/' , views.filtering , name='filtering')
 ]

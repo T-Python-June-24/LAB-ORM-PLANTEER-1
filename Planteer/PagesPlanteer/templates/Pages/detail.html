@@ -24,6 +24,31 @@
         </div>
     </div>
 </div>
+<div class="d-flex">
+    {% if plants%}
+    <div class='row'>
+        <h1>Plants of the same category</h1>
+        {% for plant in plants%}
+        <div class='col'>
+            
+            <div class="card" style="width: 18rem;">
+                <img src="{{plant.image.url}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <a href="{% url 'PagesPlanteer:detail' plant.id%}" class="btn">
+                        <h5 class="card-title">{{plant.name}}</h5>
+                    </a>
+                    <p class="card-text">{{plant.about}}</p>
+                    <b class="card-text">{{plant.category}}</b>
+
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {%else%}
+    <h1>There are no plants</h1>
+    {%endif%}
+</div>
 
 
 {%endblock%}

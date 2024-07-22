@@ -1,0 +1,41 @@
+{% extends "PagesBase/base.html" %} {%block body%}
+<form class="mt-3" action="{% url 'PagesPlanteer:search' %}" method="post">
+    {% csrf_token%}
+    <div class="input-group gap-3">
+    <input
+      type="text"
+      class="form-control"
+      name="search"
+      placeholder="Search For Plant..."
+    />
+    <div class="input-group-append">
+      <button class="btn btn-dark" type="submit">Search</button>
+    </div>
+  </div>
+</form>
+<div class="d-flex mt-5">
+  {% if plant%}
+  <div class="row">
+    <p>search result {{count_plants}}</p>
+    {% for plants in plant%}
+    <div class="col">
+            
+      <div class="card" style="width: 18rem">
+        <img src="{{plants.image.url}}" class="card-img-top" alt="..." />
+        <div class="card-body">
+          <a href="{% url 'PagesPlanteer:detail' plants.id%}" class="btn">
+            <h5 class="card-title">{{plants.name}}</h5>
+          </a>
+          <p class="card-text">{{plants.about}}</p>
+          <b class="card-text">{{plants.category}}</b>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+  {%else%}
+  <h1>no result were found</h1>
+</div>
+  {%endif%} {%endblock%}
+
