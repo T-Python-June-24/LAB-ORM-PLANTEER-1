@@ -3,6 +3,19 @@
 {% block title %} add plant{% endblock %}
 
 {% block content %}
+<style>
+        h1{
+        margin-bottom: 5rem; 
+ 
+    }
+    label h5{
+    color:black; 
+    font-size: 1rem; 
+    font-weight: 400; 
+    margin-bottom: 0rem; 
+    font-family: "Roboto", sans-serif;
+}
+</style>
 <h1>Add Plant</h1>
 
 <div class="row">
@@ -11,8 +24,13 @@
         
         <form class="d-flex flex-column gap-2" action="{% url 'plants:add_plant' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
+            <label for="name" class="form-label"><h5>name</h5></label>
             <input type="text" placeholder="name" name="name" class="form-control" />
+            
+            <label for="about" class="form-label"><h5>About</h5></label>
             <textarea placeholder="about" name="about" class="form-control"></textarea>
+           
+            <label for="used_for" class="form-label"><h5>used for</h5></label>
             <input type="text" placeholder="used for" name="used_for" class="form-control" />
             
             <div class="mb-3">
