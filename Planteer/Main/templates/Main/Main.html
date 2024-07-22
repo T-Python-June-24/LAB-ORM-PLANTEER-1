@@ -50,7 +50,7 @@
     class="flex flex-col items-center">
 
     <div class="card-grid flex flex-wrap justify-center" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">
-        {% for plant in selected_plant %}
+        {% for plant in plants %}
         <div class="relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-96 overflow-hidden"
             data-aos="fade-up" data-aos-duration="1000">
             <img src="{{ plant.plant_image.url }}" alt="image"
