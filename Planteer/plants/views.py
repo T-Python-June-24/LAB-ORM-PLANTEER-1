@@ -37,7 +37,7 @@ def plant_detail(request:HttpRequest,plant_id:int):
     plant_category=plant.category
 
     Plants = Plant.objects.all()
-    filterPlants = Plants.filter(category=plant_category)
+    filterPlants = Plants.filter(category=plant_category).exclude(pk=plant_id)
     return render(request,"plants/plant_detail.html",{"plant":plant,"filterPlants":filterPlants})
 
 def delete_plant(request:HttpRequest,plant_id:int):
