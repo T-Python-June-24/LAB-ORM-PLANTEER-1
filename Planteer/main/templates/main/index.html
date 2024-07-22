@@ -1,6 +1,43 @@
 {% extends 'main/base.html' %}
+{% load static %}
+{% block title %} Planter {% endblock %}
 
-{% block title %} planter {% endblock %}
+<link href="{% static 'css/main.css' %}" rel="stylesheet" />
 
 {% block content %}
+<style>
+    .overlay-background {
+        background: url("{% static 'images/home.jpg' %}") no-repeat center center;
+        background-size: cover; 
+        height: 85vh; 
+    }
+    .hero-section{
+        margin-bottom: 8rem;
+    }
+    h4{
+        color: darkgrey;
+        font-weight: 400;
+    }
+</style>
+<section class="hero-section">
+    <div class="overlay-background d-flex align-items-center justify-content-center flex-column">
+        <h1 class="text-white display-1">Planteer</h1>
+        <h2 class="text-white display-4">Plant Database For Plants Lovers</h2>
+        <div class="w-100 d-flex justify-content-center">
+            <form class="col-12 col-sm-10 col-md-8 col-lg-6" role="search">
+                <input type="search" class="form-control" placeholder="Search for plant..." aria-label="Search">
+            </form>
+        </div>
+    </div>
+</section>
+<section class="d-flex justify-content-between">
+    <div>
+        <h2>Plants</h2>
+        <h4>Learn more about plants</h4>
+    </div>
+    <div>
+        <h2>More</h2>
+    </div>
+</section>
+
 {% endblock %}
