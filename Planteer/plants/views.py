@@ -32,8 +32,13 @@ def add_plant(request: HttpRequest):
         return redirect('main:home_view')
     return render(request, "plants/add_plant.html")
 def plant_detail(request:HttpRequest,plant_id:int):
+
     plant=Plant.objects.get(pk=plant_id)
-    return render(request,"plants/plant_detail.html",{"plant":plant})
+    plant_category=plant.category
+
+    Plants = Plant.objects.all()
+    filterPlants = Plants.filter(category=plant_category)
+    return render(request,"plants/plant_detail.html",{"plant":plant,"filterPlants":filterPlants})
 
 def delete_plant(request:HttpRequest,plant_id:int):
     plant=Plant.objects.get(pk=plant_id)
