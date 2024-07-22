@@ -11,6 +11,7 @@ h1 {
     margin-bottom: 4rem;
     
 }
+
 h1, h2 {
     font-family: "Rubik", sans-serif;
 }
@@ -73,4 +74,8 @@ input[type="search"]{
     font-weight: 400;
     font-family: "Rubik", sans-serif;
 
+}
+a{
+color: #000000;
+text-decoration: none;
 }
