@@ -1,19 +1,10 @@
 from django.db import models
 
-class Plants(models.Model): # Inherent Model class to get ORM feature
-    # name  CharField 
-    # about  TextField
-    # used_for  TextField
-    # image    ImageField
-    # category    CharField(TextChoices)
-    # is_edible     BolleanField
-    # created_at     DateTimeField(auto_now_add)
-
-    
-    name= models.CharField()
+class Plants(models.Model): # Inherent Model class to get ORM feature    
+    name= models.CharField(max_length=1024)
     about= models.TextField()
     used_for= models.TextField()
     image =  models.ImageField()
-    category = models.CharField()
+    category = models.CharField(max_length=255)
     is_edible = models.BooleanField()
-    created_at = models.DateField()
+    created_at = models.DateField(auto_now_add=True)
