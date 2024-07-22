@@ -1,0 +1,28 @@
+{% extends "PagesBase/base.html" %}
+{%block body%}
+<div class="row">
+    <div class="col-12">
+        <form action="{% url 'PagesPlanteer:new' %}" class="d-flex flex-column gap-3" method="post" enctype="multipart/form-data">
+            {% csrf_token%}
+            <input type="text" placeholder="Plant name" name="name" class="form-control" required/>
+            <textarea name="about" placeholder="About the plant" class="form-control" required></textarea>
+            <textarea name="used_for" placeholder="used for .." class="form-control" required></textarea>
+            <select name="category" class="form-select" required>
+                <option selected value="">Choose</option>
+                <option value="Angiosperms">Angiosperms</option>
+                <option value="Pteridophytes">Pteridophytes</option>
+                <option value="Gymnosperms">Gymnosperms</option>
+            </select>
+            <select name="is_edible" class="form-select" required>
+                <option selected value="">Edible</option>
+                <option value="True">Yes</option>
+                <option value="False">No</option>
+            </select>
+            <input type="date" name="created_at" class="form-control" required/>
+            <input type="file" accept="image/*" name="image" class="form-control" />
+            <input type="submit" value="create" class="btn btn-primary">
+        </form>
+    </div>
+
+</div>
+{%endblock%}

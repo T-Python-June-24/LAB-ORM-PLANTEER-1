@@ -22,4 +22,5 @@ from . import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('PagesPlanteer.urls')),
+    path('contact/' ,include('Contact.urls')),
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

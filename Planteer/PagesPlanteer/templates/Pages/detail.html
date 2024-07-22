@@ -1,0 +1,29 @@
+{% extends "PagesBase/base.html" %}
+{%block body%}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="d-flex flex-column gap-2">
+                <h1>{{ plant.name }}</h1>
+                <img src="{{ plant.image.url }}" alt="{{ plant.name }}" class="img-fluid rounded h-100 w-100">
+                <div class="d-flex justify-content-end">
+                    <a href="{% url 'PagesPlanteer:delete' plant.id%}" class="btn btn-danger mx-3">delet</a>
+                    <a href="{% url 'PagesPlanteer:update' plant.id%}" class="btn btn-primary">ubdate</a>
+                </div>
+                <h2>About:</h2>
+                <p>{{ plant.about }}</p>
+                <h2>Used for:</h2>
+                <p>{{ plant.used_for }}</p>
+                <h2>Category:</h2>
+                <p>{{ plant.category }}</p>
+                <h2>Is edible:</h2>
+                <p>{{ plant.is_edible }}</p>
+                <h2>Created at:</h2>
+                <p>{{ plant.created_at }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{%endblock%}

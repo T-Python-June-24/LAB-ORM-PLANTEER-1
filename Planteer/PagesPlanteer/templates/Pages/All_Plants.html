@@ -1,0 +1,26 @@
+{% extends "PagesBase/base.html" %}
+{%block body%}
+
+<h1>All Plants</h1>
+<div class="d-flex">
+  {% if plant%}
+  {% for plants in plant%}
+
+  <div class="card" style="width: 18rem;">
+    <img src="{{plants.image.url}}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <a href="{% url 'PagesPlanteer:detail' plants.id%}" class="btn">
+        <h5 class="card-title">{{plants.name}}</h5>
+      </a>
+      <p class="card-text">{{plants.about}}</p>
+      <b class="card-text">{{plants.category}}</b>
+
+    </div>
+  </div>
+
+  {% endfor %}
+  {%else%}
+  <h1>There are no plants</h1>
+  {%endif%}
+</div>
+{%endblock%}

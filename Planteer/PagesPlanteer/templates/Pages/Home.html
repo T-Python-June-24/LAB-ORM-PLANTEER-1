@@ -1,0 +1,49 @@
+{% extends "PagesBase/base.html" %}
+{%block body%}
+
+<section class="banner">
+    <div class="banner-text">
+        <h1>Planteer</h1>
+        <p>Plant Database For Plants Lovers</p>
+        <form class="mt-3">
+            <div class="input-group gap-3">
+                <input type="text" class="form-control" placeholder="Search For Plant...">
+                <div class="input-group-append">
+                    <button class="btn btn-dark" type="submit">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+<section>
+    <div class="d-flex justify-content-between">
+        <h1>plants</h1>
+        <a href="{%url 'PagesPlanteer:DisplayAll'%}" class="btn">
+            <p>more<span class="material-symbols-outlined">
+                    arrow_forward
+                </span></p>
+        </a>
+    </div>
+    <div class="d-flex">
+        {% if plant%}
+        {% for plants in plant%}
+
+        <div class="card" style="width: 18rem;">
+            <img src="{{plants.image.url}}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <a href="{% url 'PagesPlanteer:detail' plants.id%}" class="btn">
+                    <h5 class="card-title">{{plants.name}}</h5>
+                </a>
+                <p class="card-text">{{plants.about}}</p>
+                <b class="card-text">{{plants.category}}</b>
+
+            </div>
+        </div>
+
+        {% endfor %}
+        {%else%}
+        <h1>There are no plants</h1>
+        {%endif%}
+    </div>
+</section>
+{%endblock%}
