@@ -16,5 +16,9 @@ def contact_view(request:HttpRequest):
         return redirect('main:home_view')
     return render(request, "contact/contact_view.html")
 
-# def contact_messages
-    
+def contact_messages(request:HttpRequest):
+    contacts=Contact.objects.all()
+    return render(request, 'contact/contact_messages.html', {"contacts" : contacts} )
+
+
+

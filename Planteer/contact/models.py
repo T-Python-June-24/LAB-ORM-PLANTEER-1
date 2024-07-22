@@ -8,3 +8,4 @@ class Contact(models.Model):
     email = models.EmailField()
     message=models.TextField()
     created_at=models.DateTimeField(auto_now_add=True)
+# first_name , last_name , email , message , created_at

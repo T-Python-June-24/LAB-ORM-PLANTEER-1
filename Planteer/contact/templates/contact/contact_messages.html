@@ -1,0 +1,42 @@
+{% extends 'main/base.html' %}
+{% load static %}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+{% block title %}Contact Messages{% endblock %}
+
+{% block content %}
+<style>
+    .name , .created-at{
+        color: rgb(61, 60, 60);
+    }
+    .email{
+        color: rgb(9, 92, 163);
+    }
+    .message{
+      color: rgb(169, 169, 169);
+    }
+    .material-symbols-outlined{
+        margin-bottom: 1rem;
+    }
+</style>
+<h1>Messages from users</h1>
+
+<div class="row mt-5 row-cols-1 row-cols-md-3 g-4">
+    <!-- first_name , last_name , email , message , created_at -->
+  {% for contact in contacts %}
+    <div class="col">
+        <div class="d-flex flex-column justify-content-start align-items-start h-100 p-4 ">
+            <span class="material-symbols-outlined"> account_circle</span>
+            <h5 class="name">{{contact.first_name}} {{contact.last_name}} </h5>
+            <h5 class="email">{{contact.email}} </h5>
+            <h6 class="created-at">{{contact.created_at}}</h6>
+
+            <h6 class="message">{{contact.message}}</h6>
+
+
+
+        </div>
+    </div>
+  {% endfor %}
+</div>
+
+{% endblock %}
