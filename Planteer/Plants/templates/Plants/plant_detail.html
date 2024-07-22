@@ -26,75 +26,32 @@
         </div>
     </div>
 </div>
+
 <div class="content-home-padding">
     <h1 class="text-black font-normal text-xl pt-16 tilt-in-fwd-bl"> Related Plants </h1>
-    <div data-aos="fade-left" data-aos-anchor="#example-anchor" data-aos-offset="500" data-aos-duration="500"
-        class="flex flex-col items-center">
-        <div class="card-grid flex flex-wrap justify-center" data-aos="fade-up"
-            data-aos-anchor-placement="bottom-bottom">
-            <div class="relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-96 overflow-hidden"
-                data-aos="fade-up" data-aos-duration="1000">
-                <img src="{% static 'images/background.jpg' %}" alt="image"
-                    class="w-full h-56 object-cover rounded-t-xl" />
-                <div class="p-4">
-                    <p class="block font-sans text-base antialiased font-bold leading-relaxed text-inherit">
-                        Plant 1
-                    </p>
-                </div>
-                <div class="pl-6 pr-6 p-4">
-                    <p class="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
-                        Brief About the Plant
-                    </p>
-                </div>
-                <div class="pl-6 pr-6 p-2">
-                    <p class="block font-sans text-base antialiased font-bold leading-relaxed text-inherit">
-                        Tree
-                    </p>
-                </div>
+    <div class="card-grid flex flex-wrap justify-center" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">
+        {% for data in selected_plant %}
+        <div class="relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-96 overflow-hidden"
+            data-aos="fade-up" data-aos-duration="1000">
+            <img src="{{ data.plant_image.url }}" alt="image"
+                class="w-full h-56 object-cover rounded-t-xl" />
+            <div class="pl-6 pr-6 p-2">
+                <p class="block font-sans text-base antialiased font-bold leading-relaxed text-inherit">
+                    Plant {{ data.id }}
+                </p>
             </div>
-
-            <div class="relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border orounded-xl w-96 overflow-hidden"
-                data-aos="fade-up" data-aos-duration="1000">
-                <img src="{% static 'images/background.jpg' %}" alt="image"
-                    class="w-full h-56 object-cover rounded-t-xl" />
-                <div class="p-4">
-                    <p class="block font-sans text-base antialiased font-bold leading-relaxed text-inherit">
-                        Plant 2
-                    </p>
-                </div>
-                <div class="pl-6 pr-6 p-4">
-                    <p class="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
-                        Brief About the Plant
-                    </p>
-                </div>
-                <div class="pl-6 pr-6 p-2">
-                    <p class="block font-sans text-base antialiased font-bold leading-relaxed text-inherit">
-                        Tree
-                    </p>
-                </div>
+            <div class="pl-6 pr-6 p-2">
+                <p class="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
+                    Is it edible {{ data.is_edible }}
+                </p>
             </div>
-
-            <div class="relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-96 overflow-hidden"
-                data-aos="fade-up" data-aos-duration="1000">
-                <img src="{% static 'images/background.jpg' %}" alt="image"
-                    class="w-full h-56 object-cover rounded-t-xl" />
-                <div class="p-4">
-                    <p class="block font-sans text-base antialiased font-bold leading-relaxed text-inherit">
-                        Plant 3
-                    </p>
-                </div>
-                <div class="pl-6 pr-6 p-4">
-                    <p class="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
-                        Brief About the Plant
-                    </p>
-                </div>
-                <div class="pl-6 pr-6 p-2">
-                    <p class="block font-sans text-base antialiased font-bold leading-relaxed text-inherit">
-                        Tree
-                    </p>
-                </div>
+            <div class="pl-6 pr-6 p-2">
+                <p class="block font-sans text-base antialiased font-bold leading-relaxed text-inherit">
+                    {{ data.category }}
+                </p>
             </div>
         </div>
+        {% endfor %}
     </div>
     <br><br>
 </div>

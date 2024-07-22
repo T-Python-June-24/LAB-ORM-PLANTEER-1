@@ -44,9 +44,9 @@ def add_plant(request:HttpResponse):
 
 def plant_detail(request: HttpResponse, plant_id: int):
     plant = get_object_or_404(Plants, pk=plant_id)
-    return render(request, 'Plants/plant_detail.html', {'plant': plant})
+    selected_plant = Plants.objects.all()[:3]
 
-
+    return render(request, 'Plants/plant_detail.html', {'plant': plant , 'selected_plant': selected_plant})
 
 
 def update_plant(request: HttpResponse, plant_id: int):
