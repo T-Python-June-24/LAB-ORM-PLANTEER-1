@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Plant - Plant Shop</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: black;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+nav {
+    margin-top: 10px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+.black-button {
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.black-button a {
+    background-color: black;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+}
+
+.black-button a:hover {
+    background-color: darkgray;
+}
+
+main {
+    padding: 20px;
+}
+
+h2 {
+    color: green;
+}
+
+footer {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Plant Shop</h1>
+        <nav>
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'all_plants' %}">All Plants</a>
+            <a href="{% url 'contact' %}">Contact Us</a>
+            <div class="black-button">
+                <a href="{% url 'new_plant' %}">Add Plant</a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <h2>Update Plant</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="black-button">Update Plant</button>
+        </form>
+    </main>
+    <footer>
+        <p>&copy; 2024 Plant Shop. All rights reserved.</p>
+    </footer>
+</body>
+</html>

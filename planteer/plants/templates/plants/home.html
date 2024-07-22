@@ -1,0 +1,133 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Planteer - Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: #fff;
+            border-bottom: 1px solid #ddd;
+        }
+        .header-left p {
+            font-size: 24px;
+            margin: 0;
+            color: black;
+        }
+        .header-right {
+            display: flex;
+            align-items: center;
+        }
+        .header-right a {
+            color: black;
+            text-decoration: none;
+            font-size: 15px;
+            margin-right: 20px;
+        }
+        .black-button {
+            background-color: black;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .black-button a {
+            text-decoration: none;
+            font-size: 15px;
+            color: white;
+        }
+        .mid {
+            text-align: center;
+            margin-top: 50px;
+        }
+        h1 {
+            font-size: 56px;
+            color: black;
+        }
+        h3 {
+            color: black;
+            margin-top: -10px;
+            font-size: 36px;
+        }
+        .search {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .search input {
+            width: 400px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        .plant-display {
+            padding: 50px;
+        }
+        .plant-display h3 {
+            font-size: 24px;
+            color: black;
+        }
+        .plant-display p {
+            color: black;
+        }
+        .plant-display .right a {
+            color: black;
+            text-decoration: none;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <p>Planteer</p>
+        </div>
+        <div class="header-right">
+            <a href="{% url 'all_plants' %}">All Plants</a>
+            <a href="{% url 'contact' %}">Contact Us</a>
+            <div class="black-button">
+                <a href="{% url 'new_plant' %}">Add Plant</a>
+            </div>
+        </div>
+    </header>
+    <div class="mid">
+        <h1>Planteer</h1>
+        <h3>Plant Database For Plant Lovers</h3>
+        <div class="search">
+            <input type="text" placeholder="Search for Plant...">
+            <button class="black-button">Search</button>
+        </div>
+        <img src="{% static '3972032.jpg' %}" alt="Plant Image">
+    </div>
+    <div class="plant-display">
+        <div>
+            <div class="left">
+                <h3>Plants</h3>
+                <p>Learn more about plants</p>
+            </div>
+            <div class="right">
+                <a href="{% url 'all_plants' %}">More →</a>
+            </div>
+        </div>
+        <div>
+            <p> pictures that lead to each plant</p>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Plant Shop. All rights reserved.</p>
+    </footer>
+</body>
+</html>
