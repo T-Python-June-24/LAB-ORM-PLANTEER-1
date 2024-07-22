@@ -10,6 +10,4 @@ urlpatterns = [
     path('plants/new/' , views.new , name='new'),
     path('plants/<plants_id>/update/' , views.update , name='update'),
     path('plants/<plants_id>/delete/' , views.delete , name='delete'),
-    path('contact/' , views.contact , name='contact'),
-    path('contact/messages/' , views.messages , name='messages'),
 ]

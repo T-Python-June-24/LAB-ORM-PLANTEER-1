@@ -1,0 +1,23 @@
+{% extends "PagesBase/base.html" %} {%block body%}
+
+<h1>message</h1>
+<div class="row">
+  {% if message%} {% for messages in message%}
+  <div class="col">
+    <div class="card" style="width: 18rem">
+      <div class="card-body">
+        <span class="material-symbols-outlined"> person </span>
+        <h5 class="card-title">
+          {{messages.first_name}}{{messages.last_name}}
+        </h5>
+        <a href="mailto:{{messages.email}}">{{messages.email}}</a>
+        <p class="card-text">{{messages.message}}</p>
+      </div>
+    </div>
+  </div>
+
+  {% endfor %} {%else%}
+  <h1>There are no messages</h1>
+  {%endif%}
+</div>
+{%endblock%}

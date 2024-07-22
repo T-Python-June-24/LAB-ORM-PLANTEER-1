@@ -48,8 +48,3 @@ def delete(request:HttpRequest , plants_id):
     plant.delete()
     return redirect('PagesPlanteer:HomePage')
 
-def contact(request:HttpRequest):
-    return render(request , 'DisplayAll.html')
-
-def messages(request:HttpRequest):
-    return render(request , 'DisplayAll.html')
