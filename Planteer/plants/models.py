@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class plant(models.Model):
+class Plant(models.Model):
     name = models.CharField(max_length=1024)
     about = models.TextField()
     used_for = models.TextField()
