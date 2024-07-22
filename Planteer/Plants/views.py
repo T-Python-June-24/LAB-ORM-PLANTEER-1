@@ -1,15 +1,34 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.http import HttpResponse
-from .models import Plants
+from .models import Category, Plants
 from django.contrib import messages
 from django.utils.datastructures import MultiValueDictKeyError
 
 
-# Create your views here.
-def plants(request:HttpResponse):
-    plants = Plants.objects.all()
-    return render(request, 'Plants/all_plants.html',{'plants':plants})
 
+def plants(request: HttpResponse):
+    category = request.GET.get('category')
+    is_edible = request.GET.get('is_edible')
+    plants = Plants.objects.all()
+
+    if category:
+        plants = plants.filter(category=category)
+    if is_edible:
+        plants = plants.filter(is_edible=(is_edible.lower() == 'true'))
+
+    return render(request, 'Plants/all_plants.html', {'plants': plants , 'categories': Category.choices})
+
+
+def search_plant(request: HttpResponse):
+    query = request.GET.get('query')
+    if query:
+        plants = Plants.objects.filter(name__icontains=query)
+        count = plants.count()
+    else:
+        plants = Plants.objects.all()[:3]
+        count = None
+
+    return render(request, 'Plants/search_plants.html', {'plants': plants, 'count': count, 'query': query})
 
 def add_plant(request:HttpResponse):
     if request.method == 'POST':
@@ -44,8 +63,7 @@ def add_plant(request:HttpResponse):
 
 def plant_detail(request: HttpResponse, plant_id: int):
     plant = get_object_or_404(Plants, pk=plant_id)
-    selected_plant = Plants.objects.all()[:3]
-
+    selected_plant = Plants.objects.filter(is_edible=plant.is_edible)[:3]
     return render(request, 'Plants/plant_detail.html', {'plant': plant , 'selected_plant': selected_plant})
 
 

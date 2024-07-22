@@ -6,16 +6,39 @@
 {% block content %}
 <script>
     AOS.init();
-  </script>
+</script>
 <div class="content-home-padding">
     <h1 class="bold-font-prop tilt-in-fwd-bl"> All Plants </h1>
 
-    <div class="card-grid"  data-aos="fade-up">
+    <!-- Filter Form -->
+    <form method="GET" action="" class="mb-4">
+        <img src="{% static 'images/filter.png' %}" class="h-[20px] inline-flex justify-center mr-4" alt="Filter">
+        <label for="category" class="mr-2">Category:</label>
+        <select name="category" id="category" class="mr-4">
+            <option value="">All</option>
+            {% for choice in categories %}
+            <option value="{{ choice.0 }}" {% if request.GET.category == choice.0 %}selected{% endif %}>
+                {{ choice.1 }}
+            </option>
+            {% endfor %}
+        </select>
+
+        <label for="is_edible" class="mr-2">Edible:</label>
+        <select name="is_edible" id="is_edible" class="mr-4">
+            <option value="">All</option>
+            <option value="true" {% if request.GET.is_edible == "true" %}selected{% endif %}>Yes</option>
+            <option value="false" {% if request.GET.is_edible == "false" %}selected{% endif %}>No</option>
+        </select>
+
+        <button type="submit" class=" h-[25px] bg-black rounded-xl px-16 text-white font-bold">Apply filter <img src="{% static 'images/done.png' %}" class="h-[20px] inline-flex justify-center" alt="Filter"></button>
+    </form>
+
+    <div class="card-grid" data-aos="fade-up">
         {% for plant in plants %}
-        <div class="relative flex flex-col mt-6  bg-white shadow-md bg-clip-border rounded-xl w-96 overflow-hidden">
+        <div class="relative flex flex-col mt-6 bg-white shadow-md bg-clip-border rounded-xl w-96 overflow-hidden">
             <img src="{{ plant.plant_image.url }}" alt="image" class="w-full h-56 object-cover rounded-t-xl" />
             <div class="pl-6 pr-6 p-2">
-                <p class="block font-sans text-base antialiased font-extrabold leading-relaxed text-inherit hover:text-teal-500 ">
+                <p class="block font-sans text-base antialiased font-extrabold leading-relaxed text-inherit hover:text-teal-500">
                     <a href="{% url 'Plants:plant_detail' plant.id %}">Plant {{ plant.id }}</a>
                 </p>
             </div>
