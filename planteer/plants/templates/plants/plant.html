@@ -1,0 +1,47 @@
+{% extends 'main/base.html' %}
+
+
+{% block title %}Create New Plant {% endblock %}
+
+{% block content %}
+<hr/>
+<h1> Add Plant : </h1> 
+    <div class="row">
+
+     <div class="col-6">
+        <form class="d-flex flex-column gap-2" action="{% url 'plants:plant_list_view' %}" method="post" enctype="multipart/form-data">
+          
+
+              {% csrf_token %}
+
+             <input type="text" placeholder="name" name="name" class="form-control" />
+             <textarea placeholder="about" name="about" class="form-control"></textarea>
+             <input type="text" placeholder="used_for" name="used_for" class="form-control" />
+             <select class="form-select" name="category">
+                <option selected>category</option>
+                <option value="1">TREES</option>
+                <option value="2">PLANT</option>
+                <option value="3">Three</option>
+              </select>
+          
+             <input type="boolean" placeholder="is_edible" name="is_edible" class="form-control"/>
+             
+             <input type="date" placeholder="created_at" name="created_at" class="form-control"/>
+
+ 
+             <input type="file" name="images" class="form-control"/>
+ 
+             <input type="submit" value="Create Plant" class="btn btn-primary" />
+
+ 
+         </form>
+ 
+ 
+     </div>
+ 
+ </div>
+ 
+
+
+
+{% endblock %}

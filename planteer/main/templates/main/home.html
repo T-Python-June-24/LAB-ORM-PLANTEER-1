@@ -1,0 +1,47 @@
+{% extends 'main/base.html' %}
+
+{% load static %}
+{% block title %} Planteer {% endblock %}
+{% block content %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="/static/css/style.css" rel="stylesheet" />
+</head>
+<body>
+    <section class="hero text-center py-5">
+        <div class="container">
+            <h2>Planteer</h2>
+            <h2 class="mb-4">Plant Database For Plants Lovers</h2>
+            <div class="search-bar d-flex justify-content-center">
+                <input type="text" class="form-control me-2" placeholder="Search For Plant..." style="max-width: 300px;">
+                <button class="btn btn-dark">Search</button>
+            </div>
+        </div>
+    </section>
+        
+        <div class="row mt-5 row-cols-3 g-4">
+            {% for plant in plants %}
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <img src="{{ plant.images.url }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <a href="{% url 'plants:plant_detail_view' plant.id %}"><h3>name: {{ plant.name }}</h3></a>
+                        <h7>{{ plant.created_at }}</h7>
+
+            </br>
+                        <h7>{{ plant.category }}</h7>
+                        <h7>{{ plant.is_edible }}</h7>
+        </br>
+                        <h8>click upon name for more</h8>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}
