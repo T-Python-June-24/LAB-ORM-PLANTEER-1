@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Form</title>
+</head>
+<body>
+    <h1>Plant Form</h1>
+    <form action="{% url 'plants:add_plants' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" maxlength="1024" required><br><br>
+        
+        <label for="about">About:</label>
+        <textarea id="about" name="about" rows="4" cols="50" required></textarea><br><br>
+        
+        <label for="used_for">Used For:</label>
+        <textarea id="used_for" name="used_for" rows="4" cols="50" required></textarea><br><br>
+        
+        <label for="image">Image:</label>
+        <input type="file" id="image" name="image" accept="image/*"><br><br>
+        
+        <label for="category">Category:</label>
+        <select id="category" name="category" required>
+            <option value="fruit">Fruit</option>
+            <option value="tree">Tree</option>
+            <option value="vegetables">Vegetables</option>
+        </select><br><br>
+        
+        <label for="is_edible">Is Edible:</label>
+        <input type="checkbox" id="is_edible" name="is_edible"><br><br>
+        
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
