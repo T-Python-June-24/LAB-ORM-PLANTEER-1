@@ -1,0 +1,61 @@
+{% extends 'main/base.html' %}
+
+{% block title %} update plant{% endblock %}
+
+{% block content %}
+<h1>Update Plant</h1>
+
+<div class="row">
+
+    <div class="col-6">
+        
+        <form class="d-flex flex-column gap-2" action="{% url 'plants:update_plant' plant.id %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="text" placeholder="name" name="name" class="form-control" value="{{ plant.name }}"/>
+            <textarea placeholder="about" name="about" class="form-control">{{ plant.about }}</textarea>
+            <input type="text" placeholder="used for" name="used_for" class="form-control" value="{{ plant.used_for }}"/>
+        
+            <div class="mb-3">
+                <label class="form-label">Category</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="category" value="vegetables" {% if plant.category == 'vegetables' %}checked{% endif %}>
+                    <label class="form-check-label" for="vegetables">Vegetables</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="category" value="fruits" {% if plant.category == 'fruits' %}checked{% endif %}>
+                    <label class="form-check-label" for="fruits">Fruits</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="category" value="herbs" {% if plant.category == 'herbs' %}checked{% endif %}>
+                    <label class="form-check-label" for="herbs">Herbs</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="category" value="flowers" {% if plant.category == 'flowers' %}checked{% endif %}>
+                    <label class="form-check-label" for="flowers">Flowers</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="category" value="trees" {% if plant.category == 'trees' %}checked{% endif %}>
+                    <label class="form-check-label" for="trees">Trees</label>
+                </div>
+            </div>
+            <div class="mb-3">
+                <input class="form-check-input" type="checkbox" id="isEdible" name="is_edible" {% if plant.is_edible %}checked{% endif %}>
+                <label class="form-check-label" for="isEdible">Edible</label>
+            </div>
+              <div class="row">
+                <div class="d-flex justify-content-start">
+                    <img src="{{plant.image.url}}" class="w-50 " >
+                </div>
+            </div>
+            <h6>update image </h6>
+            <input type="file" name="image" class="form-control"/>
+
+            <input type="submit" value="update Plant" class="btn btn-primary" />
+
+        </form>
+
+
+    </div>
+
+</div>
+{% endblock %}

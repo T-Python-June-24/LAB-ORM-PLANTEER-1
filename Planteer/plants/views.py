@@ -33,7 +33,18 @@ def delete_plant(request:HttpRequest,plant_id:int):
     plant=Plant.objects.get(pk=plant_id)
     plant.delete()
     return redirect('main:home_view')
-# def update_plant
-  
+def update_plant (request:HttpRequest,plant_id:int):
+        plant=Plant.objects.get(pk=plant_id)
+        if request.method=="POST":
+            plant.name=request.POST["name"]
+            plant.about=request.POST["about"]
+            plant.used_for=request.POST["used_for"]
+            plant.is_edible= request.POST.get('is_edible', 'off') == 'on'
+            plant.category=request.POST["category"]
+            if "image" in request.FILES :
+                plant.image=request.FILES["image"] 
+            plant.save()
+            return redirect('plants:plant_detail',plant_id=plant.id)
 
+        return render(request,"plants/update_plant.html",{"plant":plant})  
 

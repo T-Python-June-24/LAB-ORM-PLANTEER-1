@@ -18,6 +18,8 @@
             <h6>Is Edible: {% if plant.is_edible %}Yes{% else %}No{% endif %}</h6>
             <h6>Used for: {{plant.used_for}}</h6>
         </div>
+        <a href="{%url 'plants:update_plant' plant.id%}" class="btn btn-primary ">update</a>
+
         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
             delete
           </button>
