@@ -1,0 +1,17 @@
+{% extends 'main/base.html' %}
+
+{% block title %} Contact Us Page {% endblock %}
+
+{% block content %}
+<main class="flex flex-col items-center justify-center py-12">
+  <h1 class="text-2xl font-bold mb-4">Contact Us</h1>
+  <form action="{% url 'main:contact_view' %}" method="post" class="flex flex-col gap-3 w-1/2">
+      {% csrf_token %}
+      <input type="text" placeholder="First Name" name="first_name" class="border p-2 rounded-md">
+      <input type="text" placeholder="Last Name" name="last_name" class="border p-2 rounded-md">
+      <input type="email" placeholder="Email" name="email" class="border p-2 rounded-md">
+      <textarea placeholder="Message" name="message" class="border p-2 rounded-md"></textarea>
+      <button type="submit" class="bg-black text-white py-2 border-0 rounded-md">Send Message</button>
+  </form>
+</main>
+{% endblock %}
