@@ -1,0 +1,63 @@
+{% extends 'main/base.html' %}
+
+
+{% block title %}Update Plant {% endblock %}
+
+{% block content %}
+<hr/>
+<h1> Update {{plant.name}} : </h1> 
+    <div class="row">
+
+     <div class="col-6">
+        <form class="d-flex flex-column gap-2" action="{% url 'plants:plant_update_view' plant.id %}" method="post" enctype="multipart/form-data">
+          
+
+              {% csrf_token %} 
+
+             <input type="text" placeholder="name" name="name" class="form-control" value="{{plant.name}}"/>
+             <textarea placeholder="about" name="about" class="form-control">{{ plant.about}}</textarea>
+             <input type="text" placeholder="used_for" name="used_for" class="form-control" value="{{plant.used_for}}" />
+             <select class="form-select" name="category">
+                <option >category</option>
+                <option value="1"{%  if plant.category == 1  %}selected{% endif %}>TREES</option>
+                <option value="2"{%  if plant.category == 2  %}selected{% endif %}>PLANT</option>
+                <option value="3"{%  if plant.category == 3  %}selected{% endif %}>Annuals</option>
+              </select>
+              <!-- <p> is_edible : </p>
+              <div class="form-check">
+                 <input class="form-check-input" type="checkbox" placeholder="is_edible"  name="is_edible" id="flexCheckDefault">
+                 <label class="form-check-label" for="flexCheckDefault">
+                     TRUE
+                 </label>
+               </div>
+               <div class="form-check">
+                 <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                 <label class="form-check-label" for="flexCheckChecked">
+                     FALSE 
+                 </label>               -->
+                 <input type="boolean" placeholder="is_edible" name="is_edible" class="form-control"/>
+
+             <input type="date" placeholder="created_at" name="created_at" class="form-control" value="{{plant.created_at.isoformate}}"/>
+
+             <div class="row">
+                <div class="col-3">
+                    <img src="{{plant.images.url}}" class="w-100" />
+                </div>
+                <div class="col">
+             <input type="file" name="images" class="form-control"/>
+            </div>
+        </div>
+             <input type="submit" value="Update Plant" class="btn btn-primary" />
+
+ 
+         </form>
+ 
+ 
+     </div>
+ 
+ </div>
+ 
+
+
+
+{% endblock %}

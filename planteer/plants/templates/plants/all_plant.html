@@ -1,0 +1,29 @@
+{% extends 'main/base.html' %}
+{% block title %}Create New Plant {% endblock %}
+
+{% block content %}
+
+<h1> All plants</h1>
+<div class="row mt-2 row-cols-1 row-cols-md-3 g-4">
+    {% for plant in plants %}
+    <div class="col">
+        <div class="d-flex flex-column justify-content-start align-items-start h-100 p-4 shadow gap-2">
+        <div class="d-flex align-items-center ">
+            <span class="material-symbols-outlined">star</span>
+            <h5 class="m-0 p-0"> {{plant.category}} </h5>
+            </div>
+            <img src = "{{plant.images.url}}" class=" w-100 images-thumb object-fit-cover"/>
+            <a href="{% url 'plants:plant_detail_view' plant.id %}"><h3>{{plant.name}}</h3></a>
+            <h5>about: {{ plant.about }}</h5>
+            <6>used for : {{ plant.used_for}}</6>
+            <6> category : {{ plant.category}}</6>
+
+</div>
+</div>
+    {% endfor %}
+
+</div>
+
+
+
+{% endblock %}

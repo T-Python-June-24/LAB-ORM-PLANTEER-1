@@ -1,0 +1,54 @@
+{% extends 'main/base.html' %}
+
+
+{% block title %}Create New Plant {% endblock %}
+
+{% block content %}
+
+<h1> Contact us : </h1> 
+    <div class="row">
+
+     <div class="col-6">
+        <form class="d-flex flex-column gap-2" action="{% url 'plants:contact_list_view' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <form>
+               <div class="row g-3 needs-validation" novalidate>
+                    <div class="col-md-4">
+                        <label for="validationCustom01" class="form-label">First name</label>
+                        <input type="text" class="form-control" id="validationCustom01" value="Mark" required name="first_name">
+                        <div class="valid-feedback">
+                          Looks good!
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <label for="validationCustom02" class="form-label">Last name</label>
+                        <input type="text" class="form-control" id="validationCustom02" value="smitherton" required name="last_name">
+                        <div class="valid-feedback">
+                          Looks good!
+                        </div>
+                      </div>
+                    <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" name="email">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label"> Your massage</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1"  placeholder="Enter your question or message" name="message"></textarea>
+                  </div>
+
+
+                  <input type="submit" value="submit" class="btn btn-primary" />
+
+                </div>
+                </form>
+
+            </div>
+ 
+        </div>
+
+
+
+
+
+
+
+{% endblock %}

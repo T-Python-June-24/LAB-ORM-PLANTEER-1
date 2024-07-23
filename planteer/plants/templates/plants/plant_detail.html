@@ -1,0 +1,53 @@
+{% extends 'main/base.html' %}
+
+
+{% block title %}Create New Plant {% endblock %}
+
+{% block content %}
+
+<h2> {{ plant.name }}</h2>
+
+
+<div class="row">
+
+    <div class="col">
+        <div class="d-flex flex-column gap-2  justify-content-between  w-50" >
+            <div class="d-flex justify-content-between ">
+                <h6>{{plant.created_at}}</h6>
+            </div>
+            <img src="{{ plant.images.url }}" class="w-100" />
+            <div class="d-flex justify-content-end gap-2">
+                <a href="{% url 'plants:plant_update_view' plant.id %}" class="btn btn-primary">update</a>
+                <a href="{% url 'plants:plant_delete_view' plant.id %}" class="btn btn-danger">Delate</a>
+                </div>
+               <p>{{plant.about}}</p> 
+            </br>
+            <h7>used for: {{ plant.used_for }}</h7>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Plant</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Are You sure you want to delete {{plant.name}} ?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <a href="{% url 'plants:plant_delete_view' plant.id %}" class="btn btn-danger">delete</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock %}
+
+
