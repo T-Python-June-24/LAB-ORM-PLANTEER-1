@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>{% block title  %} {%endblock%}</title>
+</head>
+<body>
+ <div class="container-fluid sticky-top  bg-dark pt-4 pb-4">
+    <nav class="navbar navbar-expand-lg navbar-dark top-nav" aria-label="Eighth navbar example">
+      <div class="container">
+        <a class="navbar-brand" href="/"><h2 class="top-logo">Planteer</h2></a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+  
+        <div class="collapse navbar-collapse justify-content-end" id="navbarsExample07">
+          <ul class="navbar-nav mb-2 mb-lg-0 d-flex gap-4 align-items-center">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item " >
+              <a class="nav-link active" href="{% url 'main:allPlant_view' %}" >All Plants</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="{% url 'main:contactUs_view' %}">Contact us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-black bg-white textcolor-black" href="{% url 'plant:createPlant_view' %}" >Add Plant</a>
+            </li>
+            <li class="nav-item">
+              <!-- <div class="display-mode d-flex align-items-center gap-1">    
+                <a href="?next={{request.path}}" class="nav-link"><span class="material-symbols-outlined {% if 'mode' not in request.COOKIES or 'mode' in request.COOKIES and request.COOKIES.mode != 'dark' %} active-icon {% endif %}">light_mode</span></a>
+                <a href="?next={{request.path}}" class="nav-link"><span class="material-symbols-outlined {% if 'mode' in request.COOKIES and request.COOKIES.mode == 'dark' %} active-icon {% endif %}">dark_mode</span></a>
+              </div> -->
+            </li>
+
+            <form role="search">
+              <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+            </form>
+          </ul>
+
+        </div>
+      </div>
+    </nav>
+  </div>
+
+
+    {%block content %}
+
+    {% endblock %}
+    <div class="container">
+      <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 my-5 border-top">
+        <div class="col mb-3">
+            <a class="navbar-brand" href="/"><h2 class="top-logo">Planteer</h2></a>
+        </div>
+    
+        <div class="col mb-3">
+    
+        </div>
+    
+        <div class="col mb-3">
+          <h5>Section</h5>
+          <ul class="nav flex-column">
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
+          </ul>
+        </div>
+    
+        <div class="col mb-3">
+          <h5>Section</h5>
+          <ul class="nav flex-column">
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
+          </ul>
+        </div>
+    
+       
+        </div>
+      </footer>
+    </div>
+</body>
+</html>

@@ -16,9 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls.static import static # to import media files
+from . import settings # to import media files
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("__reload__/", include("django_browser_reload.urls")),
     path("", include("main.urls")),
-    path("add/plant", include("plant.urls"))
-]
+    path("plant/", include("plant.urls"))
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)#  To import media files

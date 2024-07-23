@@ -1,0 +1,50 @@
+{% extends 'base.html' %} 
+{%load static%}
+{% block title %} Manage Product {% endblock %}
+
+{%block content %} 
+
+<div class="container mt-5 bg-light" style="border:1px solid ; background-color:#1111; border-radius: 10px;">
+
+    <h1 class="m-4 text-center">All Plant </h1>
+    <a href="/plant/add/plant" class="btn btn-primary align-middle">Add User</a>
+    <table class="table table-bordered">
+        <tr class="bg-info text-white ">
+            <td > NO.  </td>
+            <td > ID </td>
+            <td> Name </td>
+            <td> Photo  </td>
+            <td> About </td>
+            <td> Category </td>
+            <td> Edible</td>
+            <td>Created Date </td>
+            <td> Action  </td>
+        </tr>
+        {%for plant in plants %}
+        <tr class="text-center">
+            <td>{{forloop.counter}}</td>
+            <td>{{plant.id}}</td>
+            <td>{{plant.name}}</td>
+            <td> 
+            {% if plant.image %}
+                <img src="{{ plant.image.url }}"class="rounded-circle" height="70px" width="70px">
+            {% else %}
+            <img
+            src="media/images/defualt.png"
+            class="w-20 poster-thumb object-fit-contain"
+            />
+            {% endif %}
+            </td>
+            <td>{{plant.about}}</td>
+            <td>{{plant.category}}</td>
+            <td>{{plant.is_edible}}</td>
+            <td>{{plant.created_at}}</td>
+            <td> <a href="{% url 'plant:updatePlant_view' plant.id %}" class="btn btn-success">Edit</a>
+                <a href="{% url 'plant:deletePlant_view' plant.id %}"  class="btn btn-danger">Delete</a>
+                <a href="/View/{{rec.id}}" class="btn btn-primary">View</a>
+            </td>
+        </tr>
+    {%endfor%}
+    </table>
+</div>
+{% endblock%}

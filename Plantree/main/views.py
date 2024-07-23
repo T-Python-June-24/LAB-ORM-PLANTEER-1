@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponse
-
+from plant.models import Plants  #import plant class from another app to retrieving data form data base.
 
 def home_view(request: HttpRequest):
-    return render(request,"home.html" )
+    plant = Plants.objects.all()
+    return render(request,"index.html", {"plants": plant} )
 
 def allPlant_view(request: HttpRequest):
     return render(request,"allPlant.html" )

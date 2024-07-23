@@ -1,0 +1,15 @@
+{% extends 'base.html' %} 
+{%load static%}
+{% block title %} Delete Product {% endblock %}
+
+{%block content %} 
+
+   <h1>Delete Plant</h1>
+    <p>Are you sure you want to delete the plant {{ plants.id }}?</p>
+    
+    <form method="post" >
+        {% csrf_token %}
+            <button type="submit" class="btn btn-danger"> Yes, delete </button>
+            <a href="{% url 'plant:listAllPlant_view' %}" class="btn btn-success"> Cancel</a>
+        </form>
+{% endblock%}
