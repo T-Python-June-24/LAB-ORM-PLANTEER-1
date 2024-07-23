@@ -1,0 +1,34 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %}
+    Add Plant
+{% endblock %}
+
+{% block content %}
+    <h1>Add Plant</h1>
+    <div class="row">
+        <div class="col">
+            <form class="d-flex flex-column gap-2" action="{% url 'plants:add' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label for="name">Name</label>
+                <input id="name" type="text" placeholder="Name" name="name" class="form-control">
+                <label for="about">Description</label>
+                <textarea id="about" placeholder="Description" name="about" class="form-control"></textarea>
+                <label for="used_for">Usage</label>
+                <textarea id="used_for" placeholder="Usage" name="used_for" class="form-control"></textarea>
+                <label for="image">Image</label>
+                <input id="image" type="file" name="image" class="form-control"/>
+                <label for="category">Category</label>
+                <select id="category" class="form-select" name="category">
+                    <option selected>Category</option>
+                    <option value="Vegetable">Vegetable</option>
+                    <option value="Fruit">Fruit</option>
+                    <option value="Tree">Tree</option>
+                </select>
+                <label for="is_edible">Is edible</label>
+                <input id="is_edible" type="checkbox" placeholder="Is edible" name="is_edible">
+                <input type="submit" value="Add Plant" class="btn btn-primary">
+            </form>
+        </div>
+    </div>
+{% endblock %}
