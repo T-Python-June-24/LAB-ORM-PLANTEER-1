@@ -1,0 +1,29 @@
+{% extends 'main/base.html' %}
+
+{% block title %} Add plant {% endblock %}
+
+{% block content %}
+<main>
+  <div class="flex flex-col px-12">
+    <h1> {{ plants.name }} </h1>
+    <div>
+      <h3> About the Plant{{ plants.about }}</h3>
+      <p>{{ plants.about }}</p>
+      <h3>The Plant is Used for </h3>
+      <p>{{ plants.used_for }}</p>
+    </div>
+    <div class="my-4">
+      <img src="{{plants.image.url }}" alt="{{ plant.name }}" >
+      <h4>Category</h4>
+      <p>{{ plants.get_category_display }}</p>
+      <p> {{plants.is_edible}} </p>
+    </div>
+  </div>
+  <div class="px-12 mb-4">
+    <a href="{% url 'plants:plant_update_view' plants.id %}" class="bg-black px-4 py-2 text-white border-0 rounded-md">update</a>
+  </div>
+  <div class="px-12 mb-4">
+    <a href="{% url 'plants:plant_delete_view' plants.id %}"  class="bg-red-600 px-4 py-2 text-white border-0 rounded-md">Delete</a>
+  </div>
+</main>
+{% endblock %}

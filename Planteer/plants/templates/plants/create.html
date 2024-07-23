@@ -1,0 +1,29 @@
+{% extends 'main/base.html' %}
+
+{% block title %} Add plant {% endblock %}
+
+{% block content %}
+<main>
+  <div class="px-12">
+    <form class="flex flex-col gap-3 w-1/2" action="{% url 'plants:create_plant_view' %}" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <input type="text" placeholder="Name" name="name">
+      <textarea placeholder="About" name="about"></textarea>
+      <textarea placeholder="Used for" name="used_for"></textarea>
+      <input type="file" name="image" class="">
+      <select name="category">
+        <option selected disabled>Category</option>
+        <option value="HRB">Herb</option>
+        <option value="TRE">Tree</option>
+        <option value="CLB">Climber</option>
+        <option value="CRP">Creeper</option>
+      </select>
+      <label>
+        <input type="checkbox" name="is_edible" value="True">
+        Edible
+      </label>
+      <button type="submit" class="bg-black text-white py-2 border-0 rounded-md">Add Plant</button>
+    </form>
+  </div>
+</main>
+{% endblock %}

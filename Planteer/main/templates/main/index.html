@@ -8,7 +8,7 @@
     <h1 class="text-8xl py-7">Planteer</h1>
     <p class="text-5xl pb-5">plant Database For Plants Lovers</p>
     <div class="flex flex-row items-center gap-4">
-      <input type="text" value="Search For Plant..." class="border-1 border-slate-500 rounded-md w-full">
+      <input type="text" placeholder="Search For Plant..." class="border-1 border-slate-500 rounded-md w-full">
       <a href="" class="bg-black text-white px-4 py-2 border-0 rounded-md">Search</a>
     </div>
   </div>
@@ -22,11 +22,15 @@
       <span class="material-symbols-outlined">arrow_forward</span>
     </div>
   </div>
-  <div class="flex flex-col px-12"> 
-    <img>
-    <h4>Plant 2</h4>
-    <p>Brief about plant</p>
-    <p>Tree</p>
-  </div>
+  <div class="flex flex-row px-12 gap-4">
+    {% for plant in plants %}
+        <div class="mb-4">
+            <img src="{{ plant.image.url }}" alt="{{ plant.name }}" class="w-[250px] h-[200px]">
+            <h4 class="text-xl">{{ plant.name }}</h4>
+            <p class="font-thin">{{ plant.about }}</p>
+            <p>{{ plant.get_category_display }}</p>
+        </div>
+    {% endfor %}
+</div>
 </main>
 {% endblock %}

@@ -14,9 +14,9 @@
       <a href="">Planteer</a>
     </div>
     <div class="flex flex-row gap-3">
-      <a href="">All Plants</a>
+      <a href="{% url 'plants:all_plants_view' %}">All Plants</a>
       <a href="">Contact Us</a>
-      <a href="" class="border-0 rounded-md bg-black text-white px-1">Add Plant</a>
+      <a href="{% url 'plants:create_plant_view' %}" class="border-0 rounded-md bg-black text-white px-1">Add Plant</a>
     </div>
   </nav>
   {% block content %}
