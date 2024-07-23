@@ -1,1 +1,49 @@
-im all plants
+{% extends 'main/base.html' %}
+
+{% block title %} all plants{% endblock %}
+
+{% block content %}
+<h1>plants</h1>
+
+<form method="GET" class="mb-4">
+  <div class="form-row">
+      <div class="col">
+          <select name="category" class="form-control">
+              <option value="">All Categories</option>
+              {% for category in categories %}
+                  <option value="{{ category }}" {% if category == selected_category %}selected{% endif %}>{{ category }}</option>
+              {% endfor %}
+          </select>
+      </div>
+      <div class="col">
+          <select name="is_edible" class="form-control">
+              <option value="">All</option>
+              <option value="True" {% if selected_is_edible == 'True' %}selected{% endif %}>Edible</option>
+              <option value="False" {% if selected_is_edible == 'False' %}selected{% endif %}>Not Edible</option>
+          </select>
+      </div>
+      <div class="col">
+          <button type="submit" class="btn btn-primary">Filter</button>
+      </div>
+  </div>
+</form>
+
+<div class="row mt-2 row-cols-1 row-cols-md-3 g-4">
+
+    {% for plant in plants %}
+    <div class="col">
+      <div class="d-flex flex-column justify-content-start align-items-start h-100 p-4 shadow">
+        <h3>{{plant.name}}</h3>
+        <p>{{plant.about}} <a href="{% url 'plants:detail_view' plant.id %}">more</a></p>
+        <p>{{plant.category}}</p>
+        <h5>created at {{plant.created_at}}</h5>
+        <h6>{{plant.is_edible}}</h6>
+        <img src="{{ plant.image.url }}" class="w-50" alt="">
+      </div>
+    </div>
+    {% endfor %}
+  
+  
+  </div>
+
+{% endblock %}

@@ -16,7 +16,26 @@ def add_plants(request:HttpRequest):
 
 def all_view(request:HttpRequest):
 
-    return render(request,"plants/all_plants.html")
+    plants = Plant.objects.all()
+
+    category = request.GET.get('category')
+    is_edible = request.GET.get('is_edible')
+
+    if category:
+        plants = plants.filter(category=category)
+    if is_edible:
+        plants = plants.filter(is_edible=is_edible == 'True')
+
+    categories = Plant.objects.values_list('category', flat=True).distinct()
+
+    return render(request, "plants/all_plants.html", {
+        "plants": plants,
+        "categories": categories,
+        "selected_category": category,
+        "selected_is_edible": is_edible
+    })
+
+    # return render(request,"plants/all_plants.html",{"plants":plant})
 
 
 def detail_view(request:HttpRequest,plant_id:int):
