@@ -1,0 +1,46 @@
+{% extends 'main/base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Plants
+{% endblock %}
+
+{% block content %}
+
+  <div class="container">
+    <div class="row bg-image">
+        <img src="{% static 'plants.jpeg' %}">
+        <div class="text-dark d-flex justify-content-center flex-column text-center overflow-visible">
+            <h2>Planteer</h2>
+            <h6>Plants database for plants lovers</h6>
+            <input  class="justify-content-center" type="text" placeholder="Search.." style="width: 50%;">
+
+        </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row justify-content-between">
+        <div class="col">
+            <h1>
+                Plants
+            </h1>
+            <h5>
+                Learn more about plants
+            </h5>
+
+        </div>
+        <div class="col">
+            <a href="{% url 'main:plants' %}">more --></a>
+        </div>
+        
+    </div>
+  </div>
+
+
+
+
+
+  
+{% endblock %}
