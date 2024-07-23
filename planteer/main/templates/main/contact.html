@@ -1,0 +1,94 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block content %}
+
+
+<main class="flex flex-row justify-around items-center">
+    
+    <div class="flex items-center justify-center p-12 flex-col gap-8 ">
+        <div class="self-start  ">
+            <h1 class="text-3xl font-bold">Contact Us</h1>
+        </div>
+        
+        <div class="mx-auto w-full max-w-[550px]">
+          <form action="{% url 'main:contact_view' %}" method="POST">
+            {% csrf_token %}
+            <div class="mb-5 flex flex-row gap-3 ">
+             <div>
+                <label
+                for="name"
+                class="mb-3 block text-base font-medium text-[#07074D] "
+              >
+                First Name
+              </label>
+              <input
+                type="text"
+                name="first_name"
+                id="name"
+                placeholder="First Name"
+                class="w-60 rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+              />
+             </div>
+              <div><label
+                for="name"
+                class="mb-3 block text-base font-medium text-[#07074D]"
+              >
+                Last Name
+              </label>
+              <input
+                type="text"
+                name="last_name"
+                id="name"
+                placeholder="Last Name"
+                class="w-60 rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+              />
+            </div></div>
+            <div class="mb-5">
+              <label
+                for="email"
+                class="mb-3 block text-base font-medium text-[#07074D]"
+              >
+                Email Address
+              </label>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                placeholder="example@domain.com"
+                class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-black focus:shadow-md"
+              />
+            </div>
+           
+            <div class="mb-5">
+              <label
+                for="message"
+                class="mb-3 block text-base font-medium text-[#07074D]"
+              >
+                Message
+              </label>
+              <textarea
+                rows="4"
+                name="message"
+                id="message"
+                placeholder="Type your message"
+                class="w-full resize-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+              ></textarea>
+            </div>
+            <div>
+              <button
+                class="hover:shadow-form rounded-md bg-black py-3 px-8 text-base font-semibold text-white outline-none w-full"
+              >
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div >
+        <img src="{% static 'images/contactImg.jpg' %}"  class="w-96">
+      </div>
+
+</main>
+
+{% endblock %}

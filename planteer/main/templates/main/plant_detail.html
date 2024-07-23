@@ -1,0 +1,68 @@
+{% extends 'main/base.html' %}
+{% block content %}
+
+<div class="flex flex-col justify-center " >
+
+<div class="flex mt-24 flex-row justify-center ">
+    <div class="mr-52">
+        <img src="{{plant.image.url}}" class="w-96 rounded-md"  alt="fruit image">
+    </div>
+    <div class="w-72">
+        <h2 class="font-bold text-2xl">{{plant.name}}</h2>
+        <h3 class="text-gray-500">{{plant.category}}</h3>
+        <h3 class="text-gray-500 text-sm">{{plant.about}}</h3>
+        <h3>Is Edible: {% if plant.is_edible == True %} Yes {% else %} No  {% endif %}</h3>
+        <h3> Used for : <br> {{plant.used_for}}</h3>
+
+
+    </div>
+</div>
+
+
+<div class="w-11/12 self-center flex flex-col  " >
+    <!-- style="width: 90%; align-self: self-start; display: flex; flex-direction: column; " -->
+
+     <div class="flex flex-row justify-around mt-20 gap-96" >
+    <div class="  ">
+        <!-- style=" margin-left: 5.8rem; margin-top: 2rem;" -->
+        <h2 >Plants</h2>
+        <!-- style="margin: 0;" -->
+    <p >Learn more about plants</p >
+    </div>
+    <div>
+        <h3>More</h3>
+    </div>
+    </div>
+    <div class="flex flex-row gap-x-10  gap-y-10 mt-16 ml-52 w-5/6 flex-wrap " >
+        <!-- style="display: flex; flex-direction: row; column-gap: 10rem; flex-wrap: wrap; " -->
+       {% for related in sug%}
+        <div class="card-item " >
+            <!-- style="margin-left: 5.8rem;" -->
+            <img src="{{related.image.url}}" alt="fruit-image" class="w-80 rounded-md">
+            <!-- style="width: 300px; border-radius: 5px;" -->
+             <div class="flex flex-row justify-between">
+            <div>
+               <a href="{% url 'main:plant_detail_view' plant.id %}"> <p class="title font-bold hover:text-red-700">{{related.name}}</p></a>
+            <p class="subtitle">{{related.about|truncatechars:40 }}</p>
+            <p class="category ">{{related.category}}</p>
+            </div>
+            <div> 
+                <a href="{% url 'main:update_plant_view' plant.id %}"><i class="fa-solid fa-pen-to-square"></i></a>
+                <a href="{% url 'main:delete_plant_view'  plant.id %}"><i class="fa-solid fa-trash-can text-red-600"></i> </a>
+            </div>
+
+        </div>
+        </div>
+        {% endfor %}
+
+
+
+        
+
+     
+        <!-- end of the container -->
+    </div>
+
+</div>
+</div>
+{% endblock %}

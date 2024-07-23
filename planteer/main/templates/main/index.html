@@ -1,0 +1,74 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block content %}
+    <main  class="flex flex-col justify-center items-center">
+        <!-- style="display: flex; flex-direction: column; justify-content: center; align-items: center;" -->
+        <div class="flex flex-col justify-center items-center w-5/6 mt-0 mb-0 mr-auto ml-auto ">
+            <!--  style="display: flex; flex-direction: column; justify-content: center; align-items: center; width: 90px; margin: 0 auto;" -->
+            <div class="absolute  ">
+                <h1 class="text-6xl font-bold ">Planteer</h1>
+                <h2 class="text-4xl bold mb-4">Plant Database For Plant Lovers</h2>
+                <div>
+                    <form action="{% url 'main:plant_search_view' %}" method="post">
+                        {% csrf_token %}
+                <input class="w-96 border-gray-300 rounded-md" type="search" name="search" id="">
+                <input type="submit" value="search" class="cursor-pointer bg-black rounded-md text-white p-2 w-24">
+                
+            </form>
+            </div>
+                
+            </div>
+            <img  src="{% static 'images/crudBg.jpg' %}" class="w-4/5 h-1/2 rounded-md mt-11" alt="None" >
+            
+            
+            <!-- style="width: 1500%; height: 400px; border-radius: 5px; margin-top: 2rem;" -->
+
+        </div>
+        <div class="w-11/12 self-center flex flex-col  " >
+            <!-- style="width: 90%; align-self: self-start; display: flex; flex-direction: column; " -->
+
+             <div class="flex flex-row justify-around mt-20 gap-96" >
+            <div class="  ">
+                <!-- style=" margin-left: 5.8rem; margin-top: 2rem;" -->
+                <h2 >Plants</h2>
+                <!-- style="margin: 0;" -->
+            <p >Learn more about plants</p >
+            </div>
+            <div>
+                <h3>More</h3>
+            </div>
+            </div>
+            <div class="flex flex-row gap-x-10  gap-y-10 mt-16 ml-52 w-5/6 flex-wrap " >
+                <!-- style="display: flex; flex-direction: row; column-gap: 10rem; flex-wrap: wrap; " -->
+               {% for plant in plants%}
+                <div class="card-item " >
+                    <!-- style="margin-left: 5.8rem;" -->
+                    <img src="{{plant.image.url}}" alt="fruit-image" class="w-80 rounded-md">
+                    <!-- style="width: 300px; border-radius: 5px;" -->
+                     <div class="flex flex-row justify-between">
+                    <div>
+                       <a href="{% url 'main:plant_detail_view' plant.id %}"> <p class="title font-bold hover:text-red-700">{{plant.name}}</p></a>
+                    <p class="subtitle">{{plant.about|truncatechars:40 }}</p>
+                    <p class="category ">{{plant.category}}</p>
+                    </div>
+                    <div> 
+                        <a href="{% url 'main:update_plant_view' plant.id %}"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a href="{% url 'main:delete_plant_view'  plant.id %}"><i class="fa-solid fa-trash-can text-red-600"></i> </a>
+                    </div>
+
+                </div>
+                </div>
+                {% endfor %}
+
+
+
+                
+
+             
+                <!-- end of the container -->
+            </div>
+
+        </div>
+    </main>
+    {% endblock %}
+   

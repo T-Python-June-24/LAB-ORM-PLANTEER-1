@@ -1,0 +1,49 @@
+{% load static tailwind_tags %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://kit.fontawesome.com/956e34dfa0.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% tailwind_css %}
+    <!-- <style>
+        .search{
+            width: 100%;
+            height: auto;
+            display: block;
+            
+        }
+        .card-item{
+            width: 10rem;
+
+        }
+    </style> -->
+    
+</head>
+<body  class="m-0 p-0">
+    <!-- style="margin: 0; padding: 0;" -->
+    <nav class="flex flex-row justify-around gap-96 pt-10">
+        <!-- display: flex; flex-direction: row; justify-content:space-around;  -->
+        <div >
+            <a href="{% url 'main:home_view' %}" ><h3>Plateer</h3></a>
+        </div>
+        <div class="flex justify-center items-center gap-4">
+            <!-- style="display: flex; justify-content: center; align-items: center; gap: 1rem;" -->
+            <a href="{% url 'main:all_plant_view' %}" class="text-red-300"><h3>All Plants</h3></a>
+            <a href="{% url 'main:contact_view' %}"><h3>Contact Us</h3></a>
+            <a href="{% url 'main:contact_messages_view' %}"><h3>Users Messages</h3></a>
+            <a href="{% url 'main:plant_search_view' %}"><h3>Search</h3></a>
+            <a href="{% url 'main:add_plant_view' %}"><button class="bg-black rounded-md text-white p-2 w-auto text-xs"   >Add Plant</button></a>
+        </div>
+
+    </nav>
+    {% block content %}
+    {% endblock %}
+
+    <footer>
+
+    </footer>
+</body>
+</html>

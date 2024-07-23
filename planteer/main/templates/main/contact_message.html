@@ -1,0 +1,29 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<main>
+    <div >
+
+        <h1 class="m-20 ml-40 text-4xl font-bold">Messages from Users</h1>
+    </div>
+
+<div class="flex flex-row ml-52 flex-wrap gap-5" >
+    {% for msg in message %}
+    <div class="flex flex-col shadow-slate-200 min-w-96 gap-1  ">
+        <div class="icon ml-2">
+            <i class="fa-solid fa-user text-gray-700"></i>
+        </div>
+        <h2 class="text-2xl ">{{msg.first_name}} {{msg.last_name}}</h2>
+        <a href="mailto:{{msg.email}}" class="text-blue-600 text-xl">{{msg.email}}</a>
+        <p class="w-72">{{msg.message}}</p>
+    <div>
+
+            </div>
+            </div>
+            {% endfor %}
+
+</div>
+
+
+
+</main>
+{% endblock %}
