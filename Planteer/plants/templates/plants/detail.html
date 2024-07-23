@@ -30,6 +30,29 @@
         </div>
     </div>
 </div>
+<hr>
+<h2 class="text-success">Related Plants</h2>
+<div class="row mt-5 row-cols-1 row-cols-md-3 g-4">
+
+  {% for plant in plantsByCat %}
+    <div class="col">
+        <div class="d-flex flex-column justify-content-start align-items-start h-100 p-4 shadow">
+            <a href= "{% url 'plants:detail_view' plant.id %}"><img src="{{plant.image.url}}" class="all-img"/></a>
+            <h3>{{plant.name}}</h3>
+    
+            <p>About: {{plant.about}}</p>
+            <h6>{% if plant.category == 1 %} Fruit 
+              {% elif plant.category == 2 %} Vegetables
+              {% elif plant.category == 3 %} Tree
+              {%endif %}
+
+            </h6>
+        </div>
+    </div>
+  {% endfor %}
+
+
+</div>
 
   
   <!-- Modal -->

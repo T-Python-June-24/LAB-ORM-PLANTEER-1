@@ -24,8 +24,10 @@ def all_view(request: HttpRequest):
 
 def detail_view(request: HttpRequest, plant_id:int):
     plant = Plant.objects.get(pk = plant_id)
+    category = plant.category
+    plantsByCat= Plant.objects.filter(category=category).exclude(pk = plant_id)
 
-    return render(request, 'plants/detail.html', {'plant':plant})
+    return render(request, 'plants/detail.html', {'plant':plant, 'plantsByCat': plantsByCat})
 
 
 
