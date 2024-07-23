@@ -62,8 +62,8 @@ def update_plant(request, plant_id):
             "plant": plant,"categoryChoices": Plant.CategoryChoices.choices 
         }) 
 def plants_search(request:HttpRequest):
-     if request.method=="POST":
-          searched=request.POST['searched']
+     if request.method=="GET":
+          searched=request.GET['searched']
           plant = Plant.objects.filter(name__contains=searched)
           count=len(plant)
           #count=plant.count()

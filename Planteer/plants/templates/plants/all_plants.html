@@ -32,7 +32,7 @@
         <div class="d-flex flex-column justify-content-start align-items-start h-100 p-4 shadow">
             <img src="{{ plant.image.url }}" class="w-100">
             <a href="{% url 'plants:plant_detail' plant.id %}"><h3>{{ plant.name }}</h3></a>
-            <h5>{{ plant.category }}</h5>
+            <a href="{% url 'plants:plant_detail' plant.id %}"><h5>{{ plant.category }}</h5></a>
         </div>
     </div>
     {% endfor %}

@@ -28,8 +28,8 @@
         <h1 class="text-white display-1">Planteer</h1>
         <h2 class="text-white display-4">Plant Database For Plants Lovers</h2>
         <div class="w-100 d-flex justify-content-center">
-            <form class="col-12 col-sm-10 col-md-8 col-lg-6 d-flex gap-2" role="search" method="POST" action="{%url 'plants:plants_search'%}">
-                {%csrf_token%}
+            <form class="col-12 col-sm-10 col-md-8 col-lg-6 d-flex gap-2" role="search" method="GET" action="{%url 'plants:plants_search'%}">
+                
                 <input type="search" class="form-control" placeholder="Search for plant..." aria-label="Search" name="searched">
                 <button class="btn btn-secondary search-button" type="submit">Search</button>
             </form>
