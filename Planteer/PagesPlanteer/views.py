@@ -50,10 +50,11 @@ def delete(request:HttpRequest , plants_id):
     return redirect('PagesPlanteer:HomePage')
 
 def search(request:HttpRequest):
-    if request.method == 'POST':
-        plants=Plant.objects.filter(name__contains = request.POST['search'])
+    if request.method == 'GET':
+        word_search=request.GET['search']
+        plants=Plant.objects.filter(name__contains = request.GET['search'])
         count_plants=plants.count()
-        return render(request , 'pages/search.html', {'plant':plants , "count_plants":count_plants})
+        return render(request , 'pages/search.html', {'plant':plants , "count_plants":count_plants , "word_search":word_search})
     return render(request , 'pages/search.html')
 def filtering(request:HttpRequest):
     if request.method == 'POST':

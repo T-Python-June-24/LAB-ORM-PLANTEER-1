@@ -5,7 +5,7 @@
     <div class="banner-text">
         <h1>Planteer</h1>
         <p>Plant Database For Plants Lovers</p>
-        <form class="mt-3" action="{% url 'PagesPlanteer:search' %}" method="post">
+        <form class="mt-3" action="{% url 'PagesPlanteer:search' %}" method="get">
             {% csrf_token%}
             <div class="input-group gap-3">
                 <input type="text" class="form-control" name='search' placeholder="Search For Plant...">

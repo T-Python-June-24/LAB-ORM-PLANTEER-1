@@ -1,5 +1,5 @@
 {% extends "PagesBase/base.html" %} {%block body%}
-<form class="mt-3" action="{% url 'PagesPlanteer:search' %}" method="post">
+<form class="mt-3" action="{% url 'PagesPlanteer:search' %}" method="GET">
     {% csrf_token%}
     <div class="input-group gap-3">
     <input
@@ -7,6 +7,7 @@
       class="form-control"
       name="search"
       placeholder="Search For Plant..."
+      value="{{word_search}}"
     />
     <div class="input-group-append">
       <button class="btn btn-dark" type="submit">Search</button>
@@ -16,7 +17,7 @@
 <div class="d-flex mt-5">
   {% if plant%}
   <div class="row">
-    <p>search result {{count_plants}}</p>
+    <p>search result {{count_plants}} </p>
     {% for plants in plant%}
     <div class="col">
             
@@ -35,7 +36,7 @@
   </div>
 </div>
   {%else%}
-  <h1>no result were found</h1>
+  <h1>no result were found   {{word_search}}</h1>
 </div>
   {%endif%} {%endblock%}
 
