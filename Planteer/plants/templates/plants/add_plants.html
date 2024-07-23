@@ -3,11 +3,10 @@
 {% block title %} add plants{% endblock %}
 
 {% block content %}
-<h1>plants</h1>
+<h1>add new Plant</h1>
 
 <div class="row mt-2 row-cols-1 row-cols-md-3 g-4">
 
-    <h1>add new Plant</h1>
     <form action="{% url 'plants:add_plants' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         

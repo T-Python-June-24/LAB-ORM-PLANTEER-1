@@ -67,11 +67,11 @@
   <div class="col">
     <div class="d-flex flex-column justify-content-start align-items-start h-100 p-4 shadow">
       <h3>{{plant.name}}</h3>
-      <p>{{plant.about}} <a href="{% url 'plants:detail_view' plant.id %}">more</a></p>
-      <p>{{plant.category}}</p>
-      <h5>created at {{plant.created_at}}</h5>
-      <h6>{{plant.is_edible}}</h6>
+      <p>category : {{plant.category}}</p>
+      <h6>is edible : {% if plant.is_edible %} yes {% else %} no {% endif %}</h6>
       <img src="{{ plant.image.url }}" class="w-50" alt="">
+      <button class="btn btn-primary mt-2"><a href="{% url 'plants:detail_view' plant.id %}">see details </a></button>
+      <span class="mt-2">created at {{plant.created_at}}</span>
     </div>
   </div>
   {% endfor %}
