@@ -4,30 +4,54 @@
 
 {%block content %} 
 
-{% for plant in plants %}
-    <div class="col">
-    <div
-        class="d-flex flex-column justify-content-start align-items-start h-100 p-4 shadow">
-        <h3>{{plant.name}}</h3>
-        <p>{{plant.about}}</p>
-        <h5>Published by: {{plant.used_for}}</h5>
-        <h6>{{plant.created_at}}</h6>
-        <h6>{{plant.created_at}}</h6>
-        <h6>{{plant.created_at}}</h6>
-        {% if plant.image %}
-        <img
-        src="{{ plant.image.url }}"
-        class="w-100 poster-thumb object-fit-cover"
-        />
-        {% else %}
-        <p>Image not found</p>
-        <img
-        src="media/images/defualt.png"
-        class="w-20 poster-thumb object-fit-contain"
-        />
+<div class="hero-section">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <h1 class="mb-4">Welcome to Our Website</h1>
+        <div class="search-bar">
+            <form>
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search..." aria-label="Search">
+                    <button class="btn btn-primary" type="button">Search</button>
+                </div>
+            </form>
         </div>
-        </div>
-{% endif %}
-{% endfor %}
+    </div>
+</div>
+
+
+<div class="container mt-5">
+        <div class="row">
+            {% for plant in plants %}
+                <div class="col-md-4">
+                    <div class="card mb-4" style="width: 18rem;">
+                        {% if plant.image %}
+                            <img src="{{ plant.image.url }}" class="card-img-top">
+                        {% else %}
+                            <img src="/media/images/default.png" class="card-img-top">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ plant.id }}: {{ plant.name }}</h5>
+                            <p class="card-text">{{ plant.about }}</p>
+                            <p class="card-text">
+                                {% if plant.category == '1' %}
+                                    Fruit
+                                {% elif plant.category == '2' %}
+                                    Vegetables
+                                {% elif plant.category == '3' %}
+                                    Tree
+                                {% elif plant.category == '4' %}
+                                    Farming
+                                {% endif %}
+                            </p>
+                            <a href="{% url 'main:plantDetail_view' plant.id %}" class="btn btn-primary">Details</a>
+                        </div>
+                    </div>
+                </div>
+                {% if forloop.counter|divisibleby:3 %}
+                    </div><div class="row">
+                {% endif %}
+            {% endfor %}
+</div>
 
 {% endblock %}

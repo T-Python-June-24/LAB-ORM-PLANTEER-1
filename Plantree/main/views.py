@@ -12,7 +12,8 @@ def allPlant_view(request: HttpRequest):
 
 def plantDetail_view(request: HttpRequest, plant_id: int):
     plant = Plants.objects.get(id=plant_id)
-    return render(request,"plantDetail.html", {"plants": plant} )
+    plant2 = Plants.objects.all()
+    return render(request,"plantDetail.html", {"plants": plant, "plants2": plant2})
 
 def contactUs_view(request: HttpRequest):
     return render(request,"contactUs.html" )
