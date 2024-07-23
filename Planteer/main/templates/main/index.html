@@ -1,0 +1,63 @@
+
+{% extends 'main/base.html' %}
+
+{% block title %} Plants Home Page {% endblock %}
+
+{% block content %}
+
+
+
+<div class="row   row-cols-1 row-cols-md-2  hero-row">
+    <div class="col order-2 order-md-1 text-success">
+        <div class="d-flex flex-column justify-content-center align-items-center h-100 ">
+            <h1 class="text-center">Planteer</h1>
+            <h3 class="text-center">Plant Database For Plants Lovers</h3>
+            <div>
+             
+               <form action="{% url 'main:search_view' %}" method="get" class="d-flex justify-content-end gap-2">
+                <input type="text" name="query" placeholder="Enter plant name">
+                <button type="submit" class="btn btn-success">Search</button>
+            </form>
+               
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col order-1 overflow-hidden h-100 p-0">
+        <!-- <img class="w-100 h-100 object-fit-cover" src="https://static0.srcdn.com/wordpress/wp-content/uploads/2023/11/greatest-movies-of-all-time.jpg" /> -->
+        <div class="vid-container">
+          <img class="h-100" src="/static/images/background.jpg"/>
+        </div>
+    </div>
+</div>
+
+<hr />
+<h2 class="text-success">Plants</h2>
+<div class="d-flex justify-content-between ">
+  <h6 style="color:rgb(10, 205, 160);">Learn more about plants</h6>
+  <a href="{%url 'plants:all_view' %}" ><h5  style="color:rgb(10, 205, 160);">More</h5></a>
+</div>
+<div class="row mt-5 row-cols-1 row-cols-md-3 g-4">
+
+  {% for plant in plants %}
+    <div class="col">
+        <div class="d-flex flex-column justify-content-start align-items-start h-100 p-4 shadow">
+            <a href= "{% url 'plants:detail_view' plant.id %}"><img src="{{plant.image.url}}" class="index-img"/></a>
+            <h3>{{plant.name}}</h3>
+    
+            <p>About: {{plant.about}}</p>
+            <h6>{% if plant.category == 1 %} Fruit 
+              {% elif plant.category == 2 %} Vegetables
+              {% elif plant.category == 3 %} Tree
+              {%endif %}
+
+            </h6>
+        </div>
+    </div>
+  {% endfor %}
+
+
+</div>
+
+{% endblock %}

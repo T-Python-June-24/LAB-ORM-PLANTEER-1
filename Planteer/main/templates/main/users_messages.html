@@ -1,0 +1,24 @@
+
+{% extends 'main/base.html' %}
+
+{% block title %} Users Messages{% endblock %}
+
+{% block content %}
+
+<h2 class="text-success">Messages From Users</h2>
+<div class="row mt-5 row-cols-1 row-cols-md-3 g-4">
+
+  {% for contact in contacts %}
+    <div class="col">
+        <div class="d-flex flex-column justify-content-start align-items-start h-100 p-4 shadow">
+            <h3 class="text-success">{{contact.first_name}} {{contact.last_name}}</h3>
+            <p class="text-primary">{{contact.email}}</p>
+            <p class="message">{{contact.message}}</p>
+        </div>
+    </div>
+  {% endfor %}
+
+
+</div>
+
+{% endblock %}

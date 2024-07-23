@@ -1,0 +1,54 @@
+
+{% extends 'main/base.html' %}
+
+
+{% block title %}Plant Details{% endblock %}
+
+{% block content %}
+<h2>{{plant.name}}</h2>
+<div class = "row">
+    <div class = "col">
+        <div class="d-flex flex-column gap-2">
+           <div class ="d-flex justify-content-between">
+            <p>{{plant.about}} </p>
+            <p style="color: rgb(10, 205, 160);">{{plant.created_at}}</p>
+           </div>
+            <img class="detail-img" src="{{ plant.image.url }}" class="w-100 h-100"/>
+            <div class="d-flex justify-content-end gap-2">
+                <a href= "{% url 'plants:update_view' plant.id %}" class="btn btn-success">Update</a>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</button>
+            </div>
+            <p> Used for: {{plant.used_for}} </p>
+            <p> Category: {% if plant.category == 1 %} Fruit 
+              {% elif plant.category == 2 %} Vegetables
+              {% elif plant.category == 3 %} Tree
+              {%endif %} </p>
+              <p>Is Edible? {% if plant.is_edible %} YES 
+                {% elif plant.is_edible == False %} NO
+                {%endif %} </p>
+        </div>
+    </div>
+</div>
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Warning message</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to delete {{plant.name}}?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <a href= "{% url 'plants:delete_view' plant.id %}" class="btn btn-danger">Delete</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

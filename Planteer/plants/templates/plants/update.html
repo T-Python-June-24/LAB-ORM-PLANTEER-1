@@ -1,0 +1,46 @@
+
+{% extends 'main/base.html' %}
+
+
+{% block title %}Update Plant{% endblock %}
+
+{% block content %}
+<h2 class="text-success">Update Plant: {{plant.name}}</h2>
+
+<div class="row">
+
+    <div class="col-6">
+
+        <form class="d-flex flex-column gap-2" action="{% url 'plants:update_view' plant.id %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="text" placeholder="Name" name="name" class="form-control" value ="{{plant.name}}"/>
+            <textarea placeholder="About" name="about" class="form-control">{{plant.about}}</textarea>
+            <input type="text" placeholder="Used For" name="used_for" class="form-control" value ="{{plant.used_for}}"/>
+            <select class="form-select" name="category">
+                <option >Category</option>
+                <option value= "1" {% if plant.category == 1 %} selected {% endif %}>Fruit</option>
+                <option value= "2" {% if plant.category == 2 %} selected {% endif %}>Vegetables</option>
+                <option value= "3" {% if plant.category == 3 %} selected {% endif %}>Tree</option>
+              </select>
+              <select class="form-select" name="is_edible">
+                <option >Category</option>
+                <option value="True" {% if plant.is_edible == True %} selected {% endif %}>YES</option>
+                <option value="False" {% if plant.is_edible == False %} selected {% endif %}>NO</option>
+              </select>
+            <class class="row">
+                <class class="col-3">
+                    <img src="{{plant.image.url}}" class= "w-100" >
+                </class>
+            </class>
+            <input type="file" name ='image' class="form-control"/>
+
+            <input type="submit" value="Update Plant" class="btn btn-success" />
+
+        </form>
+
+
+    </div>
+
+</div>
+
+{% endblock %}
