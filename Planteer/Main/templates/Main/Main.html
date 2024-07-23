@@ -21,13 +21,10 @@
                     Plant Database For Plants Lovers</p>
 
                 <div class="w-full max-w-2xl">
-        ]
-
                         <form action="{% url 'Plants:search_plant' %}" method="GET" class="mb-4 mr-4 w-full flex justify-center items-center">
-                            <input type="text" name="query" value="{{ query }}" placeholder="Search..." class="mr-6 p-3 rounded-lg w-full place-content-center justify-center text-black border ">
+                            <input required minlength="3" type="text" name="query" value="{{ query }}" placeholder="Search..." class="mr-6 p-3 rounded-lg w-full place-content-center justify-center text-black border ">
                             <button type="submit" class="bg-black text-white py-3 px-8 rounded-lg">Search</button>
                         </form>                            
-
                 </div>
             </figcaption>
         </div>

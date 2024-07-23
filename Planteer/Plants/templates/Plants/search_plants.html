@@ -8,7 +8,7 @@
     <h1 class="bold-font-prop tilt-in-fwd-bl"> Search Plants </h1>
 
     <form action="{% url 'Plants:search_plant' %}" method="GET" class="mb-4 mr-4 flex justify-center">
-        <input type="text" name="query" value="{{ query }}" placeholder="Search..." class="mr-8 border p-2 rounded w-[800px] place-content-center justify-center ">
+        <input type="text" minlength="3" maxlength="512" required name="query" value="{{ query }}" placeholder="Search..." class="mr-8 border p-2 rounded w-[800px] place-content-center justify-center ">
         <button type="submit" class="bg-black text-white py-2 px-8 rounded-lg">Search</button>
     </form>
     {% if query %}
@@ -37,8 +37,7 @@
                 {% endfor %}
             </div>
         {% else %}
-            <p>No plants found.</p>
+            <p class="text-red-400 justify-center items-center text-2xl font-bold pt-12">No plants found.</p>
         {% endif %}
     {% endif %}
-</div>
 {% endblock content %}
