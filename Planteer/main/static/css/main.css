@@ -115,6 +115,9 @@ body.dark .bar{
     margin-left: 0.4rem;
 }
 
+.bbb{
+    width: 200px;
+}
 input[type="search"]{
     border-radius: 0px !important;
     /* transform: skew(-10deg); */
