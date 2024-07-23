@@ -24,9 +24,9 @@ def contact_list_view(request:HttpRequest):
 
 
 def all_plant_view(request:HttpRequest):
-    plant=Plants.objects.order_by("-created_at")
+    plants=Plants.objects.order_by("-created_at")
     print(Plants.objects.count())
-    return render (request , "plants/all_plant.html", {"plant" : plant})
+    return render (request , "plants/all_plant.html", {"plants" : plants})
 
 
 
