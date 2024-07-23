@@ -1,0 +1,62 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+}
+
+header h1 {
+    font-size: 1.75rem;
+}
+
+header nav .nav-link {
+    color: #fff;
+    margin-right: 1rem;
+}
+
+.logo {
+    color: #fff;
+}
+
+header .add-plant-btn {
+    color: #333;
+    background-color: #fff;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+}
+
+footer h5, footer h6 {
+    color: #fff;
+}
+
+footer a {
+    color: #fff;
+    margin: 0 0.5rem;
+}
+
+footer a:hover {
+    text-decoration: none;
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit:contain;
+}
+
+.card {
+    height: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

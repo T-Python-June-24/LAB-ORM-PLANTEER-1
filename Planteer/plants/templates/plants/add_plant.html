@@ -1,0 +1,62 @@
+{% extends 'main/base.html' %}
+
+
+{% block title %}Add New Plant{% endblock %}
+
+{% block content %}
+    <h2 class="my-4">Add Plant</h2>
+    <form class="d-flex flex-column gap-3" action="{% url 'plants:new_plant' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label for="name">Plant Name</label>
+            <input type="text" placeholder="Plant Name" name="name" class="form-control" id="name" />
+        </div>
+
+        <div class="form-group">
+            <label for="about">About</label>
+            <textarea placeholder="About" name="about" class="form-control" id="about"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="used_for">Used for</label>
+            <textarea placeholder="Used for: " name="used_for" class="form-control" id="used_for"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="plant_image">Plant Image</label>
+            <input type="file" name="plant_image" class="form-control-file" id="plant_image"/>
+        </div>
+
+            <div class="form-group">
+                <label for="category">Category</label>
+                <select class="form-select" name="category" id="category">
+                    <option value="">Type...</option>
+                    <option value="Succulents">Succulents</option>
+                    <option value="Cacti">Cacti</option>
+                    <option value="Flowers">Flowers</option>
+                    <option value="Herbs">Herbs</option>
+                    <option value="Shrubs">Shrubs</option>
+                    <option value="Trees">Trees</option>
+                    <option value="Vines and Climbers">Vines and Climbers</option>
+                    <option value="Ferns">Ferns</option>
+                    <option value="Grasses">Grasses</option>
+                    <option value="Aquatic Plants">Aquatic Plants</option>
+                    <option value="Bulbs">Bulbs</option>
+                    <option value="Ornamental Plants">Ornamental Plants</option>
+                </select>
+            </div>
+
+            <div class="form-group form-check">
+                <input type="checkbox" aria-label="Edible" id="is_edible" name="is_edible" class="form-check-input">
+                <label class="form-check-label" for="is_edible">Edible</label>
+            </div>
+            <!-- <input type="date" name="release_date" class="form-control"/> -->
+
+            <input type="submit" value="Add Plant" class="btn btn-success" />
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

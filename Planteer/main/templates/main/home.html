@@ -1,0 +1,42 @@
+{% extends 'main/base.html' %}
+
+{% load static %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+    <section class="text-center my-5">
+        <h1 class="display-4">Planteer</h1>
+        <p class="lead">Plant Database For Plant Lovers</p>
+        <form class="form-inline justify-content-center mt-4" action="{% url 'plants:search' %}">
+            <input class="form-control form-control-lg" name="q" type="search" placeholder="Search For Plant...">
+            <button class="btn btn-lg btn-dark ml-2" type="submit">Search</button>
+        </form>
+    </section>
+
+
+    <section>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2>Plants</h2>
+            <a href="{% url 'plants:all_plants' %}" class="btn btn-link">More →</a>
+        </div>
+        <div class="row">
+            {% for plant in plants %}
+            <div class="col-md-4">
+                <a href="{% url 'plants:plant_detail' plant.id %}" class="text-decoration-none text-dark">
+                    <div class="card">
+                        <img src="{{ plant.plant_image.url }}" class="card-img-top" alt="{{ plant.name }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ plant.name }}</h5>
+                            <p class="card-text"><strong>{{ plant.category }}</strong></p>
+                            <a href="{% url 'plants:plant_detail' plant.id %}" class="btn btn-primary">Read More</a>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% empty %}
+            <p>No plants available.</p>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}
