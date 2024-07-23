@@ -9,7 +9,7 @@ from django.utils.datastructures import MultiValueDictKeyError
 def plants(request: HttpResponse):
     category = request.GET.get('category')
     is_edible = request.GET.get('is_edible')
-    plants = Plants.objects.all()
+    plants = Plants.objects.all().order_by('-id') # DESC
 
     if category:
         plants = plants.filter(category=category)
@@ -38,6 +38,7 @@ def add_plant(request:HttpResponse):
             used_for = request.POST['used_for']
             plant_image = request.FILES['plant_image']
             category = request.POST['category']
+            rating = request.POST['rating']
             is_edible = 'is_edible' in request.POST
 
             plant = Plants(
@@ -46,6 +47,7 @@ def add_plant(request:HttpResponse):
                 used_for=used_for,
                 plant_image=plant_image,
                 category=category,
+                rating=rating,
                 is_edible=is_edible
             )
             plant.save()
@@ -55,7 +57,7 @@ def add_plant(request:HttpResponse):
         except Exception as e:
             messages.error(request, f'An error occurred: {str(e)}')
         return redirect('Contact:thanks_add_plant')
-    return render(request, 'Plants/add_plant.html')
+    return render(request, 'Plants/add_plant.html',{'categories': Category})
 
 
 

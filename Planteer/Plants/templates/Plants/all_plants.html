@@ -10,7 +10,6 @@
 <div class="content-home-padding">
     <h1 class="bold-font-prop tilt-in-fwd-bl"> All Plants </h1>
 
-    <!-- Filter Form -->
     <form method="GET" action="" class="mb-4">
         <img src="{% static 'images/filter.png' %}" class="h-[20px] inline-flex justify-center mr-4" alt="Filter">
         <label for="category" class="mr-2">Category:</label>
@@ -44,8 +43,8 @@
             </div>
             <div class="pl-6 pr-6 p-1">
                 <p class="block text-gray-500 font-medium font-sans text-base antialiased leading-relaxed">
-                    Brief About the Plant
-                </p>
+                    {{plant.category}}        
+                 </p>
             </div>
             <div class="pl-6 pr-6 p-1 pb-5">
                 <p class="block font-sans text-base antialiased font-medium leading-relaxed text-inherit">

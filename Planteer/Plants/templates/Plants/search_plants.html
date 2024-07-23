@@ -7,7 +7,6 @@
 <div class="content-home-padding">
     <h1 class="bold-font-prop tilt-in-fwd-bl"> Search Plants </h1>
 
-    <!-- Search Form -->
     <form action="{% url 'Plants:search_plant' %}" method="GET" class="mb-4 mr-4 flex justify-center">
         <input type="text" name="query" value="{{ query }}" placeholder="Search..." class="mr-8 border p-2 rounded w-[800px] place-content-center justify-center ">
         <button type="submit" class="bg-black text-white py-2 px-8 rounded-lg">Search</button>

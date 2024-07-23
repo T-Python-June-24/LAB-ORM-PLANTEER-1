@@ -40,6 +40,15 @@
                 <div class="mb-4">
                     <label for="category" class="block text-sm font-medium text-gray-700">Category:</label>
                     <select id="category" name="category" required class="mt-1 p-2 border border-gray-300 rounded w-full">
+                        {% for category in categories %}
+                            <option value="{{ category }}">{{ category }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="mb-4">
+                    <label for="rating" class="block text-sm font-medium text-gray-700">Rating:</label>
+                    <select id="rating" name="rating" required class="mt-1 p-2 border border-gray-300 rounded w-full">
                         <option value="Indoor">Indoor</option>
                         <option value="Outdoor">Outdoor</option>
                         <option value="Fruit">Fruit</option>
