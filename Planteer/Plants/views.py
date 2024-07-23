@@ -50,7 +50,7 @@ def add_plant(request:HttpResponse):
         except Exception as e:
             messages.error(request, f'An error occurred: {str(e)}')
         return redirect('Contact:thanks_add_plant')
-    return render(request, 'Plants/add_plant.html',{'categories': Plants.Category, 'rating': Plants.IntegerChoices})
+    return render(request, 'Plants/add_plant.html',{'categories': Plants.Category,})
 
     # if request.method == 'POST':
     #     try:
