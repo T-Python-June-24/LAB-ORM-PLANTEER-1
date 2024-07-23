@@ -36,10 +36,10 @@
 
         <label for="category">Category:</label>
         <select  id="category" name="category" required>
-            <option value="fruit">Fruit</option>
-            <option value="tree">Tree</option>
-            <option value="vegetables">Vegetables</option>
-        </select><br><br>
+            {% for val , label in categoryChoices %}
+            <option value={{val}}>{{label}}</option>
+            {% endfor %}
+        </select><br>
 
         <label for="is_edible">Is Edible:</label>
         <input  type="checkbox" id="is_edible" name="is_edible">

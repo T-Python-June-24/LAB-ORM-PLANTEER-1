@@ -12,7 +12,7 @@ def add_plants(request:HttpRequest):
         new_plant = Plant(name=request.POST["name"], about=request.POST["about"], used_for=request.POST["used_for"], category=request.POST["category"], is_edible = is_edible, image=request.FILES["image"])
         new_plant.save()
 
-    return render(request, 'plants/add_plants.html')
+    return render(request, 'plants/add_plants.html',{"categoryChoices":Plant.categoryChoices.choices})
 
 def all_view(request:HttpRequest):
 
