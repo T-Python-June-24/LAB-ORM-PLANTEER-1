@@ -40,7 +40,7 @@ def all_plant_view(request: HttpRequest):
 def plant_detail_view(request,plant_id):
     selected_plant=models.Plant.objects.get(pk=plant_id)
     category=selected_plant.category
-    suggestion=models.Plant.objects.filter(category=category)
+    suggestion=models.Plant.objects.filter(category=category).exclude(pk=plant_id)
     return render(request,"main/plant_detail.html",{"plant":selected_plant,"sug":suggestion})
 
 def update_plant_view(request: HttpRequest, plant_id):
@@ -64,7 +64,6 @@ def update_plant_view(request: HttpRequest, plant_id):
         if image:  # Update image only if a new one is uploaded
             plant.image = image
         else:
-            # User didn't upload a new image, keep the existing one
             pass  
 
         plant.save()
