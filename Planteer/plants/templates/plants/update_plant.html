@@ -29,29 +29,15 @@
           
             <label for="used_for" class="form-label"><h5>used for</h5></label>
             <input type="text" placeholder="used for" name="used_for" class="form-control" value="{{ plant.used_for }}"/>
-        
+           
+            
             <div class="mb-3">
                 <label class="form-label">Category</label>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="category" value="vegetables" {% if plant.category == 'vegetables' %}checked{% endif %}>
-                    <label class="form-check-label" for="vegetables">Vegetables</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="category" value="fruits" {% if plant.category == 'fruits' %}checked{% endif %}>
-                    <label class="form-check-label" for="fruits">Fruits</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="category" value="herbs" {% if plant.category == 'herbs' %}checked{% endif %}>
-                    <label class="form-check-label" for="herbs">Herbs</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="category" value="flowers" {% if plant.category == 'flowers' %}checked{% endif %}>
-                    <label class="form-check-label" for="flowers">Flowers</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="category" value="trees" {% if plant.category == 'trees' %}checked{% endif %}>
-                    <label class="form-check-label" for="trees">Trees</label>
-                </div>
+                <br/>
+                {% for val, label in categoryChoices %}
+                    <input type="radio" id="{{ val }}" name="category" value="{{ val }}">
+                    <label for="{{ val }}">{{ label }}</label>
+                {% endfor %}
             </div>
             <div class="mb-3">
                 <input class="form-check-input" type="checkbox" id="isEdible" name="is_edible" {% if plant.is_edible %}checked{% endif %}>

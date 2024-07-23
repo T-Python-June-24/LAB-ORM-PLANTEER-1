@@ -17,20 +17,21 @@ def all_plants(request):
     return render(request, 'plants/all_plants.html', {'Plants': Plants})
 
 
-def add_plant(request: HttpRequest):
+def add_plant(request):
     if request.method == "POST":
         is_edible = request.POST.get('is_edible', 'off') == 'on'
         new_plant = Plant(
             name=request.POST["name"],
             about=request.POST["about"],
             used_for=request.POST["used_for"],
-            is_edible=is_edible, 
+            is_edible=is_edible,
             category=request.POST["category"],
-            image=request.FILES["image"] 
+            image=request.FILES["image"]
         )
         new_plant.save()
-        return redirect('main:home_view')
-    return render(request, "plants/add_plant.html")
+        return redirect('main:home_view')  
+    else:
+        return render(request, "plants/add_plant.html", {'categoryChoices': Plant.CategoryChoices.choices})
 def plant_detail(request:HttpRequest,plant_id:int):
 
     plant=Plant.objects.get(pk=plant_id)
@@ -44,25 +45,28 @@ def delete_plant(request:HttpRequest,plant_id:int):
     plant=Plant.objects.get(pk=plant_id)
     plant.delete()
     return redirect('main:home_view')
-def update_plant (request:HttpRequest,plant_id:int):
-        plant=Plant.objects.get(pk=plant_id)
-        if request.method=="POST":
-            plant.name=request.POST["name"]
-            plant.about=request.POST["about"]
-            plant.used_for=request.POST["used_for"]
-            plant.is_edible= request.POST.get('is_edible', 'off') == 'on'
-            plant.category=request.POST["category"]
-            if "image" in request.FILES :
-                plant.image=request.FILES["image"] 
-            plant.save()
-            return redirect('plants:plant_detail',plant_id=plant.id)
-
-        return render(request,"plants/update_plant.html",{"plant":plant})  
+def update_plant(request, plant_id):
+    plant = Plant.objects.get(pk=plant_id)
+    if request.method == "POST":
+        plant.name = request.POST["name"]
+        plant.about = request.POST["about"]
+        plant.used_for = request.POST["used_for"]
+        plant.is_edible = request.POST.get('is_edible', 'off') == 'on'
+        plant.category = request.POST["category"]
+        if "image" in request.FILES:
+            plant.image = request.FILES["image"]
+        plant.save()
+        return redirect('plants:plant_detail', plant_id=plant.id)
+    else:
+        return render(request, "plants/update_plant.html", {
+            "plant": plant,"categoryChoices": Plant.CategoryChoices.choices 
+        }) 
 def plants_search(request:HttpRequest):
      if request.method=="POST":
           searched=request.POST['searched']
           plant = Plant.objects.filter(name__contains=searched)
           count=len(plant)
+          #count=plant.count()
           return render(request, 'plants/plants_search.html',{'searched':searched, 'plant':plant , 'count':count})
      else:
           return render(request, 'plants/plants_search.html')

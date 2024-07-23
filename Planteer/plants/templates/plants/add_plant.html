@@ -32,27 +32,12 @@
             
             <div class="mb-3">
                 <label class="form-label">Category</label>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="category" value="vegetables">
-                    <label class="form-check-label" for="vegetables">Vegetables</label>
+                <br/>
+                {% for val, label in categoryChoices %}
+                    <input type="radio" id="{{val}}" name="category" value="{{val}}">
+                    <label for="{{val}}" title="text">{{label}}</label>
+                {% endfor %}
                 </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="category" value="fruits">
-                    <label class="form-check-label" for="fruits">Fruits</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="category" value="herbs">
-                    <label class="form-check-label" for="herbs">Herbs</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="category"  value="flowers">
-                    <label class="form-check-label" for="flowers">Flowers</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="category"  value="trees">
-                    <label class="form-check-label" for="trees">Trees</label>
-                </div>
-            </div>
             <div class="mb-3">
                 <input class="form-check-input" type="checkbox" id="isEdible" name="is_edible">
                 <label class="form-check-label" for="isEdible">Edible</label>
