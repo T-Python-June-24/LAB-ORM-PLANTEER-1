@@ -1,16 +1,18 @@
 from django.db import models
 
-class Category(models.TextChoices):
-    INDOOR = 'Indoor', 'Indoor'
-    OUTDOOR = 'Outdoor', 'Outdoor'
-    FRUIT = 'Fruit', 'Fruit'
-    VEGETABLE = 'Vegetable', 'Vegetable'
-    HERB = 'Herb', 'Herb'
-    FLOWER = 'Flower', 'Flower'
-    TREE = 'Tree', 'Tree'
-    SHRUB = 'Shrub', 'Shrub'
 
 class Plants(models.Model):
+    
+    class Category(models.TextChoices):
+        INDOOR = 'Indoor', 'Indoor'
+        OUTDOOR = 'Outdoor', 'Outdoor'
+        FRUIT = 'Fruit', 'Fruit'
+        VEGETABLE = 'Vegetable', 'Vegetable'
+        HERB = 'Herb', 'Herb'
+        FLOWER = 'Flower', 'Flower'
+        TREE = 'Tree', 'Tree'
+        SHRUB = 'Shrub', 'Shrub'
+
     class IntegerChoices(models.IntegerChoices):
         star1 = 1, 'One Star'
         star2 = 2,'Two Star'

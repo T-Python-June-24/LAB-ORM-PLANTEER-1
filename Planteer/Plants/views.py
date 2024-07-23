@@ -1,6 +1,8 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.http import HttpResponse
-from .models import Category, Plants
+
+from .forms import PlantsForm
+from .models import Plants
 from django.contrib import messages
 from django.utils.datastructures import MultiValueDictKeyError
 
@@ -16,7 +18,7 @@ def plants(request: HttpResponse):
     if is_edible:
         plants = plants.filter(is_edible=(is_edible.lower() == 'true'))
 
-    return render(request, 'Plants/all_plants.html', {'plants': plants , 'categories': Category.choices})
+    return render(request, 'Plants/all_plants.html', {'plants': plants , 'categories': Plants.Category.choices})
 
 
 def search_plant(request: HttpResponse):
@@ -31,33 +33,54 @@ def search_plant(request: HttpResponse):
     return render(request, 'Plants/search_plants.html', {'plants': plants, 'count': count, 'query': query})
 
 def add_plant(request:HttpResponse):
+    add_plant_form = PlantsForm()
+    
     if request.method == 'POST':
         try:
-            name = request.POST['name']
-            about = request.POST['about']
-            used_for = request.POST['used_for']
-            plant_image = request.FILES['plant_image']
-            category = request.POST['category']
-            rating = request.POST['rating']
-            is_edible = 'is_edible' in request.POST
-
-            plant = Plants(
-                name=name,
-                about=about,
-                used_for=used_for,
-                plant_image=plant_image,
-                category=category,
-                rating=rating,
-                is_edible=is_edible
-            )
-            plant.save()
-            messages.success(request, 'Plant added successfully!')
+            
+            add_plant_form = PlantsForm(request.POST, request.FILES)
+            if add_plant_form.is_valid():
+                add_plant_form.save()
+                messages.success(request, 'Plant added successfully!')
+                return redirect('Plants:plants')
+            else:
+                messages.error(request, 'An error occurred')
         except MultiValueDictKeyError as e:
             messages.error(request, f'Missing field: {str(e)}')
         except Exception as e:
             messages.error(request, f'An error occurred: {str(e)}')
         return redirect('Contact:thanks_add_plant')
-    return render(request, 'Plants/add_plant.html',{'categories': Category})
+    return render(request, 'Plants/add_plant.html',{'categories': Plants.Category, 'rating': Plants.IntegerChoices})
+
+    # if request.method == 'POST':
+    #     try:
+    #         name = request.POST['name']
+    #         about = request.POST['about']
+    #         used_for = request.POST['used_for']
+    #         plant_image = request.FILES['plant_image']
+    #         category = request.POST['category']
+    #         rating = request.POST['rating']
+    #         is_edible = 'is_edible' in request.POST
+
+    #         plant = Plants(
+    #             name=name,
+    #             about=about,
+    #             used_for=used_for,
+    #             plant_image=plant_image,
+    #             category=category,
+    #             rating=rating,
+    #             is_edible=is_edible
+    #         )
+    #         plant.save()
+    #         messages.success(request, 'Plant added successfully!')
+    #     except MultiValueDictKeyError as e:
+    #         messages.error(request, f'Missing field: {str(e)}')
+    #     except Exception as e:
+    #         messages.error(request, f'An error occurred: {str(e)}')
+    #     return redirect('Contact:thanks_add_plant')
+    
+    
+    
 
 
 

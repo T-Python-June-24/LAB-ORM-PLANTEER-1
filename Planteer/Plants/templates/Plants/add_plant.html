@@ -19,27 +19,27 @@
                 {% csrf_token %}
                 <div class="mb-4">
                     <label for="name" class="block text-sm font-medium text-gray-700">Name:</label>
-                    <input type="text" id="name" name="name" required class="mt-1 p-2 border border-gray-300 rounded w-full">
+                    <input type="text" id="name" name="name" minlength="3" max="255" required class="mt-1 p-2 border border-gray-300 rounded w-full">
                 </div>
 
                 <div class="mb-4">
                     <label for="about" class="block text-sm font-medium text-gray-700">About:</label>
-                    <textarea id="about" name="about" required class="mt-1 p-2 border border-gray-300 rounded w-full"></textarea>
+                    <textarea id="about" name="about" minlength="3" max="512" required class="mt-1 p-2 border border-gray-300 rounded w-full"></textarea>
                 </div>
 
                 <div class="mb-4">
                     <label for="used_for" class="block text-sm font-medium text-gray-700">Used For:</label>
-                    <textarea id="used_for" name="used_for" required class="mt-1 p-2 border border-gray-300 rounded w-full"></textarea>
+                    <textarea id="used_for" name="used_for" minlength="3" max="512" required class="mt-1 p-2 border border-gray-300 rounded w-full"></textarea>
                 </div>
 
                 <div class="mb-4">
                     <label for="plant_image" class="block text-sm font-medium text-gray-700">Plant Image:</label>
-                    <input type="file" id="plant_image" name="plant_image" required class="mt-1 p-2 border border-gray-300 rounded w-full">
+                    <input type="file" id="plant_image" name="plant_image" accept="image/*" required class="mt-1 p-2 border border-gray-300 rounded w-full">
                 </div>
 
                 <div class="mb-4">
                     <label for="category" class="block text-sm font-medium text-gray-700">Category:</label>
-                    <select id="category" name="category" required class="mt-1 p-2 border border-gray-300 rounded w-full">
+                    <select id="category" name="category" minlength="1" max="50" required class="mt-1 p-2 border border-gray-300 rounded w-full">
                         {% for category in categories %}
                             <option value="{{ category }}">{{ category }}</option>
                         {% endfor %}
@@ -48,15 +48,10 @@
 
                 <div class="mb-4">
                     <label for="rating" class="block text-sm font-medium text-gray-700">Rating:</label>
-                    <select id="rating" name="rating" required class="mt-1 p-2 border border-gray-300 rounded w-full">
-                        <option value="Indoor">Indoor</option>
-                        <option value="Outdoor">Outdoor</option>
-                        <option value="Fruit">Fruit</option>
-                        <option value="Vegetable">Vegetable</option>
-                        <option value="Herb">Herb</option>
-                        <option value="Flower">Flower</option>
-                        <option value="Tree">Tree</option>
-                        <option value="Shrub">Shrub</option>
+                    <select id="rating" name="rating" minlength="1" max="5" required class="mt-1 p-2 border border-gray-300 rounded w-full">
+                        {% for rate in rating %}
+                        <option value="{{ rate }}">{{ rate }}</option>
+                        {% endfor %}
                     </select>
                 </div>
 
