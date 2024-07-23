@@ -1,0 +1,19 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %}
+    Home
+{% endblock %}
+{% block content %}
+    <form role="search">
+        <input class="form-control" type="search" placeholder="Search">
+    </form>
+    <h2>Plants</h2>
+    <h3>Learn more about plants</h3>
+    {% for plant in plants %}
+        <img class="w-100" src="{{ plant.image.url }}" alt="{{ plant.name }} Image">
+    	<h4>{{ plant.name }}</h4>
+    	<p>{{ plant.about }}</p>
+    	<p>{{ plant.category }}</p>
+    {% endfor %}
+
+{% endblock %}
