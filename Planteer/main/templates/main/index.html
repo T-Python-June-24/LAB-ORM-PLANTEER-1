@@ -4,35 +4,40 @@
 
 {% block content %}
 <main>
-  <div class="flex flex-col items-center mb-64 px-12">
-    <h1 class="text-8xl py-7">Planteer</h1>
-    <p class="text-5xl pb-5">plant Database For Plants Lovers</p>
-    <div class="flex flex-row items-center">
-      <form action="{% url 'plants:plant_search_view' %}" method="get" class="w-full flex">
-          <input type="text" name="q" placeholder="Search For Plant..." class="border-1 border-slate-500 rounded-md w-full">
-          <button type="submit" class="bg-black text-white ml-4 px-4 py-2 border-0 rounded-md">Search</button>
-      </form>
+  <div class="relative overflow-hidden rounded-lg bg-cover bg-no-repeat p-12 mx-20 text-center" style="background-image: url('https://i.pinimg.com/564x/9c/0b/a1/9c0ba13ce579914fbec93a036708d508.jpg'); height: 700px">
+    <div class="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-fixed" style="background-color: rgba(0, 0, 0, 0.2)">
+      <div class="flex h-full items-center justify-center">
+        <div class="text-black">
+          <h1 class="text-8xl py-7">Planteer</h1>
+          <p class="text-5xl pb-5">plant Database For Plants Lovers</p>
+          <div class="flex flex-row items-center">
+            <form action="{% url 'plants:plant_search_view' %}" method="get" class="w-full flex">
+                <input type="text" name="q" placeholder="Search For Plant..." class="border-1 border-slate-500 rounded-md w-full">
+                <button type="submit" class="bg-black text-white ml-4 px-4 py-2 border-0 rounded-md">Search</button>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="flex flex-row justify-between px-12 mb-6">
-    <div>
-      <h2 class="font-semibold">Plants</h2>
-      <p>Learn more about plants</p>
+  <div class="flex flex-row justify-between mx-20 mt-36 mb-6">
+    <div class="my-2">
+      <h2 class="font-semibold text-4xl">Plants</h2>
+      <p class="text-gray-400 text-xl">Learn more about plants</p>
     </div>
     <div class="flex flex-row items-center gap-2">
-      <a href=""> More </a>
+      <a href="{% url 'plants:all_plants_view' %}"> More </a>
       <span class="material-symbols-outlined">arrow_forward</span>
     </div>
   </div>
-  <div class="flex flex-row px-12 gap-4">
+  <div class="flex flex-row mx-20 mb-36 gap-4 justify-between">
     {% for plant in plants %}
-        <div class="mb-4">
-            <img src="{{ plant.image.url }}" alt="{{ plant.name }}" class="w-[250px] h-[200px]">
-            <h4 class="text-xl">{{ plant.name }}</h4>
-            <p class="font-thin">{{ plant.about }}</p>
-            <p>{{ plant.get_category_display }}</p>
-            <a href="{% url 'plants:plant_detail_view' plant.id %}">View</a>
-        </div>
+        <a href="{% url 'plants:plant_detail_view' plant.id %}" class="py-4 flex flex-col items-start bg-gray-50 w-[400px] border-0 rounded-md">
+            <img src="{{ plant.image.url }}" alt="{{ plant.name }}" class="w-full h-[250px] border-0 rounded-sm">
+            <h4 class="text-xl pl-2">{{ plant.name }}</h4>
+            <p class="font-thin pl-2">{{ plant.about }}</p>
+            <p class="pl-2">{{ plant.get_category_display }}</p>
+        </a>
     {% endfor %}
 </div>
 </main>

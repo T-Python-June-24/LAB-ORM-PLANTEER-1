@@ -7,7 +7,7 @@
   <div class="container mx-auto p-4">
     <h2 class="text-xl font-bold mb-4">All Plants</h2>
     <form method="get" class="flex flex-row gap-4 mb-4">
-        <select name="category" class="border p-2">
+        <select name="category" class="border py-2 px-8">
             <option value="">All Categories</option>
             <option value="HRB" {% if selected_category == "HRB" %}selected{% endif %}>Herb</option>
             <option value="TRE" {% if selected_category == "TRE" %}selected{% endif %}>Tree</option>
@@ -19,16 +19,14 @@
         </label>
         <button type="submit" class="bg-black text-white px-4 py-2 border-0 rounded-md">Filter</button>
     </form>
-
-    <div class="grid grid-cols-1 gap-4">
+    <div class="flex flex-row flex-wrap gap-8 justify-center mt-10 py-3">
         {% for plant in plants %}
-            <div class="flex flex-col px-12">
-                <img src="{{ plant.image.url }}" alt="{{ plant.name }}" class="w-[250px] h-[250px]">
-                <h4>{{ plant.name }}</h4>
-                <p class="text-xl">{{ plant.about }}</p>
-                <p class="font-thin">{{ plant.get_category_display }}</p>
-                <p>{{ plant.is_edible|yesno:"Edible,Not Edible" }}</p>
-            </div>
+            <a href="{% url 'plants:plant_detail_view' plant.id %}" class="flex flex-col w-[300px] shadow-sm rounded-md items-start">
+                <img src="{{ plant.image.url }}" alt="{{ plant.name }}" class="w-full h-[250px] border-0 rounded-t-md">
+                <h4 class="text-xl px-1 pt-2 font-medium">{{ plant.name }}</h4>
+                <p class="text-sm text-wrap px-1 pt-2 font-thin">{{ plant.about }}</p>
+                <p class="font-light px-1 py-2">{{ plant.get_category_display }}</p>
+            </>
         {% endfor %}
     </div>
   </div>

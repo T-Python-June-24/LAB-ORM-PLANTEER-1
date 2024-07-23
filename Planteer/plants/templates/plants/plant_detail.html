@@ -4,30 +4,30 @@
 
 {% block content %}
 <main>
-  <div class="flex flex-col px-12">
-    <h1>{{ plant.name }}</h1>
+  <div class="flex flex-row gap-20 justify-center mx-20">
+    <div class="w-1/2">
+      <img src="{{ plant.image.url }}" alt="{{ plant.name }}" class="w-full h-1/2 border-1 rounded-md">
+    </div>
     <div>
-      <h3>About the Plant</h3>
-      <p>{{ plant.about }}</p>
-      <h3>The Plant is Used for</h3>
-      <p>{{ plant.used_for }}</p>
+      <h1 class="my-5 text-3xl font-medium">{{ plant.name }}</h1>
+      <p class="py-2 text-2xl text-gray-400">{{ plant.get_category_display }}</p>
+      <p class="py-2 text-l font-normal text-gray-400">{{ plant.about }}</p>
+      <p class="py-2 ">{{ plant.is_edible|yesno:"Edible,Not Edible" }}</p>
+      <h3 class="pt-2">The Plant is Used for:</h3>
+      <p class="py-2">{{ plant.used_for }}</p>
+      <div class="flex flex-row justify-end mx-20 gap-4 my-4">
+        <div>
+          <a href="{% url 'plants:plant_update_view' plant.id %}" class="bg-black px-4 py-2 text-white border-0 rounded-md">Update</a>
+        </div>
+        <div>
+          <a href="{% url 'plants:plant_delete_view' plant.id %}" class="bg-red-600 px-4 py-2 text-white border-0 rounded-md">Delete</a>
+        </div>
+      </div>
     </div>
-    <div class="my-4">
-      <img src="{{ plant.image.url }}" alt="{{ plant.name }}">
-      <h4>Category</h4>
-      <p>{{ plant.get_category_display }}</p>
-      <p>{{ plant.is_edible|yesno:"Edible,Not Edible" }}</p>
-    </div>
   </div>
-  <div class="px-12 mb-4">
-    <a href="{% url 'plants:plant_update_view' plant.id %}" class="bg-black px-4 py-2 text-white border-0 rounded-md">Update</a>
-  </div>
-  <div class="px-12 mb-4">
-    <a href="{% url 'plants:plant_delete_view' plant.id %}" class="bg-red-600 px-4 py-2 text-white border-0 rounded-md">Delete</a>
-  </div>
-
+  
   <!-- Related Plants Section -->
-  <div class="px-12">
+  <div class="mx-20 mb-20">
     <h3 class="text-xl font-bold mb-4">Related Plants</h3>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {% for related_plant in related_plants %}

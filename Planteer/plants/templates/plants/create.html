@@ -4,7 +4,7 @@
 
 {% block content %}
 <main>
-  <div class="px-12">
+  <div class="mx-20">
     <form class="flex flex-col gap-3 w-1/2" action="{% url 'plants:create_plant_view' %}" method="post" enctype="multipart/form-data">
       {% csrf_token %}
       <input type="text" placeholder="Name" name="name">

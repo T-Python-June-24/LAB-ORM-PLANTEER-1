@@ -9,14 +9,14 @@
   {% tailwind_css %}
 </head>
 <body>
-  <nav class="flex flex-row text-black justify-between px-12 py-16">
+  <nav class="flex flex-row text-black justify-between mx-20 py-16">
     <div>
-      <a href="{% url 'main:home_view' %}">Planteer</a>
+      <a href="{% url 'main:home_view' %}" class="text-xl font-semibold">Planteer</a>
     </div>
-    <div class="flex flex-row gap-3">
+    <div class="flex flex-row gap-3 items-center">
       <a href="{% url 'plants:all_plants_view' %}">All Plants</a>
       <a href="{% url 'main:contact_view' %}">Contact Us</a>
-      <a href="{% url 'plants:create_plant_view' %}" class="border-0 rounded-md bg-black text-white px-1">Add Plant</a>
+      <a href="{% url 'plants:create_plant_view' %}" class="border-0 rounded-md bg-black text-white px-4 py-2">Add Plant</a>
     </div>
   </nav>
   {% block content %}
