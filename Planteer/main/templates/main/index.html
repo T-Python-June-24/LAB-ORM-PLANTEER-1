@@ -7,9 +7,11 @@
   <div class="flex flex-col items-center mb-64 px-12">
     <h1 class="text-8xl py-7">Planteer</h1>
     <p class="text-5xl pb-5">plant Database For Plants Lovers</p>
-    <div class="flex flex-row items-center gap-4">
-      <input type="text" placeholder="Search For Plant..." class="border-1 border-slate-500 rounded-md w-full">
-      <a href="" class="bg-black text-white px-4 py-2 border-0 rounded-md">Search</a>
+    <div class="flex flex-row items-center">
+      <form action="{% url 'plants:plant_search_view' %}" method="get" class="w-full flex">
+          <input type="text" name="q" placeholder="Search For Plant..." class="border-1 border-slate-500 rounded-md w-full">
+          <button type="submit" class="bg-black text-white ml-4 px-4 py-2 border-0 rounded-md">Search</button>
+      </form>
     </div>
   </div>
   <div class="flex flex-row justify-between px-12 mb-6">
@@ -29,6 +31,7 @@
             <h4 class="text-xl">{{ plant.name }}</h4>
             <p class="font-thin">{{ plant.about }}</p>
             <p>{{ plant.get_category_display }}</p>
+            <a href="{% url 'plants:plant_detail_view' plant.id %}">View</a>
         </div>
     {% endfor %}
 </div>

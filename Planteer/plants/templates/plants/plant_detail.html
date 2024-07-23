@@ -1,29 +1,45 @@
 {% extends 'main/base.html' %}
 
-{% block title %} Add plant {% endblock %}
+{% block title %} Plant detail {% endblock %}
 
 {% block content %}
 <main>
   <div class="flex flex-col px-12">
-    <h1> {{ plants.name }} </h1>
+    <h1>{{ plant.name }}</h1>
     <div>
-      <h3> About the Plant{{ plants.about }}</h3>
-      <p>{{ plants.about }}</p>
-      <h3>The Plant is Used for </h3>
-      <p>{{ plants.used_for }}</p>
+      <h3>About the Plant</h3>
+      <p>{{ plant.about }}</p>
+      <h3>The Plant is Used for</h3>
+      <p>{{ plant.used_for }}</p>
     </div>
     <div class="my-4">
-      <img src="{{plants.image.url }}" alt="{{ plant.name }}" >
+      <img src="{{ plant.image.url }}" alt="{{ plant.name }}">
       <h4>Category</h4>
-      <p>{{ plants.get_category_display }}</p>
-      <p> {{plants.is_edible}} </p>
+      <p>{{ plant.get_category_display }}</p>
+      <p>{{ plant.is_edible|yesno:"Edible,Not Edible" }}</p>
     </div>
   </div>
   <div class="px-12 mb-4">
-    <a href="{% url 'plants:plant_update_view' plants.id %}" class="bg-black px-4 py-2 text-white border-0 rounded-md">update</a>
+    <a href="{% url 'plants:plant_update_view' plant.id %}" class="bg-black px-4 py-2 text-white border-0 rounded-md">Update</a>
   </div>
   <div class="px-12 mb-4">
-    <a href="{% url 'plants:plant_delete_view' plants.id %}"  class="bg-red-600 px-4 py-2 text-white border-0 rounded-md">Delete</a>
+    <a href="{% url 'plants:plant_delete_view' plant.id %}" class="bg-red-600 px-4 py-2 text-white border-0 rounded-md">Delete</a>
+  </div>
+
+  <!-- Related Plants Section -->
+  <div class="px-12">
+    <h3 class="text-xl font-bold mb-4">Related Plants</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {% for related_plant in related_plants %}
+        <div class="flex flex-col px-4 py-2 border rounded-md shadow">
+          <img src="{{ related_plant.image.url }}" alt="{{ related_plant.name }}" class="w-full h-48 object-cover mb-2">
+          <h4>{{ related_plant.name }}</h4>
+          <p>{{ related_plant.about|truncatewords:20 }}</p>
+          <p>{{ related_plant.get_category_display }}</p>
+          <a href="{% url 'plants:plant_detail_view' related_plant.id %}" class="text-blue-500 hover:underline mt-2">View Plant</a>
+        </div>
+      {% endfor %}
+    </div>
   </div>
 </main>
 {% endblock %}
