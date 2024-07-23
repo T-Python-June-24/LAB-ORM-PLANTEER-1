@@ -1,88 +1,36 @@
-{% extends 'main/base.html' %} 
-{% load static %} 
+{% extends 'main/base.html' %}
+{% load static %}
 {% block content %}
 <div class="container py-5">
   <div class="row">
     <div class="col-md-6">
       <h1 class="display-4 mb-4">Contact us</h1>
-      <p class="text-muted mb-5" style="font-size: 1.3em;">
-        If you have any questions or feedback, please fill out the form below.
-      </p>
-      <form
-        action="{% url 'contact:contact_view' %}"
-        method="post"
-        id="contactForm"
-        class="mb-5"
-      >
+      <form action="{% url 'contact:contact_view' %}" method="post" id="contactForm" class="mb-5">
         {% csrf_token %}
         <div class="row mb-4">
           <div class="col-md-6">
-            <input
-              type="text"
-              class="form-control py-3"
-              id="first_name"
-              name="first_name"
-              placeholder="First name"
-              required
-            />
+            <input type="text" class="form-control py-3" id="first_name" name="first_name" placeholder="First name"
+              required />
           </div>
           <div class="col-md-6">
-            <input
-              type="text"
-              class="form-control py-3"
-              id="last_name"
-              name="last_name"
-              placeholder="Last name"
-              required
-            />
+            <input type="text" class="form-control py-3" id="last_name" name="last_name" placeholder="Last name"
+              required />
           </div>
         </div>
         <div class="mb-4">
-          <input
-            type="email"
-            class="form-control py-3"
-            id="email"
-            name="email"
-            placeholder="Email address"
-            required
-          />
+          <input type="email" class="form-control py-3" id="email" name="email" placeholder="Email address" required />
         </div>
         <div class="mb-4">
-          <textarea
-            class="form-control py-3"
-            id="message"
-            name="message"
-            rows="6"
-            placeholder="Enter your question or message"
-            required
-          ></textarea>
+          <textarea class="form-control py-3" id="message" name="message" rows="6"
+            placeholder="Enter your question or message" required></textarea>
         </div>
         <div class="d-grid">
           <button type="submit" class="btn btn-dark btn-lg py-3">Submit</button>
         </div>
       </form>
     </div>
-    <div class="col-md-6 d-flex align-items-center justify-content-center">
-      <img
-        src="{% static 'images/contactbg.jpg' %}"
-        class="img-fluid rounded"
-        style="min-height: 600px; object-fit: cover;"
-      />
-    </div>
+
   </div>
 </div>
 
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("contactForm");
-
-    form.addEventListener("submit", function (event) {
-      if (!form.checkValidity()) {
-        event.preventDefault();
-        event.stopPropagation();
-      }
-      form.classList.add("was-validated");
-    });
-  });
-</script>
 {% endblock %}

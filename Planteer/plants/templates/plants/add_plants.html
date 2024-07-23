@@ -2,42 +2,52 @@
 
 {% block title %} add plants{% endblock %}
 
+{% block style %}
+
+<style>
+    form label {
+        padding-bottom: 1rem ;
+        padding-top: 1rem ;
+    }
+</style>
+
+{% endblock style %}
+
 {% block content %}
+
 <h1>add new Plant</h1>
 
-<div class="row mt-2 row-cols-1 row-cols-md-3 g-4">
+<div class="row mt-2 row-cols-1 row-cols-md-3 g-3">
 
-    <form action="{% url 'plants:add_plants' %}" method="post" enctype="multipart/form-data">
+    <form  action="{% url 'plants:add_plants' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        
+
         <label for="name">Name:</label>
-        <input type="text" id="name" name="name" maxlength="1024" required><br><br>
-        
+        <input class="form-control" type="text" id="name" name="name" maxlength="1024" required>
+
         <label for="about">About:</label>
-        <textarea id="about" name="about" rows="4" cols="50" required></textarea><br><br>
-        
+        <textarea class="form-control "  id="about" name="about" rows="4" cols="50" required></textarea>
+
         <label for="used_for">Used For:</label>
-        <textarea id="used_for" name="used_for" rows="4" cols="50" required></textarea><br><br>
-        
+        <textarea class="form-control"  id="used_for" name="used_for" rows="4" cols="50" required></textarea>
+
         <label for="image">Image:</label>
-        <input type="file" id="image" name="image" accept="image/*"><br><br>
-        
+        <input class="form-control "  type="file" id="image" name="image" accept="image/*">
+
         <label for="category">Category:</label>
-        <select id="category" name="category" required>
+        <select  id="category" name="category" required>
             <option value="fruit">Fruit</option>
             <option value="tree">Tree</option>
             <option value="vegetables">Vegetables</option>
         </select><br><br>
-        
+
         <label for="is_edible">Is Edible:</label>
-        <input type="checkbox" id="is_edible" name="is_edible"><br><br>
-        
-        <button type="submit">Submit</button>
+        <input  type="checkbox" id="is_edible" name="is_edible">
+
+        <button class="form-control btn btn-primary"  type="submit">Submit</button>
     </form>
-  
-  
-  </div>
+
+
+</div>
 
 {% endblock %}
-
-

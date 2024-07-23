@@ -2,13 +2,28 @@
 
 {% block title %} all plants{% endblock %}
 
+{% block style %}
+
+<style>
+
+  .form-row{
+    display: flex;
+  }
+    .form-row div {
+        padding-bottom: 1rem ;
+        padding-top: 1rem ;
+    }
+</style>
+
+{% endblock style %}
+
 {% block content %}
 <h1>plants</h1>
 
 <form method="GET" class="mb-4">
   <div class="form-row">
       <div class="col">
-          <select name="category" class="form-control">
+          <select name="category" >
               <option value="">All Categories</option>
               {% for category in categories %}
                   <option value="{{ category }}" {% if category == selected_category %}selected{% endif %}>{{ category }}</option>
@@ -16,7 +31,7 @@
           </select>
       </div>
       <div class="col">
-          <select name="is_edible" class="form-control">
+          <select name="is_edible">
               <option value="">All</option>
               <option value="True" {% if selected_is_edible == 'True' %}selected{% endif %}>Edible</option>
               <option value="False" {% if selected_is_edible == 'False' %}selected{% endif %}>Not Edible</option>

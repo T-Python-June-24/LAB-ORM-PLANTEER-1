@@ -41,8 +41,13 @@ def all_view(request:HttpRequest):
 def detail_view(request:HttpRequest,plant_id:int):
 
     plant = Plant.objects.get(pk=plant_id)
+    category_plants = plant.category 
 
-    return render(request,"plants/plant_detail.html",{"plant":plant})
+    plants = Plant.objects.all()
+    
+    related_plants = plants.filter(category=category_plants).exclude(pk=plant_id)
+
+    return render(request,"plants/plant_detail.html",{"plant":plant,"related_plants":related_plants})
 
 
 def update_plant(request:HttpRequest,plant_id:int):
@@ -78,3 +83,16 @@ def delete_plant(request:HttpRequest,plant_id:int):
     return redirect("main:home_view")
 
     # return render(request,"plants/update_plant.html",{"plant":plant})
+
+
+def search_plants(request:HttpRequest):
+
+    if request.method == "POST":
+
+        search = request.POST["search"]
+
+        plants = Plant.objects.filter(name__contains=search)
+
+        count = plants.count()
+
+        return render(request,"plants/search.html",{"search":search,"plants":plants,"count":count})

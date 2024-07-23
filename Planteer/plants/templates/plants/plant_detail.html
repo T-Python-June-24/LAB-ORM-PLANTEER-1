@@ -10,18 +10,37 @@
 
     <div class="col">
         <div class="d-flex flex-column gap-2">
-            <img src="{{ plant.image.url }}" class="w-100" />
-            <div class="d-flex justify-content-between">
-                <h5>{{plant.category}}</h5>
+            <img src="{{ plant.image.url }}" class="w-50" />
+                <h5>category : {{plant.category}}</h5>
                 <h6>{{plant.about}}</h6>
-            </div>
             <div class="d-flex justify-content-end gap-2">
                 <a href="{% url 'plants:update_plant' plant.id %}" class="btn btn-primary">update</a>
                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">delete</button>
             </div>
-            <p>{{ plant.is_edible }}</p>
-            <p>{{ plant.used_for }}</p>
+            <p>is edible : {% if plant.is_edible %} yes {% else %} no {% endif %}</p>
+            <p>used for : {{ plant.used_for }}</p>
         </div>
+    </div>
+
+</div>
+
+<div class="row">
+
+    <div class="col">
+      <h3>related plants</h3>
+      {% for plant in related_plants %}
+      <div class="col">
+        <div class="d-flex flex-column justify-content-start align-items-start h-100 p-4 shadow">
+          <h3>{{plant.name}}</h3>
+          <p>category : {{plant.category}}</p>
+          <h6>is edible : {% if plant.is_edible %} yes {% else %} no {% endif %}</h6>
+          <img src="{{ plant.image.url }}" class="w-50" alt="">
+          <button class="btn btn-primary mt-2"><a href="{% url 'plants:detail_view' plant.id %}">see details </a></button>
+          <span class="mt-2">created at {{plant.created_at}}</span>
+        </div>
+      </div>
+      {% endfor %}
+
     </div>
 
 </div>
