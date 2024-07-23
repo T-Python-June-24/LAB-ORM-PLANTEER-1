@@ -1,10 +1,11 @@
 {% extends 'main/base.html' %}
 
-{% block title %} home {% endblock %}
+{% block title %} update {% endblock %}
 
 {% block content %}
 
 <h1>update plant information </h1>
+<div class="row mt-2 row-cols-1 row-cols-md-3 g-3">
 <form action="{% url 'plants:update_plant' plant.id %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     
@@ -18,11 +19,11 @@
     <textarea id="used_for" name="used_for" rows="4" cols="50" required >{{plant.used_for}}</textarea><br><br>
 
     <div class="row">
-        <div class="col-3">
-            <img src="{{plant.image.url}}" class="w-100" />
+        <div class="col-1">
+            <img src="{{plant.image.url}}" height="30px" width="30px" />
         </div>
         <div class="col">
-            <input type="file" name="image" class="form-control"/>
+            <input type="file" name="image"/>
         </div>
     </div>
     <label for="category">Category:</label>
@@ -35,7 +36,9 @@
     <label for="is_edible">Is Edible:</label>
     <input type="checkbox" id="is_edible" name="is_edible" {% if plant.is_edible %} checked {% endif %}"><br><br>
     
-    <button type="submit">Submit</button>
+    <button class="btn btn-primary" type="submit">Submit</button>
 </form>
+</div>
+
 
 {% endblock %}
