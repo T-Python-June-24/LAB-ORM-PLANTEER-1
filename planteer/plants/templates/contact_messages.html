@@ -1,0 +1,52 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Contact Messages - Planteer{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Contact Messages</h2>
+    
+    <form method="post" class="mb-4">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" class="form-control" placeholder="Enter password">
+        </div>
+        <button type="submit" class="btn btn-dark">Submit</button>
+    </form>
+
+    {% if error %}
+        <div class="alert alert-danger" role="alert">
+            {{ error }}
+        </div>
+    {% endif %}
+
+    {% if messages %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Message</th>
+                    <th>Date Submitted</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for message in messages %}
+                    <tr>
+                        <td>{{ message.first_name }}</td>
+                        <td>{{ message.last_name }}</td>
+                        <td>{{ message.email }}</td>
+                        <td>{{ message.message }}</td>
+                        <td>{{ message.created_at }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No messages found.</p>
+    {% endif %}
+</div>
+{% endblock %}

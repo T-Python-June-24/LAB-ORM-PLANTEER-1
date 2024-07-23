@@ -1,0 +1,49 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}All Plants - Planteer{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>All Plants</h2>
+    <form method="get" class="mb-4">
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="category">Category</label>
+                <select name="category" id="category" class="form-control">
+                    <option value="">All</option>
+                    <option value="herb">Herb</option>
+                    <option value="tree">Tree</option>
+                    <option value="flower">Flower</option>
+                    <option value="shrub">Shrub</option>
+                </select>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="is_edible">Is Edible</label>
+                <select name="is_edible" id="is_edible" class="form-control">
+                    <option value="">All</option>
+                    <option value="True">Yes</option>
+                    <option value="False">No</option>
+                </select>
+            </div>
+            <div class="form-group col-md-4 align-self-end">
+                <button type="submit" class="btn btn-dark">Filter</button>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        {% for plant in plants %}
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img src="{{ plant.image.url }}" class="card-img-top" alt="{{ plant.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ plant.name }}</h5>
+                        <p class="card-text">{{ plant.about|truncatewords:10 }}</p>
+                        <a href="{% url 'plant_detail' plant.id %}" class="btn btn-dark">View Details</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

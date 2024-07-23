@@ -1,0 +1,32 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home - Planteer{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="jumbotron" style="background-image: url('{% static 'images/bg.jpg' %}'); background-size: cover;">>
+        <h1 class="display-4" style="color: white;">Planteer</h1>
+        <p class="lead" style="color: white;">Plant Database For Plant Lovers</p>
+        <hr class="my-4" style="color: white;">
+        <p style="color: white;">Learn more about plants.</p>
+        <a class="btn btn-light btn-lg" href="{% url 'all_plants' %}" role="button">More Plants</a>
+    </div>
+    
+    <h2>Plants</h2>
+    <div class="row">
+        {% for plant in plants %}
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm" style="height: 350px;">
+                    <img src="{{ plant.image.url }}" class="card-img-top" alt="{{ plant.name }}" style="height: 180px; width: 180px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ plant.name }}</h5>
+                        <p class="card-text">{{ plant.about|truncatewords:10 }}</p>
+                        <a href="{% url 'plant_detail' plant.id %}" class="btn btn-dark">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
