@@ -1,41 +1,67 @@
 {% extends 'main/base.html' %}
+{% load static %}
 
 {% block title %} home {% endblock %}
+
+{% block style %}
+
+<style>
+  .image-container {
+      position: relative;
+      width: 100%;
+      height: 30vh; /* 30% of the viewport height */
+  }
+  .image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+  }
+  .overlay-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: rgb(24, 24, 24);
+      font-size: 2em;
+      text-align: center;
+  }
+</style>
+
+{% endblock style %}
+
+
 
 {% block content %}
 
 
-{% comment %} <form role="search">
-  <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-</form> {% endcomment %}
-
-
-<div class="row   row-cols-1 row-cols-md-2  hero-row">
-  <div class="col order-2 order-md-1 ">
-    <div class="d-flex flex-column justify-content-center align-items-center h-100">
-      <h1 class="text-center">The Place for Gamers!</h1>
-      <h3 class="text-center">For all the games information you need</h3>
-    </div>
-
-  </div>
-
-  <div class="col order-1 overflow-hidden hero h-100 p-0">
-    <!-- <img class="w-100 h-100 object-fit-cover" src="https://static0.srcdn.com/wordpress/wp-content/uploads/2023/11/greatest-movies-of-all-time.jpg" /> -->
-    <div class="vid-container">
-      <video class="h-100" src="/static/videos/backvid.mp4" muted autoplay loop></video>
-    </div>
+<div class="image-container">
+  <img src="{% static 'images/bg.jpg' %}" alt="Sample Image">
+  <div class="overlay-text ">
+    <h1 class="text-center">Planteer</h1>
+    <h3 class="text-center">plants database for plants lovers </h3>
+    <form role="search">
+      <input class="form-control w-100" type="search" placeholder="Search" aria-label="Search">
+    </form>
   </div>
 </div>
+
 
 <hr />
 <a href="{% url 'plants:all_view' %}">
   <div class="d-flex align-items-center justify-content-between ">
-    <h2 class="m-0 p-0">Latest Games</h2>
-    <span class="material-symbols-outlined text-fxl">arrow_forward</span>
+    <div class="d-flex flex-column p-2">
+      <h2 class="m-0 p-0">plants</h2>
+      <p>learn more about plants</p>
+    </div>
+
+    <div class="d-flex">
+      <span>more</span>
+      <span class="material-symbols-outlined text-fxl">arrow_forward</span>
+    </div>
   </div>
 </a>
 
-<div class="row mt-5 row-cols-1 row-cols-md-3 g-4">
+<div class="row mt-3 row-cols-1 row-cols-md-3 g-4">
 
   {% for plant in plants %}
   <div class="col">
