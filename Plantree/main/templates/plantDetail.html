@@ -4,6 +4,45 @@
 
 {%block content %} 
 
-Detail plan
+<div class="container  ">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-10">
+            <div class="card">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="images p-3">
+                            <div class="text-center p-4"> 
+                                {% if plants.image %}
+                                    <img src="{{ plants.image.url }}"class="card-img-top" >
+                                {% else %}
+                                <img
+                                src="media/images/defualt.png"
+                                class="w-20 poster-thumb object-fit-contain"
+                                />
+                                {% endif %}
+                            </div>   
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="product p-4">
+                            <div class="d-flex justify-content-between align-items-center">
+                            </div>
+                                <h5 class="text-uppercase"> {{plants.name}}</h5>
+                                </div>
+                                <div class="price d-flex flex-row align-items-center"> <span class="act-price"> Category: {{plants.category}}</span></div>
+                                <div class="price d-flex flex-row align-items-center">  ID: {{plants.id}}</div>
+                            <div class="sizes mt-5">
+                                <p class="about">Description: {{plants.about}}</p>
+                                <p class="">Edible: {{plants.is_edible}}</p>
+                                <p class="about">Purpose of use: {{plants.used_for}}</p>
+                            </div>
+                            <a href="{% url 'main:allPlant_view' %}" class="btn btn-primary">Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock%}

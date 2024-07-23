@@ -3,8 +3,36 @@
 {% block title %} All Plants {% endblock %}
 
 {%block content %} 
-
-all plants
-
-<div style="height: 1000px;"></div>
+<div class="container mt-5">
+        <div class="row">
+            {% for plant in plants %}
+                <div class="col-md-4">
+                    <div class="card mb-4" style="width: 18rem;">
+                        {% if plant.image %}
+                            <img src="{{ plant.image.url }}" class="card-img-top">
+                        {% else %}
+                            <img src="/media/images/default.png" class="card-img-top">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ plant.id }}: {{ plant.name }}</h5>
+                            <p class="card-text">{{ plant.about }}</p>
+                            <p class="card-text">
+                                {% if plant.category == '1' %}
+                                    Fruit
+                                {% elif plant.category == '2' %}
+                                    Vegetables
+                                {% elif plant.category == '3' %}
+                                    Tree
+                                {% elif plant.category == '4' %}
+                                    Farming
+                                {% endif %}
+                            </p>
+                            <a href="{% url 'main:plantDetail_view' plant.id %}" class="btn btn-primary">Details</a>
+                        </div>
+                    </div>
+                </div>
+                {% if forloop.counter|divisibleby:3 %}
+                    </div><div class="row">
+                {% endif %}
+            {% endfor %}
 {% endblock%}

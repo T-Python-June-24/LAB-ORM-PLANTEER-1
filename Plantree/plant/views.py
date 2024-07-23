@@ -32,6 +32,6 @@ def updatePlant_view(request:HttpRequest , plant_id: int):
         if form.is_valid():
             form.save()
     mydict= {'form':form}
-    return render(request,'updatePlant.html',context=mydict)
+    return render(request,'updatePlant.html', context=mydict)
 
 
