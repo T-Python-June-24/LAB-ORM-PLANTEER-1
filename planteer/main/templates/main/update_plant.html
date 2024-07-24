@@ -44,9 +44,9 @@
                         <label for="password_confirmation" class="text-gray-700">is edible</label>
                         <div x-data="{ show: false }" class="relative flex items-center mt-2">
                         <div class="flex flex-row gap-4">
-                           <p>Yes <input type="radio" name="is_edible" value="True"  id="" {% if plant.is_edible %} checked {% endif %} ></p>
+                           <p>Yes <input type="radio" name="is_edible" value="true"  id="" {% if plant.is_edible %} checked {% endif %} ></p>
                         
-                            <p>No <input type="radio" name="is_edible" value="False" {% if not plant.is_edible %} checked {% endif %}></p>
+                            <p>No <input type="radio" name="is_edible" value="false" {% if not plant.is_edible %} checked {% endif %}></p>
                         </div>
                            
                         </div>
