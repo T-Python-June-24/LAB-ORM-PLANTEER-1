@@ -28,8 +28,7 @@
   {% else %}
 
   <h4 class="bg-warning p-3 rounded"> no results founded </h4>
-  <form role="search" method="post" action="{% url 'plants:search_plants' %}">
-    {% csrf_token %}
+  <form role="search" method="get" action="{% url 'plants:search_plants' %}">
     <input class="form-control w-25" type="search" placeholder="Search for another plants " aria-label="Search" name="search" required minlength="3">
     <button type="submit" class="btn btn-primary mt-2">search </button>
   </form>

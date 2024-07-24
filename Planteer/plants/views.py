@@ -92,13 +92,13 @@ def delete_plant(request:HttpRequest,plant_id:int):
 def search_plants(request:HttpRequest):
     
 
-    if "search" in request.POST and len(request.POST["search"]) >= 3 :
+    if "search" in request.GET and len(request.GET["search"]) >= 3 :
 
-        search = request.POST["search"]
+        search = request.GET["search"]
 
         print("value ameerah",search)
 
-        plants = Plant.objects.filter(name__contains=request.POST["search"])
+        plants = Plant.objects.filter(name__contains=request.GET["search"])
 
         count = plants.count()
 
