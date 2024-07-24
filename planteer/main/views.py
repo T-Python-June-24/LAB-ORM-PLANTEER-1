@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.http import HttpRequest
 from . import models 
-from .models import Reivew
+from .models import Reivew , Countries
 # from models import Plant , Contact , PlantChoices
 # Create your views here.
 def home_view(request:HttpRequest):
@@ -9,6 +9,7 @@ def home_view(request:HttpRequest):
     return render(request,"main/index.html",{"plants":plants})
 
 def add_plant_view(request:HttpRequest)->render:
+    countries=Countries.objects.all()
     if request.method=='POST':
         name=request.POST["name"]
         about=request.POST["about"]
@@ -18,10 +19,11 @@ def add_plant_view(request:HttpRequest)->render:
         is_edible= True if request.POST["is_edible"] =="True"  else False
         plane=models.Plant(name=name,about=about,used_for=used_for,category=category,is_edible=is_edible, image=image)
         plane.save()
+        plane.countries.set(request.POST.getlist("country"))
         return  redirect("main:home_view")
     
     choices = models.Plant.PlantChoices.choices
-    return render(request,'main/add_plant.html',{"choices":choices})
+    return render(request,'main/add_plant.html',{"choices":choices,"countries":countries})
 
 
 
@@ -48,6 +50,7 @@ def plant_detail_view(request,plant_id):
 def update_plant_view(request: HttpRequest, plant_id):
     plant = models.Plant.objects.get(pk=plant_id)
     existing_image_url = plant.image.url if plant.image else None  # Get existing image URL
+    countries=Countries.objects.all()
 
     if request.method == 'POST':
         name = request.POST["name"]
@@ -69,10 +72,11 @@ def update_plant_view(request: HttpRequest, plant_id):
             pass  
 
         plant.save()
+        plant.countries.set(request.POST.getlist("country"))
         return redirect("main:home_view")
 
     choices = models.Plant.PlantChoices.choices  # Get choices outside the POST block
-    return render(request, "main/update_plant.html", {"plant": plant, "choices": choices})
+    return render(request, "main/update_plant.html", {"plant": plant, "choices": choices,"countries":countries})
 
 def delete_plant_view(request:HttpRequest,plant_id:int):
     plant=models.Plant.objects.get(pk=plant_id)

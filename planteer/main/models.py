@@ -3,6 +3,12 @@ from django.utils.text import gettext_lazy
 # Create your models here.
 
     # Plant info 
+
+
+class Countries(models.Model):
+    name=models.CharField(max_length=120,unique=True)
+    def __str__(self) -> str:
+        return self.name
 class Plant (models.Model):
     class PlantChoices(models.TextChoices):
         TREE="Tree",gettext_lazy("Tree")
@@ -16,7 +22,10 @@ class Plant (models.Model):
     image=models.ImageField(upload_to="images/" ,default="images/default_fruit.jpg")
     is_edible=models.BooleanField()
     created_at=models.DateTimeField(auto_now_add=True)
+    countries=models.ManyToManyField(Countries)
 
+    def __str__(self) -> str:
+        return self.name
 
     # Contact Form
 class Contact(models.Model):
