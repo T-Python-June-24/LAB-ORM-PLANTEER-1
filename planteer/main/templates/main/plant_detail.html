@@ -13,10 +13,37 @@
         <h3 class="text-gray-500 text-sm">{{plant.about}}</h3>
         <h3>Is Edible: {% if plant.is_edible == True %} Yes {% else %} No  {% endif %}</h3>
         <h3> Used for : <br> {{plant.used_for}}</h3>
+        <div class="pt-4">
+            <h2 class="font-bold text-2xl ">Add comment</h2>
+            <form action="{% url 'main:add_reivew_view' plant.id %}" method="POST" class="flex flex-col ml-4 mt-4 w-full">
+                {% csrf_token %}
+                <label for="name">Name</label>
+                <input type="text" name="name" class="rounded-md border-gray-400 p-1">
+                <label for="message">Message</label>
+                <textarea name="message" id="" class="border-gray-400 rounded-md " ></textarea>
+                <input class="bg-black rounded-md p-2 text-white mt-2 cursor-pointer" type="submit" value="Add Comments">
+            </form>
+        </div>
 
 
     </div>
 </div>
+{% if reivews %}
+<div class="pl-40 mt-32">
+    <h2 class="font-bold text-3xl" >Comments</h2>
+    <div class="flex flex-row flex-wrap gap-4 ">
+        {% for reivew in reivews %}
+        <div class="ml-6 mt-6 shadow-md w-fit p-10 flex flex-col justify-center items-center">
+            
+            <h2 class="font-bold text-2xl ">{{reivew.name}}</h2>
+            <h2 class="text-gray-400">{{reivew.message}}</h2>
+        </div>
+        {% endfor %}
+
+
+    </div>
+</div>
+{% endif %}
 
 
 <div class="w-11/12 self-center flex flex-col  " >
@@ -42,7 +69,7 @@
             <!-- style="width: 300px; border-radius: 5px;" -->
              <div class="flex flex-row justify-between">
             <div>
-               <a href="{% url 'main:plant_detail_view' plant.id %}"> <p class="title font-bold hover:text-red-700">{{related.name}}</p></a>
+               <a href="{% url 'main:plant_detail_view' related.id %}"> <p class="title font-bold hover:text-red-700">{{related.name}}</p></a>
             <p class="subtitle">{{related.about|truncatechars:40 }}</p>
             <p class="category ">{{related.category}}</p>
             </div>

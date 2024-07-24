@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.http import HttpRequest
 from . import models 
+from .models import Reivew
 # from models import Plant , Contact , PlantChoices
 # Create your views here.
 def home_view(request:HttpRequest):
@@ -41,7 +42,8 @@ def plant_detail_view(request,plant_id):
     selected_plant=models.Plant.objects.get(pk=plant_id)
     category=selected_plant.category
     suggestion=models.Plant.objects.filter(category=category).exclude(pk=plant_id)
-    return render(request,"main/plant_detail.html",{"plant":selected_plant,"sug":suggestion})
+    reivew=Reivew.objects.filter(plant=selected_plant)
+    return render(request,"main/plant_detail.html",{"plant":selected_plant,"sug":suggestion,"reivews":reivew})
 
 def update_plant_view(request: HttpRequest, plant_id):
     plant = models.Plant.objects.get(pk=plant_id)
@@ -101,3 +103,11 @@ def plant_search_view(request:HttpRequest):
         count = plants.count()  # Count plants after filtering
 
     return render(request, "main/plant_search.html", {"plants": plants, "count": count})
+
+def add_reivew_view(request:HttpRequest,plant_id):
+    if request.method=="POST":
+        plant=models.Plant.objects.get(pk=plant_id)
+        new_reivew=Reivew(plant=plant,name=request.POST["name"],message=request.POST["message"])
+        new_reivew.save()
+        return redirect("main:plant_detail_view",plant_id=plant_id)
+    

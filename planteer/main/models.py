@@ -26,5 +26,11 @@ class Contact(models.Model):
     message=models.TextField()
     created_at=models.DateTimeField(auto_now_add=True)
     
+class Reivew(models.Model):
+    plant=models.ForeignKey(Plant,on_delete=models.CASCADE)
+    name=models.CharField(max_length=150)
+    message=models.TextField()
+    created=models.DateTimeField(auto_now_add=True)
+
 
 

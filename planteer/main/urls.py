@@ -16,6 +16,8 @@ urlpatterns = [
     path("contact/",views.contact_view,name="contact_view"),
     path("contact/messages/",views.contact_messages_view,name="contact_messages_view"),
     path("plants/search/",views.plant_search_view,name="plant_search_view"),
+    path("reivew/<plant_id>",views.add_reivew_view,name="add_reivew_view")
+
     
 
 
