@@ -1,9 +1,11 @@
 {% extends 'main/base.html' %}
 
-{% block title %} all plants{% endblock %}
+{% block title %} detaild plant{% endblock %}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
 {% block content %}
 
+<!--  detaild plant  -->
 
 <div class="row">
     <div class="col-md-6">
@@ -26,10 +28,40 @@
           </button>
     </div>
 </div>
-   
-   
+<hr/>   
+    <!-- adding comments  -->
+
+   <h3>comments</h3>
+   <form class="d-flex flex-column gap-2"  action="{%url 'plants:add_review' plant.id%}" method="POST">
+     {% csrf_token %}
+   <input class="form-control" name="name" placeholder="name" type="text" required>
+   <textarea class="form-control" name="comment" placeholder="comment" type="text" required ></textarea>
+  <input type="submit" class="btn btn-primary" value="Add Review"/>
+</form>
+    <!-- end of add comments  -->
+
+   <hr/>  
    </div>
+   <hr/>
+    <!-- all comments  -->
+   <div class="d-flex flex-column gap-2" shadow>
+    <h3>all comments ({{ count }})</h3>
+
+    {% for review in reviews %}
+    <div class="d-flex align-items-center gap-2">
+        <span class="material-symbols-outlined">account_circle</span>
+        <h5 class="mb-0">{{ review.name }}</h5>
+    </div>
+    <h6>{{ review.comment }}</h6>
+    <h6>{{ review.created_at }}</h6>
+    <br/>
+    {% endfor %}
+  </div>
+    <hr/>
+<!-- end all comments  -->
 <br/>
+<!-- related plants  -->
+
 <h3>related plants:</h3>
    <div class="row mt-5 row-cols-1 row-cols-md-3 g-4">
     
@@ -43,6 +75,9 @@
     </div>
     {% endfor %}
 </div>
+<!-- end of related plants  -->
+
+
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

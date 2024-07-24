@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponse
-from plants.models import Plant
+from plants.models import Plant , Review
 from .forms import PlantForm
 # Create your views here.
 def all_plants(request):
@@ -42,7 +42,10 @@ def plant_detail(request:HttpRequest,plant_id:int):
 
     Plants = Plant.objects.all()
     filterPlants = Plants.filter(category=plant_category).exclude(pk=plant_id)
-    return render(request,"plants/plant_detail.html",{"plant":plant,"filterPlants":filterPlants})
+
+    reviews=Review.objects.filter(plant=plant)
+    count=reviews.count()
+    return render(request,"plants/plant_detail.html",{"plant":plant,"filterPlants":filterPlants,"reviews":reviews,"count":count})
 
 def delete_plant(request:HttpRequest,plant_id:int):
     plant=Plant.objects.get(pk=plant_id)
@@ -73,3 +76,12 @@ def plants_search(request:HttpRequest):
           return render(request, 'plants/plants_search.html',{'searched':searched, 'plant':plant , 'count':count})
      else:
           return render(request, 'plants/plants_search.html')
+
+
+def add_review(request:HttpRequest,plant_id):
+    if request.method=="POST": 
+      plant_obj=Plant.objects.get(pk=plant_id)
+      new_review=Review(plant=plant_obj,name=request.POST['name'],comment=request.POST['comment'])
+      new_review.save()
+      #"plant" in  Review models 
+    return redirect("plants:plant_detail", plant_id=plant_id)

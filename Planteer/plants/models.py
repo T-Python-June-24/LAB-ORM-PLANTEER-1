@@ -16,3 +16,14 @@ class Plant(models.Model):
     category = models.CharField(max_length=50, choices=CategoryChoices.choices)
     is_edible = models.BooleanField()
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self) -> str:
+        return self.name
+
+class Review(models.Model):
+    plant=models.ForeignKey(Plant,on_delete=models.CASCADE)
+    name=models.CharField(max_length=256)
+    comment=models.TextField()
+    created_at=models.DateTimeField(auto_now_add=True)
+    def __str__(self) -> str:
+        return f"{self.name} on {self.plant.name}"
