@@ -2,7 +2,22 @@
 {%load static%}
 {% block title %} Contact Us {% endblock %}
 
-{%block content %} 
-contact us 
-<div style ="height: 1000px;"></div>
+{%block content %}
+<h1> Contact Us</h1> 
+<form class="d-flex flex-column gap-2 m-4 " action="{% url 'main:contactUs_view' %}" method="post" enctype="multipart/form-data"><!--  I should put endcoding type for sending image -->
+    {% csrf_token %}
+    <label>First Name</label>
+    <input type="text" placeholder="Name of the plant" name="first_name" class="form-control" />
+    <label>Last Name</label>
+    <input type="text" placeholder="What is used for?" name="last_name" class="form-control" />
+    <label>Email Address</label>
+    <input type="email" placeholder="example@homtail.com" name="email" class="form-control" />
+    <label>Your Message</label>
+    <input type="text" placeholder="Add your message here" name="message"class="form-control" />
+
+    <input type="submit" value="create message" class="btn btn-primary align-middle" />
+</form>
+
+<a href="/plant/contactUsMessages" class="btn btn-success align-middle">Display Messages</a>
+
 {% endblock%}

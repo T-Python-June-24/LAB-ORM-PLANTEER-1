@@ -3,8 +3,22 @@
 {% block title %} Clint Messages {% endblock %}
 
 {%block content %} 
-
-Contact meassages
-
-<div style ="height: 1000px;"></div>
+User Messages 
+<div class="container mt-5">
+        <div class="row">
+            {% for message in messages %}
+                <div class="col-md-4">
+                    <div class="card mb-4" style="width: 18rem;">
+                        <div class="card-body">
+                            <h4>Message No. {{ message.id }}:</h4>
+                            <h5 class="card-title">{{ message.first_name }} {{message.last_name}}</h5>
+                            <p class="card-text">{{ message.message }}</p>
+                            <p class="card-text">
+                                Date The Email Sent"
+                                {{message.created_at}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
 {% endblock%}
