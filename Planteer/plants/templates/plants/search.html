@@ -3,6 +3,8 @@
 {% block title %} search plants{% endblock %}
 
 {% block content %}
+
+{% if count > 0 %}
 <h1> {{count}} results of '{{search}}' founded </h1>
 
 <div class="row mt-2 row-cols-1 row-cols-md-3 g-4">
@@ -22,5 +24,17 @@
   
   
   </div>
+
+  {% else %}
+
+  <h4 class="bg-warning p-3 rounded"> no results founded </h4>
+  <form role="search" method="post" action="{% url 'plants:search_plants' %}">
+    {% csrf_token %}
+    <input class="form-control w-25" type="search" placeholder="Search for another plants " aria-label="Search" name="search" required minlength="3">
+    <button type="submit" class="btn btn-primary mt-2">search </button>
+  </form>
+
+  {% endif %}
+
 
 {% endblock %}

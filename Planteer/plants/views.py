@@ -90,13 +90,22 @@ def delete_plant(request:HttpRequest,plant_id:int):
 
 
 def search_plants(request:HttpRequest):
+    
 
-    if request.method == "POST":
+    if "search" in request.POST and len(request.POST["search"]) >= 3 :
 
         search = request.POST["search"]
 
-        plants = Plant.objects.filter(name__contains=search)
+        print("value ameerah",search)
+
+        plants = Plant.objects.filter(name__contains=request.POST["search"])
 
         count = plants.count()
 
         return render(request,"plants/search.html",{"search":search,"plants":plants,"count":count})
+
+    else:
+        
+        plants = []
+
+        return render(request,"plants/search.html")

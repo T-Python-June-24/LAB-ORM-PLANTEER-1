@@ -41,7 +41,7 @@
     <h3 class="text-center">plants database for plants lovers </h3>
     <form role="search" method="post" action="{% url 'plants:search_plants' %}">
       {% csrf_token %}
-      <input class="form-control w-100" type="search" placeholder="Search" aria-label="Search" name="search">
+      <input class="form-control w-100" type="search" placeholder="Search" aria-label="Search" name="search" required minlength="3">
       <button type="submit" class="btn btn-primary"> search </button>
     </form>
   </div>
