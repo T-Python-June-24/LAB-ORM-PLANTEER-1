@@ -3,16 +3,16 @@
 {% block title %} Add Plant {% endblock %}
 
 {% block content %}     
-    <form class="d-flex flex-column gap-2 m-4" action="{% url 'plant:createPlant_view' %}" method="post" enctype="multipart/form-data"><!--  I should put endcoding type for sending image -->
+    <form class="d-flex flex-column gap-2 m-4" action="{% url 'plant:createPlant_view' %}" method="post" enctype="multipart/form-data">   <!--  I should put endcoding type for sending image -->
     {% csrf_token %}
     <input type="text" placeholder="Name of the plant" name="name" class="form-control" />
-            <textarea placeholder="write discriptino" name="about" class="form-control"></textarea>
+            <textarea placeholder="write " name="about" class="form-control"></textarea>
             <input type="text" placeholder="What is used for?" name="used_for" class="form-control" />
             <input type="file" placeholder="uploadImage" name="image" class="form-control" accept="image/*"/>
 
             <select class="form-select" aria-placeholder="Choose category" id="category"name="category" required>
                 <option value="1">fruit</option>
-                <option value="2">vegtiables</option>
+                <option value="2">Vegetables</option>
                 <option value="3">Decorating tree</option>
                 <option value="4">farming</option>
                 </select>
