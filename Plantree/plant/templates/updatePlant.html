@@ -16,15 +16,15 @@
             <input type="text" placeholder="Purpose of the tree" name="used_for" class="form-control" value="{{plants.used_for}}"/>
             <label class="fw-bolder">Category</label>
             <select class="form-select" name="category">
-                <option value="1" {% if plants.category == 1 %}selected{% endif %}>fruit</option>
-                <option value="2" {% if plants.category == 2 %}selected{% endif %}>Vegetables</option>
-                <option value="3" {% if plants.category == 3 %}selected{% endif %}>Decorating tree</option>
-                <option value="4" {% if plants.category == 4 %}selected{% endif %}>farming</option>
+                <option value="fruit" {% if plants.category == "fruit" %}selected{% endif %}>fruit</option>
+                <option value="Vegetables" {% if plants.category == "Vegetables" %}selected{% endif %}>Vegetables</option>
+                <option value="Decorating tree" {% if plants.category == "Decorating tree" %}selected{% endif %}>Decorating tree</option>
+                <option value="farming" {% if plants.category == "farming" %}selected{% endif %}>farming</option>
               </select>
               <label class="fw-bolder" for="is_edible">Is Edible:</label>
               <select class="form-select" id="is_edible" name="is_edible" required>
-                  <option value="True" {% if plants.is_edible == True %}selected{% endif %}>Yes</option>
-                  <option value="False" {% if plants.is_edible == False %}selected{% endif %}>No</option>
+                  <option value="True" {% if plants.is_edible == 1 %}selected{% endif %}>Yes</option>
+                  <option value="False" {% if plants.is_edible == 0 %}selected{% endif %}>No</option>
               </select>
               <label class="fw-bolder">Date of Create</label>
             <input type="date" name="release_date" class="form-control" value="{{plants.created_at.isoformat}}"/>

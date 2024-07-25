@@ -5,7 +5,7 @@
   style="border: 1px solid; background-color: #1111; border-radius: 10px"
 >
   <h1 class="m-4 text-center">All Plant</h1>
-  <a href="/plant/add/plant" class="btn btn-primary align-middle">Add User</a>
+  <a href="/plant/add/plant" class="btn btn-primary align-middle">Add Plant</a>
   <table class="table table-bordered">
     <tr class="bg-info text-white">
       <td>NO.</td>
@@ -39,8 +39,27 @@
         {% endif %}
       </td>
       <td>{{plant.about}}</td>
-      <td>{{plant.category}}</td>
-      <td>{{plant.is_edible}}</td>
+      <td>
+          <p class="card-text">
+          {{plant.category}}
+                                {% if plant.category == '1' %}
+                                    Fruit
+                                {% elif plant.category == '2' %}
+                                    Vegetables
+                                {% elif plant.category == '3' %}
+                                    Tree
+                                {% elif plant.category == '4' %}
+                                    Farming
+                                {% endif %}
+                            </p>
+      </td>
+      <td>
+        {% if plant.is_edible == 1 %}
+        Yes
+        {%else%}
+        No
+        {%endif%}
+      </td>
       <td>{{plant.created_at}}</td>
       <td>
         <a
