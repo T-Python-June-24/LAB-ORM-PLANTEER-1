@@ -14,3 +14,6 @@ class Plants(models.Model): # Inherent Model class to get ORM feature
     category = models.CharField(max_length=1, choices=CATEGORY_CHOICES)
     is_edible = models.BooleanField()
     created_at = models.DateField(auto_now_add=True)
+
+    def __str__ (self) -> str:
+        return self.name

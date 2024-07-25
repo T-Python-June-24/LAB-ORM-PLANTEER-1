@@ -36,7 +36,7 @@ def updatePlant_view(request:HttpRequest, plant_id: int):
         plant.is_edible = request.POST["is_edible"] ==True
         if "image" in request.FILES: plant.image = request.FILES["image"]
         plant.save()
-        # return redirect(reverse('plantDetail_view', kwargs={'plant_id': plant.id}))
+        return redirect("main:plantDetail_view", plant_id=plant_id)
         
     return render(request,'updatePlant.html',{"plants": plant})
 
