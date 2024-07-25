@@ -16,10 +16,8 @@ def createPlant_view(request:HttpRequest):
 
 def deletePlant_view(request: HttpRequest, plant_id: int):
     plant = Plants.objects.get(id=plant_id)
-    if request.method == "POST":
-        plant.delete()
-        return redirect('/plant/listAll/plant')
-    return render(request, "deletePlant.html", {"plants": plant})
+    plant.delete()
+    return redirect("plant:listAllPlant_view")
 
 
 def listAllPlant_view(request:HttpRequest):
