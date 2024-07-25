@@ -19,7 +19,6 @@
 
                 <p class="text-black text-center mb-16 text-6xl font-bold img-animation word-spacing">
                     Plant Database For Plants Lovers</p>
-
                 <div class="w-full max-w-2xl">
                         <form action="{% url 'Plants:search_plant' %}" method="GET" class="mb-4 mr-4 w-full flex justify-center items-center">
                             <input required minlength="3" type="text" name="query" value="{{ query }}" placeholder="Search..." class="mr-6 p-3 rounded-lg w-full place-content-center justify-center text-black border ">

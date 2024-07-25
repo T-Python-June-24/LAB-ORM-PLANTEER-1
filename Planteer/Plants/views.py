@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.http import HttpResponse
 
 from .forms import PlantsForm
-from .models import Plants
+from .models import Plants,Reviews
 from django.contrib import messages
 from django.utils.datastructures import MultiValueDictKeyError
 
@@ -34,10 +34,8 @@ def search_plant(request: HttpResponse):
 
 def add_plant(request:HttpResponse):
     add_plant_form = PlantsForm()
-    
     if request.method == 'POST':
         try:
-            
             add_plant_form = PlantsForm(request.POST, request.FILES)
             if add_plant_form.is_valid():
                 add_plant_form.save()
@@ -79,17 +77,11 @@ def add_plant(request:HttpResponse):
     #         messages.error(request, f'An error occurred: {str(e)}')
     #     return redirect('Contact:thanks_add_plant')
     
-    
-    
-
-
-
-
-
 def plant_detail(request: HttpResponse, plant_id: int):
     plant = get_object_or_404(Plants, pk=plant_id)
     selected_plant = Plants.objects.filter(is_edible=plant.is_edible)[:3]
-    return render(request, 'Plants/plant_detail.html', {'plant': plant , 'selected_plant': selected_plant})
+    reviews = Reviews.objects.filter(plant=plant)
+    return render(request, 'Plants/plant_detail.html', {'plant': plant , 'selected_plant': selected_plant, 'reviews': reviews})
 
 
 def update_plant(request: HttpResponse, plant_id: int):
@@ -126,3 +118,22 @@ def delete_plant(request: HttpResponse, plant_id: int):
         return redirect('Plants:plants')
 
     return render(request, 'Plants/delete_plant.html', {'plant': plant})
+
+
+def users_review(request: HttpResponse, plant_id: int):
+    if request.method == 'POST':
+        plants = get_object_or_404(Plants, pk=plant_id)
+        review = Reviews(
+            plant=plants,
+            name=request.POST['name'],
+            comment=request.POST['comment'],
+            rating=request.POST['rating'],
+        )
+        review.save()
+    
+    return redirect('Plants:plant_detail', plant_id=plant_id)  
+
+
+def display_reviews(request: HttpResponse):
+    reviews = Reviews.objects.all()
+    return render(request, 'Plants/r.html', {'reviews': reviews})

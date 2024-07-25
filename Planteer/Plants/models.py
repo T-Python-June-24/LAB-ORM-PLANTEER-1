@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Plants(models.Model):
-    
+
     class Category(models.TextChoices):
         INDOOR = 'Indoor', 'Indoor'
         OUTDOOR = 'Outdoor', 'Outdoor'
@@ -35,3 +35,15 @@ class Plants(models.Model):
 
     def __str__(self):
         return self.name
+
+
+
+class Reviews(models.Model):
+
+    plant = models.ForeignKey(Plants,on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
+    rating = models.SmallIntegerField()
+    comment = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return f"{self.name}"
