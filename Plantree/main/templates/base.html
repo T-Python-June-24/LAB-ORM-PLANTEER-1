@@ -41,6 +41,14 @@
               </div> -->
             </li>
           </ul>
+           <div class="search-bar">
+            <form role="search" method="get" action="{% url 'main:search_view' %}" >
+                <div class="input-group">
+                    <input type="search" class="form-control" placeholder="Search..." aria-label="Search" name="search" value="{{request.GET.search}}" required minlength="3">
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </div>
+            </form>
+        </div>
 
         </div>
       </div>

@@ -37,3 +37,13 @@ def contactUs_view(request: HttpRequest):
 def contactUsMessages_view(request: HttpRequest):
     message = Contact.objects.all()
     return render(request,"contactUsMessages.html", {"messages":message } )
+
+def search_view(request:HttpRequest):
+
+    if "search" in request.GET:
+        plant = Plants.objects.filter(name__contains= request.GET["search"])
+    else:
+        plant=[ ]
+
+    
+    return render(request, "searchPlant.html", {"plant":plant})

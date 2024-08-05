@@ -10,4 +10,5 @@ urlpatterns =[
     path("plantDetail/<int:plant_id>", views.plantDetail_view, name="plantDetail_view"),
     path("contactUs/", views.contactUs_view, name="contactUs_view"),
     path("contactUsMessages/", views.contactUsMessages_view, name="contactUsMessages_view"),
+    path('search/', views.search_view, name="search_view"),
 ]
