@@ -12,7 +12,8 @@ def allPlant_view(request: HttpRequest):
 
 def plantDetail_view(request: HttpRequest, plant_id: int):
     plant = Plants.objects.get(id=plant_id)
-    plant2 = Plants.objects.all()
+    plant2 = Plants.objects.filter(category=plant.category)
+    print(F"The Category is {plant2}")
     return render(request,"plantDetail.html", {"plants": plant, "plants2": plant2})
 
 def contactUs_view(request: HttpRequest):
