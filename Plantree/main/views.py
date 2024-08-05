@@ -7,8 +7,19 @@ def home_view(request: HttpRequest):
     return render(request,"index.html", {"plants": plant} )
 
 def allPlant_view(request: HttpRequest):
-    plant = Plants.objects.all()
-    return render(request,"allPlant.html", {"plants":plant} )
+    plants = Plants.objects.all()
+    # Filter by category
+    category = request.GET.get('category')
+    if category:
+        plants = plants.filter(category=category)
+    
+    # Filter by edible status
+    edible = request.GET.get('edible')
+    if edible is not None:
+        is_edible = edible.lower() == 'true'
+        plants = plants.filter(is_edible=is_edible)
+        
+    return render(request,"allPlant.html", {"plants":plants} )
 
 def plantDetail_view(request: HttpRequest, plant_id: int):
     plant = Plants.objects.get(id=plant_id)
