@@ -1,0 +1,56 @@
+{% extends 'base.html' %} {% load static %} 
+{% block title %} Update Plant {%endblock %} 
+
+{% block content %}
+<div class="row">
+
+    <div class="col-6">
+
+        <form class="d-flex flex-column gap-2" action="{% url 'plant:updatePlant_view' plants.id %}"  method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label class="fw-bolder">Name of The Tree </label>
+            <input type="text" placeholder="Title" name="name" class="form-control" value="{{plants.name}}"/>
+            <label class="fw-bolder">About Tree</label>
+            <textarea placeholder="Description" name="about" class="form-control">{{plants.about}}</textarea>
+            <label class="fw-bolder">Purpose of Use</label>
+            <input type="text" placeholder="Purpose of the tree" name="used_for" class="form-control" value="{{plants.used_for}}"/>
+            <label class="fw-bolder">Category</label>
+            <select class="form-select" name="category">
+                <option value="fruit" {% if plants.category == "fruit" %}selected{% endif %}>fruit</option>
+                <option value="Vegetables" {% if plants.category == "Vegetables" %}selected{% endif %}>Vegetables</option>
+                <option value="Decorating tree" {% if plants.category == "Decorating tree" %}selected{% endif %}>Decorating tree</option>
+                <option value="farming" {% if plants.category == "farming" %}selected{% endif %}>farming</option>
+              </select>
+              <label class="fw-bolder" for="is_edible">Is Edible:</label>
+              <select class="form-select" id="is_edible" name="is_edible" required>
+                  <option value="True" {% if plants.is_edible == 1 %}selected{% endif %}>Yes</option>
+                  <option value="False" {% if plants.is_edible == 0 %}selected{% endif %}>No</option>
+              </select>
+              <label class="fw-bolder">Date of Create</label>
+            <input type="date" name="release_date" class="form-control" value="{{plants.created_at.isoformat}}"/>
+              <label class="fw-bolder">Upload Image</label>
+            <div class="row">
+                <div class="col-3">
+                    {% if plants.image %}
+                    <img src="{{plants.image.url}}" class="w-100" />
+                    {% else %}
+                <img
+                src="/media/images/defualt.png"
+                class="w-20 poster-thumb object-fit-contain"
+                />
+                {% endif %}
+                </div>
+                <div class="col">
+                  <input type="file" placeholder="uploadImage" name="image" class="form-control" accept="image/*"/>
+                </div>
+            </div>
+        
+            <input type="submit" value="update Plant" class="btn btn-primary" />
+
+        </form>
+
+
+    </div>
+
+</div>
+{% endblock %}

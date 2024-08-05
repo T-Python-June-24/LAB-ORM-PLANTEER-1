@@ -1,0 +1,24 @@
+
+{% extends 'base.html' %}
+
+
+{% block title %}Create New Game{% endblock %}
+
+{% block content %}
+{% if plant %}
+<h1>Search Results ({{plant.count}})</h1>
+<h5>results for: {{request.GET.search}}</h5>
+<div class="d-flex justify-content-end">
+    <form action="{% url 'main:search_view' %}" method="GET" >
+        <div class="d-flex gap-3">
+            <input type="search" class="form-control" value="{{request.GET.search}}" name="search" required />
+        </div>
+    </form>
+</div>
+
+{% else %}
+<p class="bg-warning p-3 rounded">No results found for your search "{{request.GET.search}}"</p>
+{% endif %}
+
+
+{% endblock %}
