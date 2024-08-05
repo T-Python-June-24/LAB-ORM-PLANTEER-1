@@ -3,7 +3,7 @@ from django.http import HttpRequest, HttpResponse
 from plant.models import Plants  #import plant class from another app to retrieving data form data base.
 from main.models import Contact
 def home_view(request: HttpRequest):
-    plant = Plants.objects.all()
+    plant = Plants.objects.all()[0:3]
     return render(request,"index.html", {"plants": plant} )
 
 def allPlant_view(request: HttpRequest):
