@@ -12,8 +12,9 @@ class Plants(models.Model): # Inherent Model class to get ORM feature
     used_for= models.TextField()
     image =  models.ImageField(upload_to="images/")
     category = models.CharField(max_length=1, choices=CATEGORY_CHOICES)
-    is_edible = models.BooleanField()
+    is_edible = models.BooleanField(default=False)
     created_at = models.DateField(auto_now_add=True)
+    
 
     def __str__ (self) -> str:
         return self.name

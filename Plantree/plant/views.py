@@ -33,7 +33,7 @@ def updatePlant_view(request:HttpRequest, plant_id: int):
         plant.about = request.POST["about"]
         plant.used_for = request.POST["used_for"]
         plant.category = request.POST["category"]
-        plant.is_edible = request.POST["is_edible"] ==True
+        plant.is_edible = request.POST["is_edible"]
         if "image" in request.FILES: plant.image = request.FILES["image"]
         plant.save()
         return redirect("main:plantDetail_view", plant_id=plant_id)
